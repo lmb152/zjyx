@@ -1,0 +1,84 @@
+html, body
+{
+	_overflow-x: hidden;
+}
+body
+{
+	margin: 0;
+	padding: 0;
+	font-size: 0.75em;
+	_font-size: 12px;
+	background-color: #EEF2FB;
+	font-family: Microsoft YaHei, Verdana, Arial, Helvetica, sans-serif;
+}
+
+.Webadmin_top{
+    background: #fed993;
+    height: 50px;
+    position: fixed;
+    width: 100%;
+    z-index: 99999
+}
+.top_right{
+	float: right;
+	padding-right:40px;
+	margin-top:10px
+}
+.top_right a{
+	color: #000000;
+}
+.toptitle{
+	float: left; 
+	margin-left: 5%;
+}
+.toptitle span{
+	font-family: Microsoft YaHei;
+	font-size: 20px;
+	color: #000000;
+	line-height: 50px;
+}
+.Webadmin_left{
+	width: 12%;
+    position: fixed;
+    height: 100%;
+    background: #f2feff;
+    margin-top: 50px;
+}
+.Webadmin_right{
+    float: right;
+    width: 88%;
+    margin-top: 50px;
+}
+.content{
+	width: 100%;
+	overflow:scroll;
+	text-align: center;
+	padding-top: 20px;
+}
+.content p{
+	font-size: 20px;
+	color: #000000;
+	line-height: 50px;
+	margin-top: 50px;
+}
+table th{
+	text-align: center;
+}
+table a{
+	color: #000;
+	text-decoration:none;
+}
+table a:hover{
+	color: #337ab7;
+	text-decoration:none;
+}
+.pagination a{
+	padding: 10px;
+	background: #dcdcdc;
+	margin-left: 10px;
+}
+.pagination .current{
+	padding: 9px;
+	background: #ff0;
+	margin-left: 10px;
+}

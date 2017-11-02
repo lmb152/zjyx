@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="width = device-width, initial-scale = 1.0, minimum-scale = 1.0, maximum-scale = 1.0, user-scalable = no"/>
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<meta http-equiv="X-UA-Compatible" content="IE=8">
+		<meta name="renderer" content="webkit|ie">
+		<title>{$Think.const.SITE_NAME}</title>
+		<link src="{$Think.const.BOOTSTRAP}/css/bootstrap.css"></link>
+		<link href="{$Think.const.CSS_URL}/style.css" rel="stylesheet">
+		<link href="{$Think.const.CSS_URL}/user.css" rel="stylesheet">
+	</head>
+	<body>
+		<block name="top">
+			<div class="top_pic">
+				<div class="welcome">
+					<div class="content">
+						<div class="left">欢迎访问桐乡市老年大学网站</div>
+						<div class="right">
+							{:date('Y-m-d')}|
+							<a style="cursor:pointer;" onclick="shoucang('111','111');">加入收藏</a>|
+							联系电话:88848082
+						</div>
+					</div>
+				</div>
+				<div class="logo">
+					<img src="/Public/images/header.jpg" alt="桐乡老年大学">
+				</div>
+			</div>
+		</block>
+		<div class="main_body">
+			<div class="menu">
+				<ul>
+					<li><a <if condition="$Think.server.REQUEST_URI eq '/'"> class="active"</if> href="/">网站首页</a></li>
+					<li><a <if condition=" I('param.artkind') eq 2"> class="active"</if> href="{:U('Article/lists',array('artkind'=>2))}">学校概况</a></li>
+					<li><a <if condition=" I('param.artkind') eq 9"> class="active"</if> href="{:U('Article/lists',array('artkind'=>9))}">校园动态</a></li>
+					<li><a <if condition=" I('param.artkind') eq 12"> class="active"</if> href="{:U('Article/lists',array('artkind'=>12))}">教学管理</a></li>
+					<li><a <if condition=" I('param.artkind') eq 16"> class="active"</if> href="{:U('Article/lists',array('artkind'=>16))}">党建风采</a></li>
+					<li><a <if condition=" I('param.artkind') eq 17"> class="active"</if> href="{:U('Article/lists',array('artkind'=>17))}">学习园地</a></li>
+					<li><a <if condition=" I('param.artkind') eq 13"> class="active"</if> href="{:U('Article/lists',array('artkind'=>13))}">佳作欣赏</a></li>
+				</ul>
+			</div>
+			<block name="main">
+			</block>
+			<block name="footer">
+					<div class="footer">
+						<div class="footer_p">
+							Copyright © 2015-2020 txlndx.cn.桐乡市老年大学 版权所有  
+						</div>
+						<div class="footer_p">
+							浙ICP备11005330号   电话：0573-88848085  88848082 
+						</div>
+						<div class="footer_p">
+							您是第<span style="color:red">{$Think.Session.visit_num}</span>位访客
+						</div>
+					</div>
+			</block>
+		</div>
+		
+	</body>
+
+	<script src="{$Think.const.JS_URL}/jquery-1.9.1.min.js"></script>
+	<script src="{$Think.const.JS_URL}/jcMarquee.js"></script>
+	<script src="{$Think.const.BOOTSTRAP}/js/bootstrap.js"></script>
+	<script src="{$Think.const.JS_URL}/menu.js"></script>
+	<script type="text/javascript"> 
+		// 设置为主页 
+		function SetHome(obj,vrl){ 
+			try{ 
+				obj.style.behavior='url(#default#homepage)';obj.setHomePage(vrl); 
+			} 
+			catch(e){ 
+				if(window.netscape) { 
+					try { 
+						netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect"); 
+					} 
+					catch (e) { 
+						alert("此操作被浏览器拒绝！\n请在浏览器地址栏输入“about:config”并回车\n然后将 [signed.applets.codebase_principal_support]的值设置为'true',双击即可。"); 
+					} 
+					var prefs = Components.classes['@mozilla.org/preferences-service;1'].getService(Components.interfaces.nsIPrefBranch); 
+					prefs.setCharPref('browser.startup.homepage',vrl); 
+				}else{ 
+					alert("您的浏览器不支持，请按照下面步骤操作：1.打开浏览器设置。2.点击设置网页。3.输入："+vrl+"点击确定。"); 
+				} 
+			} 
+		} 
+		// 加入收藏 兼容360和IE6 
+		function shoucang(sTitle,sURL) { 
+			try{ 
+				window.external.addFavorite(sURL, sTitle); 
+			} 
+			catch (e){ 
+				try { 
+					window.sidebar.addPanel(sTitle, sURL, ""); 
+				} 
+				catch (e){ 
+					alert("加入收藏失败，请使用Ctrl+D进行添加"); 
+				} 
+			} 
+		} 
+
+		$(function(){
+		    $('#Marquee_x').jcMarquee({ 'marquee':'x','margin_right':'10px','speed':30 });
+		});
+	</script>
+	<script type="text/javascript">document.write(unescape("%3Cspan id='_ideConac' %3E%3C/span%3E%3Cscript src='http://dcs.conac.cn/js/12/190/1424/60608149/CA121901424606081490003.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+	<style type="text/css">
+		#imgConac{
+			margin-left: 48%;
+		} 
+	</style>
+
+
+	<block name="lunbo">
+		
+	</block>
+		
+</html>

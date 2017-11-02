@@ -1,0 +1,83 @@
+<extend name="./base" />
+<block name="main">
+	<style type="text/css">
+		.input-group{
+			width: 45%;
+			float: left;
+			margin: 10px;
+		}
+	</style>
+	<div class="content">
+		<div class="container">
+			<div class="panel panel-primary">
+			   <div class="panel-heading">
+			      	<h3 class="panel-title">{$body_title}</h3>
+			   </div>
+			   <div class="panel-body">
+					<form method="post" action="{:U('Webadmin/list/save')}" enctype="multipart/form-data" class="bs-example bs-example-form" role="form">
+						<div class="input-group">
+							<span class="input-group-addon">文章标题</span>
+							<input type="text" name="title" value="{$article.title}" class="form-control" placeholder="请填写文章标题">
+						</div>
+						<if condition="$article.author neq null">
+							<input type="hidden" name="author" value="{$article.author}" class="form-control" placeholder="请填写发布者">
+						<else/>
+							<input type="hidden" name="author" value="{$_SESSION['uname']}" class="form-control" placeholder="请填写发布者">
+						</if>
+							
+						<div class="input-group ">
+							<span class="input-group-addon">发布时间</span>
+							<div class="input-group date form_date" style="margin:0;">
+								<input class="form-control" type="text" readonly="" style="background: white;" id="released" name="released" value="{$article.released}" onclick="WdatePicker({skin:'whyGreen',pubDate:'%y-%M-01 ',dateFmt:'yyyy-MM-dd',alwaysUseStartDate:true});">
+							</div>
+						</div>
+						<div class="input-group">
+							<span class="input-group-addon">点击次数</span>
+							<input type="text" name="clicknum" value="{$article.clicknum}" class="form-control" placeholder="请填写点击次数">
+						</div>
+						<div class="input-group">
+							<span class="input-group-addon">文章缩略图</span>
+							<input type='file' name='img'>
+						</div>
+						<if condition="$article.imgurl neq null">
+						<div class="input-group" style="max-width:50%;position:relative;"><img src="/Public/uploads/{$article.imgurl}"></div>
+						</if>
+						<!-- <div class="input-group">
+							<span class="input-group-addon">英文标题</span>
+							<input type="text" name="englishname" value="{$article.englishname}" class="form-control" placeholder="请填写英文标题">
+						</div>
+						 -->
+						
+						<div class="input-group">
+							<span class="input-group-addon">是否置顶</span>
+							<input type="radio" name="istop" value="1" <if condition="$article.istop eq 1">checked='checked'</if> >是
+							<input type="radio" name="istop" value="0" <if condition="$article.istop eq 0">checked='checked'</if> >否
+						</div>
+						<div class="input-group">
+							<span class="input-group-addon">是否首页显示</span>
+							<input type="radio" name="isindex" value="1" <if condition="$article.isindex eq 1">checked='checked'</if> >是
+							<input type="radio" name="isindex" value="0" <if condition="$article.isindex eq 0">checked='checked'</if> >否
+						</div>
+						<br/>
+						<div class="form-group col-md-11" >
+							<label for="currency" style="line-height: 70px;" class="col-md-3 control-label">文章简介</label>
+							<div class="col-md-9">
+								<textarea class="form-control" name="briefinfo" rows="3" placeholder="字符数超过255，将截取255个字符" data-original-title="字符数超过60，将截取60个字符">{$article.briefinfo}</textarea>
+							</div>
+						</div>
+						<div class="input-group" style="width:92%;">
+							<script type="text/plain" id="content" name="content">{$article.content|htmlspecialchars_decode|stripslashes}</script>
+						</div>
+						<input type="hidden" name="id" value="{$article.id}">
+						<input type="hidden" name="artkind" value="{$akid}">
+						<div style="clear:both;">
+							<input type="submit" value="保存" class="btn btn-large btn-success">
+						</div>
+						
+					</form>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</block>

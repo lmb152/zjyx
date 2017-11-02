@@ -1,0 +1,26 @@
+<extend name="./base" />
+<block name="main">
+	<div class="content">
+		<div class="container">
+			<div class="panel panel-primary">
+			   <div class="panel-heading">
+			      	<h3 class="panel-title">{$body_title}</h3>
+			   </div>
+			   <div class="panel-body">
+					<form method="post" action="{:U('Webadmin/system/save')}" class="bs-example bs-example-form" role="form">
+						<div class="form-group">
+							<div class="col-md-9" style="width: 100%;">
+								<textarea class="form-control" name="confcontent" rows="20" placeholder="字符数超过255，将截取255个字符" data-original-title="字符数超过255，将截取255个字符">{$investconfig.confcontent}</textarea>
+							</div>
+						</div>
+						<br>
+						<input type="hidden" name="sysid" value="{$investconfig.sysid}">
+						<input type="hidden" name="confname" value="{$config}">
+						<input type="submit" style="margin-top:20px;" value="保存" class="btn btn-large btn-success">
+					</form>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</block>

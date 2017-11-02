@@ -1,0 +1,82 @@
+.user-sidebar {
+    float: left;
+    width: 168px;
+}
+.user-sidebar-box {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #e0e0e0;
+    border-radius: 3px;
+    margin-bottom: 13px;
+}
+.user-account-nav-item {
+    background: #fafafa repeat scroll 0 0;
+    color: #666;
+    cursor: pointer;
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    margin-top: 2px;
+}
+.user-account-nav-item:hover {
+    text-decoration: none;
+}
+.user-account-nav-item i {
+    display: inline;
+    float: left;
+    height: 16px;
+    margin-left: 16px;
+    margin-right: 8px;
+    margin-top: 13px;
+    width: 16px;
+}
+.user-account-nav-item:hover i {
+    animation: 0.5s ease 0s normal none 1 running userNav;
+}
+.user-account-nav-item span {
+    float: left;
+    font-size: 14px;
+}
+.user-account-nav-item span:hover {
+    color: #fb6e02;
+}
+.user-account-nav-list {
+    margin: 0 auto;
+    width: 162px;
+}
+.user-account-nav-list-item {
+    float: left;
+    width: 100%;
+}
+.user-account-nav-list-item ul {
+}
+.user-account-nav-list-item li {
+    border-bottom: 1px solid #f0f0f0;
+    float: left;
+    height: 42px;
+    line-height: 42px;
+    text-indent: 40px;
+    width: 100%;
+}
+.user-account-nav-list-item li.active a {
+    color: #fb6e02;
+}
+.user-account-nav-list-item li a {
+    color: #666;
+    display: block;
+}
+.user-account-nav-list-item li a:hover {
+    color: #fb6e02;
+    text-decoration: none;
+}
+.user-account-nav-list .current span {
+    color: #fb6e02;
+}
+.user-account-nav-list-item li b {
+    background: #ff6e01 none repeat scroll 0 0;
+    border-radius: 10px;
+    color: #fff;
+    font-family: arial;
+    font-size: 9px;
+    margin-left: 46px;
+    padding: 0 4px;
+}

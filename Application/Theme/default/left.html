@@ -1,0 +1,22 @@
+<section class="user-sidebar">
+    <div class="user-sidebar-box user-account-nav">
+        <ul class="user-account-nav-list clearfix">
+            <li class="user-account-nav-list-item"><a class="user-account-nav-item"><i class="user-nav-main"></i><span>网站导航</span> </a></li>
+
+            <foreach name="leftmenu" item="vo" >
+                <li class="user-account-nav-list-item">
+                    <div class="user-account-nav-item">
+                        <i class="user-nav-message-manage"></i><span>{$vo[0]['name']}</span>
+                    </div>
+                    <ul class="clearfix">
+                        <foreach name="vo.1" item="v" >
+                           <li <if condition="$artkind_id eq $v['id']"> class='active'</if>>
+                                <a href="{:U('Home/article/lists',array('artkind'=>$v['id']))}" target="_self" title="{$v['name']}">{$v['name']}</a> 
+                            </li> 
+                        </foreach> 
+                    </ul>
+                </li>
+            </foreach>
+        </ul>
+    </div>
+</section>

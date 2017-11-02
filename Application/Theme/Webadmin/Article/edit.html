@@ -1,0 +1,63 @@
+<extend name="./base" />
+<block name="main">
+	<div class="content">
+		<div class="container">
+			<div class="panel panel-primary">
+			   <div class="panel-heading">
+			      	<h3 class="panel-title">{$body_title}</h3>
+			   </div>
+			   <div class="panel-body">
+					<form method="post" action="{:U('Webadmin/article/save')}" class="bs-example bs-example-form" role="form">
+						<!-- 编辑内容 -->
+						<if condition='$isedit eq 1'>
+							<div class="input-group">
+								<span class="input-group-addon">栏目名称</span>
+								<input type="text" name="name" value="{$artkind.name}" class="form-control" placeholder="请填写栏目名称">
+							</div>
+							<br>
+							<div class="input-group">
+								<span class="input-group-addon">父类别</span>
+								<select class="form-control" name="parent">
+									<option value="{$artkind.parent}">{$artkind.pname}</option>
+									<option value="0">主类别</option>
+									<foreach name="artkind_parents" item="vo" >
+										<option value="{$vo.id}">{$vo.name}</option>
+									</foreach>
+								</select>
+							</div>
+							<br>
+							<div class="input-group">
+							 <span class="input-group-addon">是否为单篇文章</span>
+							 <input type="checkbox" name="issingle" <if condition='$artkind.issingle eq 1'>checked="checked"</if>>
+							</div>
+							<input type="hidden" name="id" value="{$artkind.id}">
+						<!-- 新建内容 -->
+						<else/>
+							<div class="input-group">
+								<span class="input-group-addon">栏目名称</span>
+								<input type="text" name="name" value="" class="form-control" placeholder="请填写栏目名称">
+							</div>
+							<br>
+							<div class="input-group">
+								<span class="input-group-addon">父类别</span>
+								<select class="form-control" name="parent">
+									<option value="0">主类别</option>
+									<foreach name="artkind_parents" item="vo" >
+										<option value="{$vo.id}">{$vo.name}</option>
+									</foreach>
+								</select>
+							</div>
+							<br>
+							<div class="input-group">
+							 <span class="input-group-addon">是否为单篇文章</span>
+							 <input type="checkbox" name="issingle">
+							</div>
+						</if>
+						<input type="submit" value="保存" class="btn btn-large btn-success">
+					</form>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</block>

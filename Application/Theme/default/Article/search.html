@@ -1,0 +1,37 @@
+<extend name="./base" />
+<block name="main">
+	<div class="content">
+		<div class="bread_crumb">
+			<a href="/index">首页</a>>>搜索结果
+		</div>
+		<div class="left_tree">
+			{:R('Home/Article/left')}
+		</div>
+		<div class="article_list">
+			<div class="list">
+				<empty name='articles'>
+					<div class="no-message">
+						暂无内容
+					</div>
+				<else />
+					<ul>
+						<volist name="articles" id="v"> 
+				    		<li>
+				    			<a href="{:U('Home/Article/details',array('article'=>$v['id']))}">
+				    				<span class="title">{$v['title']}</span>
+				    				<span class="releasead">{$v['released']|date='Y-m-d',###}</span>
+				    			</a>
+					    		
+
+					    	</li>
+						</volist>
+					</ul>
+				</empty>
+				
+			</div>
+			<div class="pagenation">
+				{$page}
+			</div>
+		</div>
+	</div>
+</block>

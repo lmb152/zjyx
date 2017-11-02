@@ -1,0 +1,569 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Microsoft YaHei;
+    margin: 0;
+    padding: 0;
+}
+a{
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+body{
+    font-size: 15px;
+}
+ul{
+    list-style: none;
+}
+label a{
+    color: #fff;
+}
+img{
+    border: none;
+    max-width: 100%;
+}
+.top_pic{
+    width: 100%;
+    height: 380px;
+}
+.top_pic .welcome{
+    background: #a0c7dc;
+    width: 100%;
+    height: 30px;
+}
+.top_pic .welcome .content{
+    width: 1120px;
+    text-align: center;
+    font-size: 15px;
+    color: #000;
+    margin: 0 auto;
+    height: 30px;
+}
+.top_pic .welcome .content .left{
+    float: left;
+    width: 50%;
+    text-align: left;
+    line-height: 30px;
+}
+.top_pic .welcome .content .right{
+    float: right;
+    width: 30%;
+    line-height: 30px;
+}
+.top_pic .logo{
+    background: #a3daf9;
+    width: 100%;
+    height: 350px;
+    text-align: center;
+}
+.top_pic .logo img{
+    max-width: 1420px;
+}
+.main_body{
+    width: 100%;
+    /*background:#bee4fb url('/Public/images/content_top_bg.jpg') repeat-x;*/
+        background: -webkit-linear-gradient(white, hsl(202, 88%, 81%)); /* Safari 5.1 - 6.0 */
+        background: -o-linear-gradient(white, hsl(202, 88%, 81%)); /* Opera 11.1 - 12.0 */
+        background: -moz-linear-gradient(white, hsl(202, 88%, 81%)); /* Firefox 3.6 - 15 */
+        background: linear-gradient(white, hsl(202, 88%, 81%)); /* 标准的语法 */
+}
+.main_body .menu{
+    background: #1b7bbe;
+    width: 1120px;
+    margin: 0 auto;
+    height: 38px;
+    border: solid 1px #5aa5bd;
+}
+.main_body .menu ul{
+    list-style: none;
+    width: 875px;
+    margin: 0 auto;
+    height: 20px;
+    line-height: 20px;
+    margin-top: 9px;
+}
+.main_body .menu ul li{
+    float: left;
+    width: 125px;
+    color: #fff;
+    border-right: #156bb3 solid 2px;
+    font-size: 19px;
+    text-align: center;
+}
+.main_body .menu ul li a{
+    width: 125px;
+    color: #fff;
+}
+.main_body .menu ul li a:hover, .main_body .menu ul li .active{
+    color: #ff0;
+}
+.main_body .content{
+    width: 1120px;
+    margin: 0 auto;
+}
+/*校园动态*/
+.main_body .school_news{
+    width: 890px;
+    height: 350px;
+    margin-top: 5px;
+    margin-right: 10px;
+    float: left;
+}
+.main_body .school_news .title{
+    background:  url(/Public/images/school_news.jpg) no-repeat #f2f0f0;
+    height: 28px;
+    font-size: 19px;
+}
+.main_body .school_news .title span{
+    margin-left: 30px;
+    line-height: 28px;
+    color: #fff;
+}
+.main_body .school_news .title label{
+    float: right;
+    margin-right: 20px;
+}
+.main_body .school_news .title label a{
+    line-height: 28px;
+    color: #fff;
+}
+.main_body .school_news .screen{
+    width: 412px;
+    height: 314px;
+    margin-top: 8px;
+    float: left;
+}
+.main_body .school_news .list{
+    width: 478px;
+    float: left;
+    margin-top: 8px;
+    height: 314px;
+    background: #fff;
+}
+.main_body .school_news .list ul{
+    width: 95%;
+    height: 100%;
+    float: right;
+}
+.main_body .school_news .list li{
+    height: 30px;
+    margin-top: 2px;
+    border-bottom: 1px dashed #CACACA;
+    margin-right: 10px;
+    line-height: 30px;
+    overflow:hidden;
+    text-overflow:ellipsis; 
+    -o-text-overflow:ellipsis;
+    white-space:nowrap;
+    width:100%;
+}
+.main_body .school_news .list .first{
+    background: url('/Public/images/first.jpg');
+    width: 474px;
+    height: 90px;
+    margin-left: -23px;
+}
+.main_body .school_news .list .first .first_title{
+    width: 100%;
+    line-height: 20px;
+    text-align: center;
+    padding-top: 10px;
+}
+.main_body .school_news .list .first .intro{
+    width: 100%;
+    line-height: 20px;
+    padding-left: 85px;
+    word-wrap: break-word;
+    overflow:hidden;
+    text-overflow:ellipsis; 
+    -o-text-overflow:ellipsis;
+    height: 40px;
+}
+/*通知公告*/
+.main_body .announcement{
+    width: 220px;
+    float: left;
+    margin-top: 5px;
+    height: 350px;
+}
+.main_body .announcement .title{
+    background: url(/Public/images/announcement.jpg) no-repeat #f2f0f0;
+    height: 28px;
+}
+.main_body .announcement .list{
+    background:#d8e9f9;
+    height: 260px;
+}
+.main_body .announcement .list ul{
+    padding-top: 3px;
+}
+.main_body .announcement .list ul li{
+    height: 30px;
+    margin-top: 2px;
+    border-bottom: 1px dashed #CACACA;
+    margin-right: 10px;
+    line-height: 30px;
+    overflow:hidden;
+    text-overflow:ellipsis; 
+    -o-text-overflow:ellipsis;
+    white-space:nowrap;width:100%;
+}
+.main_body .announcement .search{
+    background: url(/Public/images/search.jpg) no-repeat #f2f0f0;
+    height: 60px;
+}
+.main_body .announcement .search form{
+    height: 60px;
+} 
+.main_body .announcement .search input[type=text]{
+    line-height: 45px;
+    opacity: 0.3;
+    width: 154px;
+    font-size: 15px;
+    vertical-align: top;
+    margin-top: 4px;
+    border-radius: 3px;
+    height: 50px;
+    border: none;
+} 
+.main_body .announcement .search input[type=submit]{
+    background: url(/Public/images/search_btn.jpg);
+    border: none;
+    width: 67px;
+    height: 60px;
+    margin-left: -6px;
+}    
+/*banner*/
+.main_body .banner{
+    width: 100%;
+    float: left;
+    height: 100px;
+}
+/*学校简介*/
+.main_body .school_profile{
+    width: 440px;
+    height: 243px;
+    margin-top: 5px;
+    margin-right: 10px;
+    float: left;
+    border-left: 1px solid #e7ebf1;
+    border-bottom: 1px solid #e7ebf1;
+    border-right:1px solid #e7ebf1;
+}
+.main_body .school_profile .title{
+    width: 100%;
+    height: 40px;
+    background: url(/Public/images/content_top.jpg);
+}
+.main_body .school_profile .title span{
+    color: #fff;
+    margin-left: 65px;
+    line-height: 40px;
+}
+.main_body .school_profile .list{
+    background: #fff;
+    height: 203px;
+}
+.main_body .school_profile .list .link_content{
+    float: left;
+    width: 45%;
+    height: 50px;
+    background: url(/Public/images/content_bg.jpg) no-repeat;
+    margin-left: 5%;
+    margin-top: 15px;
+}
+.main_body .school_profile .list .link_content a{
+    line-height: 50px;
+    color: #e3593f;
+    padding-left: 50px;
+}
+
+/*右侧link*/
+.main_body .link_list{
+    width: 220px;
+    float: left;
+    margin-top: 5px;
+    height: 243px;
+}
+/*佳作欣赏*/
+.main_body .art_works{
+    width: 100%;
+    float: left;
+    margin-top: 10px;
+    background: #e2eaf5;
+    height: 150px;
+}
+.main_body .art_works .title{
+    width: 40px;
+    height: 150px;
+    background: #0f81da;
+    writing-mode: vertical-lr;
+    color: #fff;
+    font-size: 20px;
+    padding-left: 10px;
+    padding-top: 10px;
+    letter-spacing:15px;
+    float: left;
+}
+.main_body .art_works .list{
+    float: left;
+    width: 1080px;
+    height: 150px;
+    overflow: hidden;
+}
+.main_body .art_works .list .list_content{
+    width: 140px;
+    height: 140px;
+    margin: 5px 20px;
+    float: left;
+}
+/*党建风采、学习园地*/
+.main_body .party_learning{
+    width: 440px;
+    height: 243px;
+    margin-top: 5px;
+    margin-right: 10px;
+    float: left;
+    border-left: 1px solid #e7ebf1;
+    border-bottom: 1px solid #e7ebf1;
+    border-right:1px solid #e7ebf1;
+    background: #fff;
+}
+.main_body .party_learning .title{
+    width: 100%;
+    height: 40px;
+    background: url(/Public/images/content_top.jpg);
+}
+.main_body .party_learning .title span{
+    color: #fff;
+    margin-left: 65px;
+    line-height: 40px;
+}
+.main_body .party_learning .title label{
+    float: right;
+    margin-right: 10px;
+    color: #fff;
+    line-height: 40px;
+}
+.main_body .party_learning .list{
+    width: 100%;
+    float: left;
+    margin-top: 8px;
+    height: 195px;
+    background: #fff;
+}
+.main_body .party_learning .list ul{
+    width: 95%;
+    height: 100%;
+    float: right;
+}
+.main_body .party_learning .list li{
+    height: 30px;
+    margin-top: 2px;
+    border-bottom: 1px dashed #CACACA;
+    margin-right: 10px;
+    line-height: 30px;
+    overflow:hidden;
+    text-overflow:ellipsis; 
+    -o-text-overflow:ellipsis;
+    white-space:nowrap;width:100%;
+}
+
+/*便民服务*/
+.main_body .convenience{
+    width: 220px;
+    float: left;
+    margin-top: 5px;
+    height: 243px;
+    border-left: 1px solid #e7ebf1;
+    border-bottom: 1px solid #e7ebf1;
+    border-right:1px solid #e7ebf1;
+    background: #fff;
+}
+.main_body .convenience .title{
+    width: 100%;
+    height: 40px;
+    background: url(/Public/images/bmfw.jpg);
+}
+.main_body .convenience .title span{
+    margin-left: 40px;
+    line-height: 40px;
+    color: #000;
+}
+.main_body .convenience .list{
+    width: 100%;
+    float: left;
+    margin-top: 8px;
+    height: 195px;
+    background: #fff;
+}
+.main_body .convenience .list .list_content{
+    width: 46%;
+    text-align: center;
+    float: left;
+    margin: 7px 4px;
+    height: 50px;
+}
+
+/*底部友情连接*/
+.main_body .link_row{
+    width: 100%;
+    float: left;
+    margin: 10px 0;
+    height: 57px;
+}
+.main_body .link_row ul{
+    list-style: none;
+}
+.main_body .link_row ul li{
+    float: left;
+    width: 20%;
+    text-align: center;
+}
+/*底部*/
+.main_body .footer{
+    text-align: center;
+    width: 1120px;
+    margin: 20px auto 0 auto;
+    border-top: #cb3601 solid 1px;
+    padding: 10px;
+    clear: both;
+}
+.main_body .footer .footer_p{
+    margin:15px auto;
+}
+/*文章列表页*/
+.main_body .left_tree{
+    width: 20%;
+    margin-right: 20px;
+    float: left;
+    background: #fff;
+    margin-top: 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 15px;
+    border: 1px solid #1b7bbe
+}
+.main_body .left_tree section{
+    padding: 10px;
+}
+.main_body .article_list{
+    margin-top: 20px;
+    width: 78%;
+    float: left;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #1b7bbe;
+}
+.main_body .article_list .list{
+    width: 100%;
+    min-height: 500px;
+    float: left;
+    padding-bottom: 10px;
+}
+.main_body .article_list .list ul{
+    margin: 10px;
+    width: 97%;
+    height: 100%;
+    float: right;
+}
+.main_body .article_list .list li{
+    height: 30px;
+    margin-top: 2px;
+    border-bottom: 1px dashed #CACACA;
+    margin-right: 10px;
+    line-height: 30px;
+}
+.main_body .article_list .list .title{
+    width: 80%;
+    float: left;
+    overflow:hidden;
+    text-overflow:ellipsis; 
+    -o-text-overflow:ellipsis;
+    white-space:nowrap;
+}
+.main_body .article_list .list .releasead{
+    width: 20%;
+    float: left;
+    text-align: right;
+    padding-right: 10px;
+}
+.main_body .article_list .pagenation{
+    width: 100%;
+    text-align: center;
+    margin: 25px auto;
+}
+.main_body .article_list .pagenation .num{
+    padding: 10px;
+    background: #dcdcdc;
+    margin-left: 10px;
+}
+.main_body .article_list .pagenation .current{
+    padding: 9px;
+    background: #ff0;
+    margin-left: 10px;
+}
+.main_body .bread_crumb{
+    width: 100%;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+.main_body .no-message{
+    margin: 50px auto;
+    text-align: center;
+    width: 100%;
+    font-size: 18px;
+}
+.main_body .article_list{
+    width: 78%;
+    min-height: 500px;
+    float: left;
+    margin-bottom: 15px;
+}
+.main_body .article_list .article_content{
+    margin-top: 20px;
+    width: 100%;
+}
+.main_body .article_list .article_content .title{
+    width: 93%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 16px;
+    text-align: center;
+    margin: 0 auto;
+    background-color: #9ac2e8;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 4px;
+    color: #333;
+}
+.main_body .article_list .article_content .released{
+    width: 80%;;
+    font-size: 14px;
+    text-align: center;
+    margin: 15px auto;
+}
+.main_body .article_list .article_content .content{
+    width: 95%;
+    margin: 10px auto;
+    padding: 10px;
+}
+#Marquee_x { overflow:hidden; width: 100%;margin-top: 10px; } 
+#Marquee_x ul li ,#Marquee_x ul li div{ float:left;line-height:25px;overflow:hidden;height: 150px;} /* 横向滚动必须让所有li左浮动 */
+#Marquee_x ul li div{ float:left;line-height:25px;height:131px; width:142px; overflow:hidden}
+#Marquee_x ul li div img{ border:1px solid #DADADA; width:140px; height:105px; display:block}
+#Marquee_x ul li div span{ display:block;text-align: center;overflow-x: hidden;}
+#n{margin:10px auto; width:920px; border:1px solid #CCC;font-size:12px; line-height:30px;}
+#n a{ padding:0 4px; color:#333}
+.mr10{margin-right: 10px;}
+
+.m-carousel{position: relative;overflow: hidden;width: 412px;height: 281px;}
+.m-carousel .bigImg img{position: absolute; top: 0; left: 0; overflow: hidden;width: 412px; height: 285px;}
+.m-carousel .smlImg{position: absolute; bottom: 15px; left: 50%;}
+.m-carousel .smlImg a{display: block; float: left; width: 16px; height: 16px; margin-right: 10px; border-radius: 50%; background-color: #fff; -webkit-box-shadow: 0 0 4px rgba(0,0,0,.4); -moz-box-shadow: 0 0 4px rgba(0,0,0,.4); box-shadow: 0 0 4px rgba(0,0,0,.4);-o-box-shadow: 0 0 4px rgba(0,0,0,.4);}
+.m-carousel .smlImg a.active{background-color: #d43836;}
+.nogotitle{background: #fff;line-height: 32px;width: 100%;text-align: center;}

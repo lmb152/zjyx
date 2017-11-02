@@ -1,0 +1,66 @@
+<extend name="./base" />
+<block name="main">
+	<div class="content">
+		<div class="container">
+			<div class="panel panel-primary">
+			   <div class="panel-heading">
+			      	<h3 class="panel-title">{$body_title}</h3>
+			   </div>
+			   <div class="panel-body">
+					<form method="post" action="{:U('Webadmin/user/save')}" class="bs-example bs-example-form" role="form">
+						<!-- 编辑内容 -->
+						<if condition='$isedit eq 1'>
+							<div class="input-group">
+								<span class="input-group-addon">用户名</span>
+								<input type="text" name="name" value="{$user.name}" class="form-control" placeholder="请填写用户名">
+							</div>
+							<br>
+							<div class="input-group">
+								<span class="input-group-addon">角色</span>
+								<select class="form-control" name="role">
+									<option value="{$user.role}">{$user.role}</option>
+									<option value="Webadmin">Webadmin</option>
+									<option value="editor">editor</option>
+								</select>
+							</div>
+							<br>
+							<div class="input-group">
+								<span class="input-group-addon">邮箱</span>
+								<input type="text" name="email" value="{$user.email}" class="form-control" placeholder="请填写邮箱">
+							</div>
+							<br>
+							<input type="hidden" name="id" value="{$user.id}">
+						<!-- 新建内容 -->
+						<else/>
+							<div class="input-group">
+								<span class="input-group-addon">用户名</span>
+								<input type="text" name="name" value="" class="form-control" autocomplete="off" placeholder="请填写用户名">
+							</div>
+							<br>
+							<div class="input-group">
+								<span class="input-group-addon">密码</span>
+								<input type="password" name="pwd" value="" class="form-control" autocomplete="off" placeholder="请填写密码">
+							</div>
+							<br>
+							<div class="input-group">
+								<span class="input-group-addon">角色</span>
+								<select class="form-control" name="role">
+									<option value="Webadmin">Webadmin</option>
+									<option value="editor">editor</option>
+								</select>
+							</div>
+							<br>
+							<div class="input-group">
+								<span class="input-group-addon">邮箱</span>
+								<input type="text" name="email" value="" class="form-control" placeholder="请填写邮箱">
+							</div>
+							<br>
+						</if>
+						<input type="submit" value="保存" class="btn btn-large btn-success">
+					</form>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</block>

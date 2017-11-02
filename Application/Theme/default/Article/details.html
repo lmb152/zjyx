@@ -1,0 +1,38 @@
+<extend name="./base" />
+<block name="main">
+	<div class="content">
+		<div class="bread_crumb">
+			<a href="/index">首页</a>>>
+
+			<volist name="bread_crumb" id="v"> 
+	    			<a href="{:U('Home/Article/lists',array('artkind'=>$v['id']))}">
+	    				{$v['name']}
+	    			</a>>>
+			</volist>
+		</div>
+		<div class="left_tree">
+			{:R('Home/Article/left')}
+		</div>
+		<div class="article_list">
+			<empty name='article'>
+				<div class="no-message">
+					暂无内容
+				</div>
+			<else />
+				<div class="article_content">
+					<div class="title">
+						{$article.title}
+						
+					</div>
+					<div class="released">
+						发布时间:{$article.released|date='Y-m-d',###}
+					</div>
+					<div class="content">
+						{$article.content|htmlspecialchars_decode|stripslashes}
+					</div>
+				</div>
+				
+			</empty>
+		</div>
+	</div>
+</block>
