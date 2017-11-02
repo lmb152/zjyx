@@ -2,6 +2,14 @@
 namespace Home\Controller;
 use Think\Controller;
 class IndexController extends Controller {
+     public function _initialize(){
+        // 获取用户openid
+        $info=$_SESSION['memberinfo'];
+        if(!isset($info->openid)){
+            // 授权登录获取openid
+            // $this->redirect('/Wechat');
+        }  
+    }
     public function index(){
         $article=M('article');
         $artkind=M('artkind');
