@@ -1,316 +1,49 @@
 <extend name="./base" />
-<block name="main">
-	<div class="content">
-		<div class="school_news">
-			<div class="title">
-				<span>校园动态</span>
-				<label><a href="{:U('Home/Article/lists',array('artkind'=>$school_news_kind))}">更多...</a></label>
 
-			</div>
-			<div class="screen">
-				<div class="m-carousel f-fl"> 
-					<a href="#nogo" title="" class="bigImg">
-				        <volist name="school_news_img" id="v"> 
-					    	<img src="/Public/uploads/{$v['imgurl']}">
-						</volist> 
-						           
-	                </a> 
-		            <div class="smlImg clearfix">
-		                <volist name="school_news_img" id="v"> 
-			                <a href="{:U('/Article/details',array('article'=>$v['id']))}" title="{$v['title']}"></a> 
-						</volist>        
-			        </div>
-			     </div>
-				 <div class="nogotitle"></div>
-			</div>
-			<div class="list">
-				<ul>
-					<volist name="school_news" id="v"> 
-				    	<if condition="$i eq 1">
-				    			<div class="first">
-				    				<div class="first_title">
-				    					<a href="{:U('/Article/details',array('article'=>$v['id']))}">{$v['title']}</a>
-				    				</div>
-				    				<div class="intro">
-				    					{$v['briefinfo']|substr=0,132}...
-				    					<a href="{:U('/Article/details',array('article'=>$v['id']))}">[详情]</a>
-				    				</div>
-				    			</div>
-				    	<else />
-				    		<li>
-				    			<a href="{:U('/Article/details',array('article'=>$v['id']))}">{$v['title']}</a>
-					    		
-					    	</li>
-				    	</if>
-				    	
-				    	
-					</volist>
-					
-				</ul>
-			</div>
-		</div>
-		<div class="announcement">
-			<div class="title"></div>
-			<div class="list">
-				<ul>
-					<volist name="announcement" id="v"> 
-			    		<li>
-			    			<a href="{:U('/Article/details',array('article'=>$v['id']))}">{$v['title']}</a>
-				    	</li>
-					</volist>
-				</ul>
-			</div>
-			<div class="search">
-				<form method="post" action="{:U('Article/search')}">
-					<input type="text" name="search_key">
-					<input type="submit" value="">
-				</form>
-			</div>
-		</div>
-		<div class="banner">
-			<img src="/Public/uploads/{$banner['imgurl']}">
-		</div>
-		<!-- 学校简介 -->
-		<div class="school_profile">
-			<div class="title">
-				<span>学校简介</span>
-			</div>
-			<div class="list">
-				<div class="link_content">
-					<a href="{:U('Article/lists',array('artkind'=>20))}">学校简介</a>
-				</div>
-				<div class="link_content">
-					<a href="{:U('Article/lists',array('artkind'=>21))}">规章制度</a>
-				</div>
-				<div class="link_content">
-					<a href="{:U('Article/lists',array('artkind'=>22))}">学校荣誉</a>
-				</div>
-				<div class="link_content">
-					<a href="{:U('Article/lists',array('artkind'=>23))}">组织机构</a>
-				</div>
-			</div>
-		</div>
-		<!-- 教学管理 -->
-		<div class="school_profile">
-			<div class="title">
-				<span>教学管理</span>
-			</div>
-			<div class="list">
-				<div class="link_content">
-					<a href="{:U('Article/lists',array('artkind'=>24))}">教学动态</a>
-				</div>
-				<div class="link_content">
-					<a href="{:U('Article/lists',array('artkind'=>26))}">专业设置</a>
-				</div>
-				<div class="link_content">
-					<a href="{:U('Article/lists',array('artkind'=>27))}">招生信息</a>
-				</div>
-				<div class="link_content">
-					<a href="{:U('Article/lists',array('artkind'=>28))}">课程安排</a>
-				</div>
-				<div class="link_content">
-					<a href="{:U('Article/lists',array('artkind'=>29))}">教师风采</a>
-				</div>
-			</div>
-		</div>
-		<div class="link_list">
-			<ul>
-				<li>
-					<a href="http://lndx.evejx.com/list.php" target="_blank">
-						<img src="/Public/images/kcbm.jpg">
-					</a>
-				</li>
-				<li>
-					<a href="http://www.tx.gov.cn/" target="_blank">
-						<img src="/Public/images/zgtx.jpg">
-					</a>
-				</li>
-				<li>
-					<a href="http://txnews.zjol.com.cn/govaffair/gsgg/" target="_blank">
-						<img src="/Public/images/txnews.jpg">
-					</a>
-				</li>
-				<li>
-					<a href="http://zjlnb.zjol.com.cn/html/2016-07/26/node_36.htm" target="_blank">
-						<img src="/Public/images/zjlnb.jpg">
-					</a>
-				</li>
-			</ul>
-		</div>
-		<div class="art_works">
-			<div class="title">佳作欣赏</div>
-			<div id="article_list" class="list">
-				<div id="Marquee_x">
-			        <ul style="width: 1000%;">
-			            <li>
-			            	<volist name="art_works" id="v"> 
-					    		<div class="mr10">
-				                	<a href="{:U('/Article/details',array('article'=>$v['id']))}" target="_blank">
-				                		<img src="/Public/uploads/{$v['imgurl']}">
-				                		<span>{$v['title']}</span>
-				                	</a>
-				                </div>
-							</volist>
-			            </li>
-				        <li class="clone">
-				        	<volist name="art_works" id="v"> 
-					    		<div class="mr10">
-				                	<a href="{:U('/Article/details',array('article'=>$v['id']))}" target="_blank">
-				                		<img src="/Public/uploads/{$v['imgurl']}">
-				                		<span>{$v['title']}</span>
-				                	</a>
-				                </div>
-							</volist>
-						</li>
-					</ul>
-			    </div>
-			</div>
-		</div>
-		<div class="party_learning">
-			<div class="title">
-				<span>党建风采</span>
-				<label><a href="{:U('Article/lists',array('artkind'=>16))}">More...</a></label>
-			</div>
-			<div class="list">
-				<ul>
-					<volist name="party_building" id="v"> 
-			    		<li>
-			    			<a href="{:U('/Article/details',array('article'=>$v['id']))}">{$v['title']}</a>
-				    	</li>
-					</volist>
-				</ul>
-			</div>
-		</div>
-		<div class="party_learning">
-			<div class="title">
-				<span>学习园地</span>
-				<label><a href="{:U('Article/lists',array('artkind'=>17))}">More...</a></label>
-			</div>
-			<div class="list">
-				<ul>
-					<volist name="study_center" id="v"> 
-			    		<li>
-			    			<a href="{:U('/Article/details',array('article'=>$v['id']))}">{$v['title']}</a>
-				    	</li>
-					</volist>
-				</ul>
-			</div>
-		</div>
-		<div class="convenience">
-			<div class="title">
-				<span>便民服务</span>
-			</div>
-			<div class="list">
-				<div class="list_content">
-					<a href="http://tongxiang.gongjiao.com/" target="_blank">
-						<img src="/Public/images/bus.png">
-						<div><a href="http://tongxiang.gongjiao.com/" target="_blank">公交线路</a></div>
-					</a>
-					
-				</div>
-				<div class="list_content">
-					<a href="http://www.12306.cn/mormhweb/" target="_blank">
-						<img src="/Public/images/train.png">
-						<div><a href="http://www.12306.cn/mormhweb/" target="_blank">铁路时刻</a></div>
-					</a>
-				</div>
-				<div class="list_content">
-					<a href="http://flights.ctrip.com/" target="_blank">
-						<img src="/Public/images/air.png">
-						<div><a href="http://flights.ctrip.com/" target="_blank">航班信息</a></div>
-					</a>
-				</div>
-				<div class="list_content">
-					<a href="http://bbs.tongxiang.net/forum-25-1.html" target="_blank">
-						<img src="/Public/images/food.png">
-						<div><a href="http://bbs.tongxiang.net/forum-25-1.html" target="_blank">桐乡美食</a></div>
-					</a>
-				</div>
-				<div class="list_content">
-					<a href="http://txszyyy.hos.999120.net/" target="_blank">
-						<img src="/Public/images/hospital.png">
-						<div><a href="http://txszyyy.hos.999120.net/" target="_blank">网上挂号</a></div>
-					</a>
-				</div>
-				<div class="list_content">
-					<a href="http://www.114best.com/" target="_blank">
-						<img src="/Public/images/tel.png">
-						<div><a href="http://www.114best.com/" target="_blank">电话查询</a></div>
-					</a>
-				</div>
-			</div>
-		</div>
-		<div class="link_row">
-			<ul>
-				<li style="text-align:left;">
-					<a href="http://www.zjlgbj.gov.cn/" target="_blank">
-						<img src="/Public/images/zjlgb.jpg">
-					</a>
-				</li>
-				<li>
-					<a href="http://www.jiaxing.gov.cn/" target="_blank">
-						<img src="/Public/images/jx.jpg">
-					</a>
-				</li>
-				<li>
-					<a href="http://www.jxlndx.com/" target="_blank">
-						<img src="/Public/images/jxlndx.jpg">
-					</a>
-				</li>
-				<li>
-					<a href="http://www.tx365.com/" target="_blank">
-						<img src="/Public/images/tx365.jpg">
-					</a>
-				</li>
-				<li style="text-align:right;">
-					<a href="http://bbs.tongxiang.net/" target="_blank">
-						<img src="/Public/images/tx.jpg">
-					</a>
-				</li>
-			</ul>
-		</div>
+<block name="main">
+	<div class="img_logo">
+		<img src="{$Think.const.AIMG_URL}/logo.png" />
 	</div>
+	<form class="form_content" action="#" method="post" >
+		<div class="weui_cell">
+		<div class="weui_cell_hd">
+		  <lab el class="weui_label">手机号：</label>
+		</div>
+		<div class="weui_cell_bd weui_cell_primary">
+		  <input class="weui_input" type="tel" id="tell" name="tell" placeholder="请输入手机号">
+		</div>
+		</div>
+		<div class="weui_cell">
+		<div class="weui_cell_hd">
+		  <label class="weui_label">验证码：</label>
+		</div>
+		<div class="weui_cell_bd weui_cell_primary">
+		  <input class="weui_input" type="certifycode" id="certifycode" name="certifycode" placeholder="请输入验证码">
+		</div>
+		<div class="weui_cell_ft"> 
+
+		<input style="width:117px;" type="button" class="weui_btn weui_btn weui_btn_mini weui_btn_primary" value="获取验证码"  onclick="clickButton(this)"/>  </div>
+		</div>
+		<div class="weui_cell"></div>
+		<div class="weui_btn_area" style="margin-top:80px"> <a class="weui_btn weui_btn_primary" type="submit">进入填写简历</a> </div>
+	</form>
+	
 	
 </block>
-<block name="lunbo">
+<block name="js_content">
 	<script type="text/javascript">
-		$(function () {
-            // 轮播
-            var carousel = $('.m-carousel');
-            var sBtnWp = carousel.find('.smlImg');
-            var sBtn = carousel.find('.smlImg a');
-            var len = carousel.find('.smlImg a').size();
-            var index = 0;
-            var timer = null;
-            sBtnWp.css('marginLeft', -sBtnWp.width() / 2 + 'px');
+		function clickButton(obj){
+		    var obj = $(obj);
+		    obj.attr("disabled","disabled");/*按钮倒计时*/
+		    var time = 60;
+		    var set=setInterval(function(){
+		    obj.val(--time+"(s)");
+		    }, 1000);/*等待时间*/
+		    setTimeout(function(){
+		    obj.attr("disabled",false).val("重新获取验证码");/*倒计时*/
+		    clearInterval(set);
+		    }, 60000);
+		}
 
-            sBtn.mouseenter(function () {
-                index = $(this).index();
-                showImg(index);
-            }).eq(0).trigger('mouseenter');
-
-            carousel.find('.bigImg').hover(function () {
-                if (timer) {
-                    clearInterval(timer);
-                }
-            }, function () {
-                timer = setInterval(function () {
-                    showImg(index);
-                    index++;
-                    if (index == len) { index = 0; }
-                }, 3000);
-            }).trigger('mouseout');
-
-            function showImg(index) {
-                var sBtn = $('.m-carousel').find('.smlImg a');
-                var newHref = sBtn.eq(index).attr('href');
-                var newTitle = sBtn.eq(index).attr('title');
-
-                sBtn.eq(index).addClass('active').siblings().removeClass('active');
-                carousel.find('.bigImg').attr('href', newHref).attr('title', newTitle).find('img').eq(index).fadeIn().siblings().fadeOut();
-                $('.nogotitle').html(newTitle);
-                
-            }
-        });
 	</script>
 </block>
