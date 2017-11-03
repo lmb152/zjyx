@@ -4159,3 +4159,7 @@ i.sort_com {
 .form_content .search_input{
     width: 80%;
 }
+.weui_btn_area h5{
+    margin-top: 10px;
+    text-align: center;
+}
