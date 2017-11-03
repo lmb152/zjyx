@@ -1,0 +1,160 @@
+<extend name="./base" />
+
+<block name="main">
+	<style type="text/css">
+		.cell_box{
+			width: 40%;
+			float: left;
+		}
+	</style>
+	<form class="form" action="{:U('index/basic_info_save')}" method="post" >
+		<div class="weui_cell"><h4>个人基本信息</h4></div>
+			<div class="weui_cell">
+				<div class="weui_cell_hd">
+				  <lab el class="weui_label">姓名：</label>
+				</div>
+				<div class="weui_cell_bd weui_cell_primary">
+				  <input class="weui_input" type="tel" id="tell" name="tell" placeholder="请输入姓名">
+				</div>
+			</div>
+			<div class="weui_cell cell_box">
+				<div class="weui_cell_hd">
+				  <label class="weui_label">性别：</label>
+				</div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<select name="male" class="weui_input">
+						<option value='0'>男</option>
+						<option value='1'>女</option>
+					</select>
+				</div>
+			</div>
+			<div class="weui_cell cell_box">
+				<div class="weui_cell_hd">
+				  <label class="weui_label">政治面貌：</label>
+				</div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<select name="political" class="weui_input">
+						<option value='0'>党员</option>
+						<option value='1'>预备党员</option>
+						<option value='2'>团员</option>
+						<option value='3'>群众</option>
+					</select>
+				</div>
+			</div>
+			<div class="weui_cell cell_box">
+				<div class="weui_cell_hd">
+				  <label class="weui_label">婚姻：</label>
+				</div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<select name="marriage" class="weui_input">
+						<option value='0'>未婚</option>
+						<option value='1'>已婚</option>
+					</select>
+				</div>
+			</div>
+			<div class="weui_cell cell_box">
+				<div class="weui_cell_hd">
+				  <label class="weui_label">出生年月：</label>
+				</div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<input name="birthday" type="text" class="weui_input"/>
+				</div>
+			</div>
+			<div class="weui_cell cell_box">
+				<div class="weui_cell_hd">
+				  <label class="weui_label">籍贯：</label>
+				</div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<input name="native_place" type="text" class="weui_input"/>
+				</div>
+			</div>
+			<div class="weui_cell cell_box">
+				<div class="weui_cell_hd">
+				  <label class="weui_label">民族：</label>
+				</div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<input name="ethnic" type="text" class="weui_input"/>
+				</div>
+			</div>
+			<div class="weui_cell">
+				<div class="weui_cell_hd">
+				  <lab el class="weui_label">学历：</label>
+				</div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<select name="education" class="weui_input">
+						<option value='0'>小学</option>
+						<option value='1'>初中</option>
+						<option value='2'>高中</option>
+						<option value='3'>大学专科</option>
+						<option value='4'>大学本科</option>
+						<option value='5'>硕士</option>
+						<option value='6'>博士</option>
+					</select>
+				</div>
+			</div>
+			<div class="weui_cell cell_box">
+				<div class="weui_cell_hd">
+				  <label class="weui_label">身高：</label>
+				</div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<input name="height" type="text" class="weui_input"/>
+				</div>
+			</div>
+			<div class="weui_cell cell_box">
+				<div class="weui_cell_hd">
+				  <label class="weui_label">体重：</label>
+				</div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<input name="weight" type="text" class="weui_input"/>
+				</div>
+			</div>
+			<div class="weui_cell cell_box">
+				<div class="weui_cell_hd">
+				  <label class="weui_label">服役时间：</label>
+				</div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<input name="service_start" type="text" class="weui_input"/>
+				</div>
+			</div>
+			<div class="weui_cell cell_box">
+				<div class="weui_cell_hd">
+				  <label class="weui_label">></label>
+				</div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<input name="service_end" type="text" class="weui_input"/>
+				</div>
+			</div>
+			<div class="weui_cell">
+				<div class="weui_cell_hd">
+				  <lab el class="weui_label">退伍证号：</label>
+				</div>
+				<div class="weui_cell_bd weui_cell_primary">
+				  <input class="weui_input" type="text" id="tell" name="badge_number" placeholder="请输入退伍证号">
+				</div>
+			</div>
+		<div class="weui_cell"></div>
+		<div class="weui_btn_area" style="margin-top:80px"> 
+			<input class="weui_btn weui_btn_primary" type="submit" value="保存并下一步"/> 
+		</div>
+
+	</form>
+	
+	
+</block>
+<block name="js_content">
+	<script type="text/javascript">
+		function clickButton(obj){
+		    var obj = $(obj);
+		    obj.attr("disabled","disabled");/*按钮倒计时*/
+		    var time = 60;
+		    var set=setInterval(function(){
+		    obj.val(--time+"(s)");
+		    }, 1000);/*等待时间*/
+		    setTimeout(function(){
+		    obj.attr("disabled",false).val("重新获取验证码");/*倒计时*/
+		    clearInterval(set);
+		    }, 60000);
+		}
+
+	</script>
+</block>

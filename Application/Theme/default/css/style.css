@@ -4163,3 +4163,7 @@ i.sort_com {
     margin-top: 10px;
     text-align: center;
 }
+.cell_box{
+    width: 50%;
+    float: left;
+}

@@ -4,7 +4,7 @@
 	<div class="img_logo">
 		<img src="{$Think.const.AIMG_URL}/logo.png" />
 	</div>
-	<form class="form_content" action="#" method="post" >
+	<form class="form_content" action="{:U('/index/bind_phone')}" method="post" >
 		<div class="weui_cell">
 		<div class="weui_cell_hd">
 		  <lab el class="weui_label">手机号：</label>
@@ -26,7 +26,7 @@
 		</div>
 		<div class="weui_cell"></div>
 		<div class="weui_btn_area" style="margin-top:80px"> 
-			<a class="weui_btn weui_btn_primary" type="submit">进入填写简历</a> 
+			<input class="weui_btn weui_btn_primary" type="submit" value="进入填写简历"/> 
 			<h5>进入填写简历代表您已同意<<用户协议>></h5>
 		</div>
 

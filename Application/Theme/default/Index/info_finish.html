@@ -1,0 +1,49 @@
+<extend name="./base" />
+
+<block name="main">
+	<style type="text/css">
+		.span{
+		    text-align: center;
+		}
+		.span_1{
+			font-size: 20px;
+			margin-top: 40px;
+		}
+	</style>
+	<div class="img_logo">
+		<img src="{$Think.const.AIMG_URL}/logo.png" />
+	</div>
+	<!-- <form class="form_content" action="{:U('/index/bind_phone')}" method="post" > -->
+	<div class="span span_1">
+		恭喜完成简历填写
+	</div>
+	<br/>
+	<div class="span span_2">
+		<span>点击下方按钮，立即搜索心动职位</span>
+	</div>
+	
+	<div class="weui_btn_area" style="margin-top:80px"> 
+		<a class="weui_btn weui_btn_primary" href="{:U('/lists')}">立即查看职位</a> 
+	</div>
+
+	<!-- </form> -->
+	
+	
+</block>
+<block name="js_content">
+	<script type="text/javascript">
+		function clickButton(obj){
+		    var obj = $(obj);
+		    obj.attr("disabled","disabled");/*按钮倒计时*/
+		    var time = 60;
+		    var set=setInterval(function(){
+		    obj.val(--time+"(s)");
+		    }, 1000);/*等待时间*/
+		    setTimeout(function(){
+		    obj.attr("disabled",false).val("重新获取验证码");/*倒计时*/
+		    clearInterval(set);
+		    }, 60000);
+		}
+
+	</script>
+</block>

@@ -1,0 +1,172 @@
+<extend name="./base" />
+
+<block name="main">
+	<style type="text/css">
+		.cell_box{
+			width: 40%;
+			float: left;
+		}
+		.weui_cell textarea{
+			height: 80px;
+		}
+		.add_army_row,.add_edu_row{
+			float: right;
+		    margin-right: 20px;
+		    font-size: 20px;
+		    color: #4a4848;
+		    cursor: pointer;
+		}
+	</style>
+	<form class="form" action="{:U('index/detail_info_save')}" method="post" >
+		<div class="weui_cell"><h4>个人详细信息</h4></div>
+			<div class="weui_cell">
+				<div class="weui_cell_hd">
+				  <lab el class="weui_label">目标岗位：</label>
+				</div>
+				<div class="weui_cell_bd weui_cell_primary">
+				  <input class="weui_input" type="text" id="tell" name="target_position" placeholder="请输入目标岗位">
+				</div>
+			</div>
+			<div class="weui_cell cell_box">
+				<div class="weui_cell_hd">
+				  <label class="weui_label">期望薪资：</label>
+				</div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<input name="expected_salary" type="text" class="weui_input"/>
+				</div>
+			</div>
+			<div class="weui_cell cell_box">
+				<div class="weui_cell_hd">
+				  <label class="weui_label">到岗时间：</label>
+				</div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<input name="duty_time" type="text" class="weui_input"/>
+				</div>
+			</div>
+			<div class="weui_cell">
+				<div class="weui_cell_hd">
+				  <label class="weui_label">获得荣誉：</label>
+				</div>
+			</div>
+			<div class="weui_cell">
+				<div class="weui_cell_bd weui_cell_primary">
+					<textarea name="honor" class="weui_input"></textarea>
+				</div>
+			</div>
+			<div class="weui_cell">
+				<div class="weui_cell_hd">
+				  <label class="weui_label">部队经历：</label>
+				</div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<a class=" add_army_row">+</a>
+				</div>
+			</div>
+			<div class="weui_cell cell_box">
+				<div class="weui_cell_hd">
+				  <label class="weui_label">服役时间：</label>
+				</div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<input name="service_start" type="text" class="weui_input"/>
+				</div>
+			</div>
+			<div class="weui_cell cell_box">
+				<div class="weui_cell_hd">
+				  <label class="weui_label">></label>
+				</div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<input name="service_end" type="text" class="weui_input"/>
+				</div>
+			</div>
+			<div class="weui_cell cell_box">
+				<div class="weui_cell_hd">
+				  <label class="weui_label">部门：</label>
+				</div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<input name="height" type="text" class="weui_input"/>
+				</div>
+			</div>
+			<div class="weui_cell cell_box">
+				<div class="weui_cell_hd">
+				  <label class="weui_label">职务：</label>
+				</div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<input name="weight" type="text" class="weui_input"/>
+				</div>
+			</div>
+
+			<div class="weui_cell">
+				<div class="weui_cell_hd">
+				  <label class="weui_label">教育经历：</label>
+				</div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<a class=" add_edu_row">+</a>
+				</div>
+			</div>
+			<div class="weui_cell cell_box">
+				<div class="weui_cell_hd">
+				  <label class="weui_label">学习时间：</label>
+				</div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<input name="service_start" type="text" class="weui_input"/>
+				</div>
+			</div>
+			<div class="weui_cell cell_box">
+				<div class="weui_cell_hd">
+				  <label class="weui_label">></label>
+				</div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<input name="service_end" type="text" class="weui_input"/>
+				</div>
+			</div>
+			<div class="weui_cell cell_box">
+				<div class="weui_cell_hd">
+				  <label class="weui_label">学校：</label>
+				</div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<input name="height" type="text" class="weui_input"/>
+				</div>
+			</div>
+			<div class="weui_cell cell_box">
+				<div class="weui_cell_hd">
+				  <label class="weui_label">学历：</label>
+				</div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<input name="weight" type="text" class="weui_input"/>
+				</div>
+			</div>
+			<div class="weui_cell">
+				<div class="weui_cell_hd">
+				  <label class="weui_label">自我评价：</label>
+				</div>
+			</div>
+			<div class="weui_cell">
+				<div class="weui_cell_bd weui_cell_primary">
+					<textarea name="honor" class="weui_input"></textarea>
+				</div>
+			</div>
+		<div class="weui_cell"></div>
+		<div class="weui_btn_area" style="margin-top:20px;margin-bottom:80px;"> 
+			<input class="weui_btn weui_btn_primary" type="submit" value="完成简历填写"/> 
+		</div>
+
+	</form>
+	
+	
+</block>
+<block name="js_content">
+	<script type="text/javascript">
+		function clickButton(obj){
+		    var obj = $(obj);
+		    obj.attr("disabled","disabled");/*按钮倒计时*/
+		    var time = 60;
+		    var set=setInterval(function(){
+		    obj.val(--time+"(s)");
+		    }, 1000);/*等待时间*/
+		    setTimeout(function(){
+		    obj.attr("disabled",false).val("重新获取验证码");/*倒计时*/
+		    clearInterval(set);
+		    }, 60000);
+		}
+
+	</script>
+</block>
