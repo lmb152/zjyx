@@ -1,7 +1,7 @@
 <?php
 namespace Home\Controller;
 use Think\Controller;
-class IndexController extends Controller {
+class ListsController extends Controller {
     public function _initialize(){
         // 获取用户openid
         $info=$_SESSION['memberinfo'];
@@ -91,8 +91,4 @@ class IndexController extends Controller {
 
     	$this->display();
     } 
-    public function logout() {
-        unset($_SESSION['uname']);
-        $this->redirect('Webadmin/index/login');
-    }
 }
