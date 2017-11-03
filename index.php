@@ -26,6 +26,7 @@ define('AJS_URL','/Application/Theme/Webadmin/js');
 define('AIMG_URL','/Application/Theme/Webadmin/images');
 define('JS_URL','/Application/Theme/default/js');
 define('CSS_URL','/Application/Theme/default/css');
+define('IMG_URL','/Application/Theme/default/images');
 // 引入ThinkPHP入口文件
 require './ThinkPHP/ThinkPHP.php';
 

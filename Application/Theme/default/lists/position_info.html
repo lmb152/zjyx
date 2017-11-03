@@ -101,5 +101,32 @@
 			</div>
 		</div>
 		
-		<div class="push_msk"></div>
+		<div class="push_msk">
+			<span>X</span>
+		</div>
+		<div class="push_msk_content">
+			<div style="text-align:center;">
+				1、长按扫描二维码，加客服微信，投递职位<br/>
+				<img src="{$Think.const.IMG_URL}/zjyc-qrcode.jpg"/>
+			</div>
+			
+			<div style="margin-top:20px;">
+				2、打电话投递职位<br/>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;15801473462  赵老师<br/>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18311399043  原老师<br/>
+			</div>
+			
+		</div>
+</block>
+<block name="js_content">
+	<script type="text/javascript">
+		$('.weui_btn').click(function(){
+			$('.push_msk').css('visibility','visible');
+			$('.push_msk_content').css('display','block');
+		});
+		$('.push_msk span').click(function(){
+			$('.push_msk').css('visibility','hidden');
+			$('.push_msk_content').css('display','none');
+		});
+	</script>
 </block>
