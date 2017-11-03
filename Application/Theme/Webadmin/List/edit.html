@@ -1,83 +1,196 @@
 <extend name="./base" />
 <block name="main">
-	<style type="text/css">
-		.input-group{
-			width: 45%;
-			float: left;
-			margin: 10px;
-		}
-	</style>
-	<div class="content">
-		<div class="container">
-			<div class="panel panel-primary">
-			   <div class="panel-heading">
-			      	<h3 class="panel-title">{$body_title}</h3>
-			   </div>
-			   <div class="panel-body">
-					<form method="post" action="{:U('Webadmin/list/save')}" enctype="multipart/form-data" class="bs-example bs-example-form" role="form">
-						<div class="input-group">
-							<span class="input-group-addon">文章标题</span>
-							<input type="text" name="title" value="{$article.title}" class="form-control" placeholder="请填写文章标题">
-						</div>
-						<if condition="$article.author neq null">
-							<input type="hidden" name="author" value="{$article.author}" class="form-control" placeholder="请填写发布者">
-						<else/>
-							<input type="hidden" name="author" value="{$_SESSION['uname']}" class="form-control" placeholder="请填写发布者">
-						</if>
-							
-						<div class="input-group ">
-							<span class="input-group-addon">发布时间</span>
-							<div class="input-group date form_date" style="margin:0;">
-								<input class="form-control" type="text" readonly="" style="background: white;" id="released" name="released" value="{$article.released}" onclick="WdatePicker({skin:'whyGreen',pubDate:'%y-%M-01 ',dateFmt:'yyyy-MM-dd',alwaysUseStartDate:true});">
-							</div>
-						</div>
-						<div class="input-group">
-							<span class="input-group-addon">点击次数</span>
-							<input type="text" name="clicknum" value="{$article.clicknum}" class="form-control" placeholder="请填写点击次数">
-						</div>
-						<div class="input-group">
-							<span class="input-group-addon">文章缩略图</span>
-							<input type='file' name='img'>
-						</div>
-						<if condition="$article.imgurl neq null">
-						<div class="input-group" style="max-width:50%;position:relative;"><img src="/Public/uploads/{$article.imgurl}"></div>
-						</if>
-						<!-- <div class="input-group">
-							<span class="input-group-addon">英文标题</span>
-							<input type="text" name="englishname" value="{$article.englishname}" class="form-control" placeholder="请填写英文标题">
-						</div>
-						 -->
-						
-						<div class="input-group">
-							<span class="input-group-addon">是否置顶</span>
-							<input type="radio" name="istop" value="1" <if condition="$article.istop eq 1">checked='checked'</if> >是
-							<input type="radio" name="istop" value="0" <if condition="$article.istop eq 0">checked='checked'</if> >否
-						</div>
-						<div class="input-group">
-							<span class="input-group-addon">是否首页显示</span>
-							<input type="radio" name="isindex" value="1" <if condition="$article.isindex eq 1">checked='checked'</if> >是
-							<input type="radio" name="isindex" value="0" <if condition="$article.isindex eq 0">checked='checked'</if> >否
-						</div>
-						<br/>
-						<div class="form-group col-md-11" >
-							<label for="currency" style="line-height: 70px;" class="col-md-3 control-label">文章简介</label>
-							<div class="col-md-9">
-								<textarea class="form-control" name="briefinfo" rows="3" placeholder="字符数超过255，将截取255个字符" data-original-title="字符数超过60，将截取60个字符">{$article.briefinfo}</textarea>
-							</div>
-						</div>
-						<div class="input-group" style="width:92%;">
-							<script type="text/plain" id="content" name="content">{$article.content|htmlspecialchars_decode|stripslashes}</script>
-						</div>
-						<input type="hidden" name="id" value="{$article.id}">
-						<input type="hidden" name="artkind" value="{$akid}">
-						<div style="clear:both;">
-							<input type="submit" value="保存" class="btn btn-large btn-success">
-						</div>
-						
-					</form>
-				</div>
-			</div>
-			
-		</div>
-	</div>
+    <style type="text/css">
+    .input-group {
+        width: 45%;
+        float: left;
+        margin: 10px;
+    }
+    </style>
+    <div class="content">
+        <div class="container">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{$body_title}的个人简历</h3>
+                </div>
+                <div class="panel-body">
+                    <form method="post" action="{:U('Webadmin/list/save',array('id'=>$list['id']))}" enctype="multipart/form-data" class="bs-example bs-example-form" role="form">
+                        <table class="table table-bordered" style="width: 90%;margin: 10px auto;padding: 5px 0">
+                            <thead>
+                                <tr>
+                                    <th colspan="6">个人简历详情</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="color: #006bff;">姓名</td>
+                                    <td style="width: 15%">{$list['user_name']}</td>
+                                    <td style="color: #006bff;">性别</td>
+                                    <td style="width: 10%">
+                                        <if condition="$list['male'] eq 0">男
+                                            <else/>女</if>
+                                    </td>
+                                    <td style="color: #006bff;">政治面貌</td>
+                                    <td style="width: 20%">{$list['political']}</td>
+                                </tr>
+                                <!--第一行-->
+                                <tr>
+                                    <td style="color: #006bff;">婚姻状态</td>
+                                    <td>
+                                        <if condition="$list['marriage'] eq 0">未婚
+                                            <else/>已婚</if>
+                                    </td>
+                                    <td style="color: #006bff;">民族</td>
+                                    <td>{$list['ethnic']}</td>
+                                    <td style="color: #006bff;">出生日期</td>
+                                    <td>{$list['birthday']|date='Y-m-d H-i-s',###}</td>
+                                </tr>
+                                <tr>
+                                    <td style="color: #006bff;">学历</td>
+                                    <td colspan=>{$list['education']}</td>
+                                    <td style="color: #006bff;">籍贯</td>
+                                    <td colspan="3">{$list['native_place']}</td>
+                                </tr>
+                                <tr>
+                                    <td style="color: #006bff;">身高(cm)</td>
+                                    <td style="width: 15%">{$list['height']}</td>
+                                    <td style="color: #006bff;">体重(kg)</td>
+                                    <td style="width: 10%">
+                                        {$list['weight']}
+                                    </td>
+                                    <td style="color: #006bff;">手机号</td>
+                                    <td style="width: 20%">{$list['mobile']}</td>
+                                </tr>
+                                <if condition="$list['badge_number'] eq ''">
+                                    <else/>
+                                    <tr>
+                                        <td style="color: #006bff;">退伍证号</td>
+                                        <td style="width: 20%" colspan="5">{$list['badge_number']}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color: #006bff;">服役时间</td>
+                                        <td style="width: 15%" colspan="2">{$list['service_start']|date='Y-m-d H-i-s',###}</td>
+                                        <td style="color: #006bff;">退役时间</td>
+                                        <td style="width: 10%" colspan="2">
+                                            {$list['service_end']|date='Y-m-d H-i-s',###}
+                                        </td>
+                                        <!-- <td style="color: #006bff;">退伍证号</td>
+                                    <td style="width: 20%">{$list['mobile']}</td> -->
+                                    </tr>
+                                </if>
+                                <tr>
+                                    <td style="color: #006bff;">微信ID</td>
+                                    <td style="width: 15%">{$list['openid']}</td>
+                                    <td style="color: #006bff;">微信头像</td>
+                                    <td style="width: 10%">{$list['img_src']}</td>
+                                    <td style="color: #006bff;">微信昵称</td>
+                                    <td style="width: 20%">{$list['nick_name']}</td>
+                                </tr>
+                                <tr>
+                                    <td style="color: #006bff;">目标岗位</td>
+                                    <td style="width: 15%">{$list['target_position']}</td>
+                                    <td style="color: #006bff;">期望薪资(元)</td>
+                                    <td style="width: 10%">{$list['expected_salary']}</td>
+                                    <td style="color: #006bff;">到岗时间</td>
+                                    <td style="width: 20%">{$list['duty_time']|date='Y-m-d H-i-s',###}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="table table-bordered" style="width: 90%;margin: 10px auto;padding: 5px 0">
+                            <thead>
+                                <tr>
+                                    <th colspan="6" style="color: #006bff;">获得荣誉</th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <textarea  id="tar" onKeyup="return c(this);" style="width: 100%;border: 0;height: 150px; resize:none">{$list['target_position']}</textarea>
+                                    </td>
+                                </tr>
+                            </thead>
+                        </table>
+                        <table class="table table-bordered" style="width: 90%;margin: 10px auto;padding: 5px 0">
+                            <thead>
+                                <tr>
+                                    <th colspan="6" style="color: #006bff;">自我评价</th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <textarea  id="tar" onKeyup="return c(this);" style="width: 100%;border: 0;height: 150px;resize:none">{$list['target_position']}</textarea>
+                                    </td>
+                                </tr>
+                            </thead>
+                        </table>
+                        <table class="table table-bordered" style="width: 90%;margin: 10px auto;padding: 5px 0">
+                            <thead>
+                                <tr>
+                                    <th colspan="6">教育状况</th>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <th style="text-align: center;width: 20%;">学校</th>
+                                <th style="text-align: center;width: 20%;">学位</th>
+                                <th style="text-align: center;width: 30%;">开始时间</th>
+                                <th style="text-align: center;width: 30%;">结束时间</th>
+                            </tr>
+                            <volist name="ret" id="vo">
+                                <tr>
+                                    <td>{$vo['school']}</td>
+                                    <td>{$vo['degree']}</td>
+                                    <td>{$vo['start_time']|date='Y-m-d',###}</td>
+                                    <td>{$vo['end_time']|date='Y-m-d',###}</td>
+                                </tr>
+                            </volist>
+                        </table>
+                        <table class="table table-bordered" style="width: 90%;margin: 10px auto;padding: 5px 0">
+                            <thead>
+                                <tr>
+                                    <th colspan="6">工作状况</th>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <th style="text-align: center;width: 20%;">任职部门</th>
+                                <th style="text-align: center;width: 20%;">职务</th>
+                                <th style="text-align: center;width: 30%;">开始时间</th>
+                                <th style="text-align: center;width: 30%;">结束时间</th>
+                            </tr>
+                            <volist name="rt" id="v">
+                                <tr>
+                                    <td>{$v['department']}</td>
+                                    <td>{$v['position']}</td>
+                                    <td>{$v['start_time']|date='Y-m-d',###}</td>
+                                    <td>{$v['end_time']|date='Y-m-d',###}</td>
+                                </tr>
+                            </volist>
+                            <!--第一行-->
+                        </table>
+                        <table class="table table-bordered" style="width: 90%;margin: 10px auto;padding: 5px 0">
+                            <thead>
+                                <tr>
+                                    <th colspan="6">推荐理由<span style="color: red;">(不得大于200字)</span></th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <textarea  id="tar" onKeyup="return c(this);" style="width: 100%;border: 0;height: 150px; resize:none" name="reason">{$list['reason']}</textarea>
+                                    </td>
+                                </tr>
+                        </table>
+                        <div style="clear:both;">
+                            <input type="submit" value="保存" class="btn btn-large btn-success">
+                            <a href="{:U('Webadmin/list/lists',array('name'=>1))}">
+                                <button type="button" class="btn btn-primary">返回简历列表</button>
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    function c(s) {
+        if (s.value.length > 200) {
+            return s.value = s.value.substr(0, 200), alert('最大字符数为200');
+        }
+        return !0;
+    }
+    </script>
 </block>

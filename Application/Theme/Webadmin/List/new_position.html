@@ -1,0 +1,79 @@
+<extend name="./base" />
+<block name="main">
+    <style type="text/css">
+    .input-group {
+        width: 45%;
+        float: left;
+        margin: 10px;
+    }
+    </style>
+    <div class="content">
+        <div class="container">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><if condition="$list['p_id'] neq '' ">修改职位信息
+                                            <else/>新增职位信息</if></h3>
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal" action="{:U('Webadmin/list/saveNew_position')}" role="form " method="post">
+                        <div class="form-group">
+                            <label for="inputPassword" class="col-sm-3 control-label">职位名称</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" value="{$list['p_name']}" name="p_name" placeholder="请输入职位名称">
+                                <input type="hidden" name="id" value="{$list['p_id']}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword" class="col-sm-3 control-label">公司名称</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" value="{$list['company']}" name="company" placeholder="请输入公司名称">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword" class="col-sm-3 control-label">公司行业</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" value="{$list['industry']}" name="industry" placeholder="请输入公司行业">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword" class="col-sm-3 control-label">薪资(元)</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" value="{$list['salary']}" name="salary" placeholder="请输入薪资">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword" class="col-sm-3 control-label">职位亮点</label>
+                            <div class="col-sm-7">
+                                <textarea class="form-control" name="bright_spot">{$list['bright_spot']}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword" class="col-sm-3 control-label">职位描述</label>
+                            <div class="col-sm-7">
+                                <textarea class="form-control" name="description">{$list['description']}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword" class="col-sm-3 control-label">公司简介</label>
+                            <div class="col-sm-7">
+                                <textarea class="form-control" name="company_info">{$list['company_info']}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword" class="col-sm-3 control-label">公司地址</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" value="{$list['location']}" name="location" placeholder="请输入公司地址">
+                            </div>
+                        </div>
+                        <div style="clear:both;">
+                            <input type="submit" value="保存" class="btn btn-large btn-success">
+                            <a href="{:U('Webadmin/list/lists',array('name'=>2))}">
+                                <button type="button" class="btn btn-primary">不保存返回职位列表</button>
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
