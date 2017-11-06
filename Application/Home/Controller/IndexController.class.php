@@ -19,6 +19,7 @@ class IndexController extends Controller {
                     $user_data=array(
                         'openid'=>$info->openid,
                         'imgurl'=>$info->headimgurl,
+                        'male'=>$info->sex,
                     );
                 }else{
                     $user_data=array(
@@ -29,6 +30,7 @@ class IndexController extends Controller {
             }else{
                 $user_data=array(
                     'imgurl'=>$info->headimgurl,
+                    'male'=>$info->sex,
                 );
                 $user_profile->where($where)->save($user_data);
             }
