@@ -7,8 +7,8 @@ class WechatController extends Controller {
     public function _initialize(){
         // $this->appid='wxb61637dbbd5c5e8e';
         // $this->secret = '8763b9da9d69c9e865cfb21708e6d25f';
-        $this->appid='wx79471f40b33ae84f';
-        $this->secret = '0891d9d89fb012683565031b5a85b731';
+        $this->appid='wxf91eec3262c17c5b';
+        $this->secret = '196bf0b5d9ee24b79b25df228bb4b017';
     }
     public function index(){
         if(isset($_GET["code"]))
@@ -23,9 +23,9 @@ class WechatController extends Controller {
             $info_url='https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$access_token->access_token.'&openid='.$data->openid.'&lang=zh_CN';
             $info=json_decode($this->https_request($info_url));
             $_SESSION['memberinfo']=$info;
-            $this->redirect('Home/Query/index',array('openid' =>$data->openid));
+            $this->redirect('Home/Index/index');
         }else{
-            $redirectUrl='http://m.xiyuasset.com/wechat?from=zjyx';
+            $redirectUrl='http://wx.cnzjyx.com/wechat';
             /*
             scope=snsapi_base 静默授权
             scope=snsapi_userinfo 手动同意
