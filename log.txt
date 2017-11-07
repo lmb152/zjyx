@@ -1,0 +1,208 @@
+request body = <TemplateSMS>
+                    <to>13002189873</to>
+                    <appId>8a216da85f5c89b1015f6c40d7b10478</appId>
+                    <templateId>215435</templateId>
+                    <datas><data>3456</data><data>60s</data></datas>
+                  </TemplateSMS>
+request url = https://app.cloopen.com:8883/2013-12-26/Accounts/8a216da855a04ec70155b408ddd806e6/SMS/TemplateSMS?sig=012F3790741E2B70AD688523A8098D92
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Response>
+    <statusCode>160053</statusCode>
+    <statusMsg>IP鉴权失败</statusMsg>
+</Response>
+
+request body = <TemplateSMS>
+                    <to>13002189873</to>
+                    <appId>8a216da85f5c89b1015f6c40d7b10478</appId>
+                    <templateId>215435</templateId>
+                    <datas><data>3456</data><data>60s</data></datas>
+                  </TemplateSMS>
+request url = https://app.cloopen.com:8883/2013-12-26/Accounts/8a216da855a04ec70155b408ddd806e6/SMS/TemplateSMS?sig=0D8382E185921F6690D3C054339AF983
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Response>
+    <statusCode>160053</statusCode>
+    <statusMsg>IP鉴权失败</statusMsg>
+</Response>
+
+request body = <TemplateSMS>
+                    <to></to>
+                    <appId>8a216da85f5c89b1015f6c40d7b10478</appId>
+                    <templateId>215435</templateId>
+                    <datas><data>19525</data><data>60s</data></datas>
+                  </TemplateSMS>
+request url = https://app.cloopen.com:8883/2013-12-26/Accounts/8a216da855a04ec70155b408ddd806e6/SMS/TemplateSMS?sig=91B74CDD0E8E90D81EC14A387CBE0C1E
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Response>
+    <statusCode>160053</statusCode>
+    <statusMsg>IP鉴权失败</statusMsg>
+</Response>
+
+request body = <TemplateSMS>
+                    <to>17733831804</to>
+                    <appId>8a216da85f5c89b1015f6c40d7b10478</appId>
+                    <templateId>215435</templateId>
+                    <datas><data>38563</data><data>60s</data></datas>
+                  </TemplateSMS>
+request url = https://app.cloopen.com:8883/2013-12-26/Accounts/8a216da855a04ec70155b408ddd806e6/SMS/TemplateSMS?sig=9C19C1FA0D3683F3E1C3DA6352370C02
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Response>
+    <statusCode>160053</statusCode>
+    <statusMsg>IP鉴权失败</statusMsg>
+</Response>
+
+request body = <TemplateSMS>
+                    <to></to>
+                    <appId>8a216da85f5c89b1015f6c40d7b10478</appId>
+                    <templateId>215435</templateId>
+                    <datas><data>113851</data><data>60s</data></datas>
+                  </TemplateSMS>
+request url = https://app.cloopen.com:8883/2013-12-26/Accounts/8a216da855a04ec70155b408ddd806e6/SMS/TemplateSMS?sig=0FB6A0EAA39961B188C3EEBF1A71A4A1
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Response>
+    <statusCode>160053</statusCode>
+    <statusMsg>IP鉴权失败</statusMsg>
+</Response>
+
+request body = <TemplateSMS>
+                    <to></to>
+                    <appId>8a216da85f5c89b1015f6c40d7b10478</appId>
+                    <templateId>215435</templateId>
+                    <datas><data>463220</data><data>60s</data></datas>
+                  </TemplateSMS>
+request url = https://app.cloopen.com:8883/2013-12-26/Accounts/8a216da855a04ec70155b408ddd806e6/SMS/TemplateSMS?sig=C824AEC93AC62091779CB22F8EDDEFF7
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Response>
+    <statusCode>160053</statusCode>
+    <statusMsg>IP鉴权失败</statusMsg>
+</Response>
+
+request body = <TemplateSMS>
+                    <to></to>
+                    <appId>8a216da85f5c89b1015f6c40d7b10478</appId>
+                    <templateId>215435</templateId>
+                    <datas><data>288844</data><data>60s</data></datas>
+                  </TemplateSMS>
+request url = https://app.cloopen.com:8883/2013-12-26/Accounts/8a216da855a04ec70155b408ddd806e6/SMS/TemplateSMS?sig=54783D1F732912D96FFA921A7641DF69
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Response>
+    <statusCode>160053</statusCode>
+    <statusMsg>IP鉴权失败</statusMsg>
+</Response>
+
+request body = <TemplateSMS>
+                    <to></to>
+                    <appId>8a216da85f5c89b1015f6c40d7b10478</appId>
+                    <templateId>215435</templateId>
+                    <datas><data>863704</data><data>60s</data></datas>
+                  </TemplateSMS>
+request url = https://app.cloopen.com:8883/2013-12-26/Accounts/8a216da855a04ec70155b408ddd806e6/SMS/TemplateSMS?sig=BFC2843BC475A13A7996C44816FFBF63
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Response>
+    <statusCode>160053</statusCode>
+    <statusMsg>IP鉴权失败</statusMsg>
+</Response>
+
+request body = <TemplateSMS>
+                    <to></to>
+                    <appId>8a216da85f5c89b1015f6c40d7b10478</appId>
+                    <templateId>215435</templateId>
+                    <datas><data>174379</data><data>60s</data></datas>
+                  </TemplateSMS>
+request url = https://app.cloopen.com:8883/2013-12-26/Accounts/8a216da855a04ec70155b408ddd806e6/SMS/TemplateSMS?sig=BC2E7CE75CA311CF81B3D242CB33F4C3
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Response>
+    <statusCode>160053</statusCode>
+    <statusMsg>IP鉴权失败</statusMsg>
+</Response>
+
+request body = <TemplateSMS>
+                    <to></to>
+                    <appId>8a216da85f5c89b1015f6c40d7b10478</appId>
+                    <templateId>215435</templateId>
+                    <datas><data>884999</data><data>60s</data></datas>
+                  </TemplateSMS>
+request url = https://app.cloopen.com:8883/2013-12-26/Accounts/8a216da855a04ec70155b408ddd806e6/SMS/TemplateSMS?sig=D7425BF88200977F563C259615917D80
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Response>
+    <statusCode>160053</statusCode>
+    <statusMsg>IP鉴权失败</statusMsg>
+</Response>
+
+request body = <TemplateSMS>
+                    <to></to>
+                    <appId>8a216da85f5c89b1015f6c40d7b10478</appId>
+                    <templateId>215435</templateId>
+                    <datas><data>579369</data><data>60s</data></datas>
+                  </TemplateSMS>
+request url = https://app.cloopen.com:8883/2013-12-26/Accounts/8a216da855a04ec70155b408ddd806e6/SMS/TemplateSMS?sig=6D908E9E1FE08552D6EE0C691465463A
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Response>
+    <statusCode>160053</statusCode>
+    <statusMsg>IP鉴权失败</statusMsg>
+</Response>
+
+request body = <TemplateSMS>
+                    <to></to>
+                    <appId>8a216da85f5c89b1015f6c40d7b10478</appId>
+                    <templateId>215435</templateId>
+                    <datas><data>590457</data><data>60s</data></datas>
+                  </TemplateSMS>
+request url = https://app.cloopen.com:8883/2013-12-26/Accounts/8a216da855a04ec70155b408ddd806e6/SMS/TemplateSMS?sig=9240EEB60AB567AC98F0C0486653C7C6
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Response>
+    <statusCode>160053</statusCode>
+    <statusMsg>IP鉴权失败</statusMsg>
+</Response>
+
+request body = <TemplateSMS>
+                    <to></to>
+                    <appId>8a216da85f5c89b1015f6c40d7b10478</appId>
+                    <templateId>215435</templateId>
+                    <datas><data>926485</data><data>60s</data></datas>
+                  </TemplateSMS>
+request url = https://app.cloopen.com:8883/2013-12-26/Accounts/8a216da855a04ec70155b408ddd806e6/SMS/TemplateSMS?sig=1B3F8B4F87E019FAC137CC62F45B5234
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Response>
+    <statusCode>160053</statusCode>
+    <statusMsg>IP鉴权失败</statusMsg>
+</Response>
+
+request body = <TemplateSMS>
+                    <to></to>
+                    <appId>8a216da85f5c89b1015f6c40d7b10478</appId>
+                    <templateId>215435</templateId>
+                    <datas><data>777803</data><data>60s</data></datas>
+                  </TemplateSMS>
+request url = https://app.cloopen.com:8883/2013-12-26/Accounts/8a216da855a04ec70155b408ddd806e6/SMS/TemplateSMS?sig=C570A84C159BD37C6F550A4D1685FB03
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Response>
+    <statusCode>160053</statusCode>
+    <statusMsg>IP鉴权失败</statusMsg>
+</Response>
+
+request body = <TemplateSMS>
+                    <to></to>
+                    <appId>8a216da85f5c89b1015f6c40d7b10478</appId>
+                    <templateId>215435</templateId>
+                    <datas><data>881794</data><data>60s</data></datas>
+                  </TemplateSMS>
+request url = https://app.cloopen.com:8883/2013-12-26/Accounts/8a216da855a04ec70155b408ddd806e6/SMS/TemplateSMS?sig=438325AAF71D5078C80B52E00EA4D412
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Response>
+    <statusCode>160053</statusCode>
+    <statusMsg>IP鉴权失败</statusMsg>
+</Response>
+
+request body = <TemplateSMS>
+                    <to></to>
+                    <appId>8a216da85f5c89b1015f6c40d7b10478</appId>
+                    <templateId>215435</templateId>
+                    <datas><data>976389</data><data>60s</data></datas>
+                  </TemplateSMS>
+request url = https://app.cloopen.com:8883/2013-12-26/Accounts/8a216da855a04ec70155b408ddd806e6/SMS/TemplateSMS?sig=5EDCEFDAE058C7F8B47E01159D968CBB
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Response>
+    <statusCode>160053</statusCode>
+    <statusMsg>IP鉴权失败</statusMsg>
+</Response>
+

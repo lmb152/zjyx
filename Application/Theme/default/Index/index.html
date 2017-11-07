@@ -1,53 +1,64 @@
 <extend name="./base" />
-
 <block name="main">
-	<div class="img_logo">
-		<img src="{$Think.const.AIMG_URL}/logo.png" />
-	</div>
-	<form class="form_content" action="{:U('/index/bind_phone')}" method="post" >
-		<div class="weui_cell">
-		<div class="weui_cell_hd">
-		  <lab el class="weui_label">手机号：</label>
-		</div>
-		<div class="weui_cell_bd weui_cell_primary">
-		  <input class="weui_input" type="tel" id="tell" name="tell" placeholder="请输入手机号">
-		</div>
-		</div>
-		<div class="weui_cell">
-		<div class="weui_cell_hd">
-		  <label class="weui_label">验证码：</label>
-		</div>
-		<div class="weui_cell_bd weui_cell_primary">
-		  <input class="weui_input" type="certifycode" id="certifycode" name="certifycode" placeholder="请输入验证码">
-		</div>
-		<div class="weui_cell_ft"> 
-
-		<input style="width:117px;" type="button" class="weui_btn weui_btn weui_btn_mini weui_btn_primary" value="获取验证码"  onclick="clickButton(this)"/>  </div>
-		</div>
-		<div class="weui_cell"></div>
-		<div class="weui_btn_area" style="margin-top:80px"> 
-			<input class="weui_btn weui_btn_primary" type="submit" value="进入填写简历"/> 
-			<h5>进入填写简历代表您已同意<<用户协议>></h5>
-		</div>
-
-	</form>
-	
-	
+    <div class="img_logo">
+        <img src="{$Think.const.AIMG_URL}/logo.png" />
+    </div>
+    <form class="form_content" action="{:U('/index/bind_phone')}" method="post" >
+        <div class="weui_cell">
+            <div class="weui_cell_hd">
+                <lab el class="weui_label">手机号：</label>
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" type="tel" id="tell" name="phone" placeholder="请输入手机号">
+            </div>
+        </div>
+        <div class="weui_cell">
+            <div class="weui_cell_hd">
+                <label class="weui_label">验证码：</label>
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" type="certifycode" id="certifycode" name="certifycode" placeholder="请输入验证码">
+            </div>
+            <div class="weui_cell_ft">
+               
+                <input style="width:117px;" type="button" class="weui_btn weui_btn weui_btn_mini weui_btn_primary" value="获取验证码" onclick="clickButton(this)" /> </div>
+        </div>
+        <div class="weui_cell"></div>
+        <div class="weui_btn_area" style="margin-top:80px">
+            <input class="weui_btn weui_btn_primary" type="submit" value="进入填写简历" />
+            <h5>进入填写简历代表您已同意<<用户协议>></h5>
+        </div>
+    </form>
 </block>
 <block name="js_content">
-	<script type="text/javascript">
-		function clickButton(obj){
-		    var obj = $(obj);
-		    obj.attr("disabled","disabled");/*按钮倒计时*/
-		    var time = 60;
-		    var set=setInterval(function(){
-		    obj.val(--time+"(s)");
-		    }, 1000);/*等待时间*/
-		    setTimeout(function(){
-		    obj.attr("disabled",false).val("重新获取验证码");/*倒计时*/
-		    clearInterval(set);
-		    }, 60000);
-		}
+    <script type="text/javascript">
+    function clickButton(obj) {
+        var obj = $(obj);
+        obj.attr("disabled", "disabled"); /*按钮倒计时*/
+        var time = 60;
+        var set = setInterval(function() {
+            obj.val(--time + "(s)");
+        }, 1000); /*等待时间*/
+        setTimeout(function() {
+            obj.attr("disabled", false).val("重新获取验证码"); /*倒计时*/
+            clearInterval(set);
+        }, 60000);
+        var data = {
+            phone:document.getElementById('tell').value
+        };
+        var url = "{:U('index/phone')}";
+        $.ajax({
+            type: "get",
+            async: false, //同步请求
+            url: url,
+            phone: data,
 
-	</script>
+            success: function(msg) {
+                
+            }
+        });
+
+    }
+    //操作首页是否显示  status参数为1设置置顶 参数为0设置不置顶
+    </script>
 </block>

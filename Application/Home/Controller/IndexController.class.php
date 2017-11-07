@@ -39,19 +39,50 @@ class IndexController extends Controller {
 		// $this->assign('openid', $info->openid);
 		$this->display();
 	}
-	// 手机绑定
 	public function bind_phone() {
-		// $to = 17733831804;
 		Vendor('sms_demo.SendTemplateSMS');
-		sendTemplateSMS("13002189873", array('3456', '60s'), "215435");
-		$this->redirect('index/basic_info');
+		$srand = rand(100000, 999999);
+		sendTemplateSMS($_GET['phone'], array($srand, '60s'), "215435");
+		if ($_POST['certifycode'] == $srand) {
+			$this->redirect('index/basic_info', array('mobile' => $_POST['phone']));
+		} else {
+			$this->error('验证码错误,请重新获取');
+		}
 	}
 	public function basic_info() {
+		$this->assign('mobile', $_GET['mobile']);
 		$this->display();
 	}
 	// 基本信息保存
 	public function basic_info_save() {
 		$data = I('post.');
+		if ($_POST['user_name'] == "") {
+			$this->error('姓名不能为空');
+		}
+		if ($_POST['birthday'] == "") {
+			$this->error('出生年月不能为空');
+		}
+		if ($_POST['native_place'] == "") {
+			$this->error('籍贯不能为空');
+		}
+		if ($_POST['ethnic'] == "") {
+			$this->error('民族不能为空');
+		}
+		if ($_POST['height'] == "") {
+			$this->error('身高不能为空');
+		}
+		if ($_POST['weight'] == "") {
+			$this->error('体重不能为空');
+		}
+		if ($_POST['service_start'] == "") {
+			$this->error('服役开始时间不能为空');
+		}
+		if ($_POST['service_end'] == "") {
+			$this->error('服役结束时间不能为空');
+		}
+		if ($_POST['badge_number'] == "") {
+			$this->error('退伍证号不能为空');
+		}
 		$data['birthday'] = strtotime($_POST['birthday']);
 		$data['service_start'] = strtotime($_POST['service_start']);
 		$data['service_end'] = strtotime($_POST['service_end']);
