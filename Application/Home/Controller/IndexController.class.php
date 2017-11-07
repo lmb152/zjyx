@@ -43,8 +43,7 @@ class IndexController extends Controller {
 	public function bind_phone() {
 		// $to = 17733831804;
 		Vendor('sms_demo.SendTemplateSMS');
-		sendTemplateSMS("13002189873", array('3456', '60'), "215435");
-		dump();die;
+		sendTemplateSMS("13002189873", array('3456', '60s'), "215435");
 		$this->redirect('index/basic_info');
 	}
 	public function basic_info() {
