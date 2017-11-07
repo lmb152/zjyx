@@ -36,20 +36,40 @@ class IndexController extends Controller {
 		// 		$user_profile->where($where)->save($user_data);
 		// 	}
 		// }
-		// $this->assign('openid', $info->openid);
+		// 测试使用
+		if($info->openid){
+			$this->assign('openid', $info->openid);
+		}else{
+			$this->assign('openid', 'oMCIe1o6CrAbn-mj8FxsxAiJZocc');
+		}
 		$this->display();
 	}
 	public function bind_phone() {
 		Vendor('sms_demo.SendTemplateSMS');
 		$srand = rand(100000, 999999);
-		sendTemplateSMS($_GET['phone'], array($srand, '60s'), "215435");
-		if ($_POST['certifycode'] == $srand) {
-			$this->redirect('index/basic_info', array('mobile' => $_POST['phone']));
+		$_SESSION['srand']=$srand;
+		$phone=$_POST['phone'];
+		// $send_back=sendTemplateSMS($phone, array($srand, '60s'), "215435");
+		print_r($_SESSION['srand']);
+		
+	}
+	public function bind_phone_save() {
+		if ($_POST['certifycode'] == $_SESSION['srand']) {
+			$user_profile = D('user_profile');
+			$where = array(
+				'openid' => $_POST['openid'],
+			);
+			$user_data_mobile=array(
+					'mobile'=>$_POST['phone'],
+				);
+			$user_profile->where($where)->save($user_data_mobile);
+			$this->redirect('index/basic_info');
 		} else {
 			$this->error('验证码错误,请重新获取');
 		}
 	}
 	public function basic_info() {
+		
 		$this->assign('mobile', $_GET['mobile']);
 		$this->display();
 	}

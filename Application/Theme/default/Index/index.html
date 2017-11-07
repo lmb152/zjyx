@@ -3,7 +3,7 @@
     <div class="img_logo">
         <img src="{$Think.const.AIMG_URL}/logo.png" />
     </div>
-    <form class="form_content" action="{:U('/index/bind_phone')}" method="post" >
+    <form class="form_content" action="{:U('/index/bind_phone_save')}" method="POST" >
         <div class="weui_cell">
             <div class="weui_cell_hd">
                 <lab el class="weui_label">手机号：</label>
@@ -21,8 +21,9 @@
             </div>
             <div class="weui_cell_ft">
                
-                <input style="width:117px;" type="button" class="weui_btn weui_btn weui_btn_mini weui_btn_primary" value="获取验证码" onclick="clickButton(this)" /> </div>
+                <input id="send_sms" style="width:117px;" type="button" class="weui_btn weui_btn weui_btn_mini weui_btn_primary" disabled="disabled" value="获取验证码"/> </div>
         </div>
+        <input type="hidden" name="openid" value="<?php echo $openid;?>"/>
         <div class="weui_cell"></div>
         <div class="weui_btn_area" style="margin-top:80px">
             <input class="weui_btn weui_btn_primary" type="submit" value="进入填写简历" />
@@ -32,8 +33,15 @@
 </block>
 <block name="js_content">
     <script type="text/javascript">
-    function clickButton(obj) {
-        var obj = $(obj);
+    $('#tell').change(function(){
+        var phone=$(this).val();
+        var pattern = /^1[34578]\d{9}$/; 
+        if(pattern.test(phone)){
+            $('#send_sms').removeAttr('disabled');
+        }
+    });
+    $('#send_sms').click(function(){
+        var obj = $(this);
         obj.attr("disabled", "disabled"); /*按钮倒计时*/
         var time = 60;
         var set = setInterval(function() {
@@ -44,21 +52,19 @@
             clearInterval(set);
         }, 60000);
         var data = {
-            phone:document.getElementById('tell').value
+            phone:$('#tell').val(),
         };
-        var url = "{:U('index/phone')}";
+        console.log(data);
+        var url = "{:U('index/bind_phone')}";
         $.ajax({
-            type: "get",
-            async: false, //同步请求
+            type: "POST",
+            datatype:'json',
             url: url,
-            phone: data,
-
+            data: data,
             success: function(msg) {
                 
             }
         });
-
-    }
-    //操作首页是否显示  status参数为1设置置顶 参数为0设置不置顶
+    });
     </script>
 </block>
