@@ -41,6 +41,10 @@ class IndexController extends Controller {
 	}
 	// 手机绑定
 	public function bind_phone() {
+		// $to = 17733831804;
+		Vendor('sms_demo.demo.SendTemplateSMS');
+		sendTemplateSMS("17733831804", array('3456', '60'), "215435");
+		dump();die;
 		$this->redirect('index/basic_info');
 	}
 	public function basic_info() {
@@ -67,4 +71,5 @@ class IndexController extends Controller {
 	public function info_finish() {
 		$this->display();
 	}
+
 }
