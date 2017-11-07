@@ -5,44 +5,47 @@ use Think\Controller;
 class IndexController extends Controller {
 	public function index() {
 		// 获取用户openid
-		// $info = $_SESSION['memberinfo'];
-		// if (!isset($info->openid)) {
-		// 	// 授权登录获取openid
-		// 	$this->redirect('/Wechat');
-		// } else {
-		// 	$user_profile = D('user_profile');
-		// 	$where = array(
-		// 		'openid' => $info->openid,
-		// 	);
-		// 	$user_data_temp = $user_profile->where($where)->find();
-		// 	if (!$user_data_temp) {
-		// 		if ($info->subscribe) {
-		// 			$user_data = array(
-		// 				'openid' => $info->openid,
-		// 				'imgurl' => $info->headimgurl,
-		// 				'male' => $info->sex,
-		// 			);
-		// 		} else {
-		// 			$user_data = array(
-		// 				'openid' => $info->openid,
-		// 			);
-		// 		}
-		// 		$user_profile->data($user_data)->add();
-		// 	} else {
-		// 		$user_data = array(
-		// 			'imgurl' => $info->headimgurl,
-		// 			'male' => $info->sex,
-		// 		);
-		// 		$user_profile->where($where)->save($user_data);
-		// 	}
-		// }
-		// 测试使用
-		if($info->openid){
-			$this->assign('openid', $info->openid);
-		}else{
-			$this->assign('openid', 'oMCIe1o6CrAbn-mj8FxsxAiJZocc');
+		$info = $_SESSION['memberinfo'];
+		if (!isset($info->openid)) {
+			// 授权登录获取openid
+			$this->redirect('/Wechat');
+		}else {
+			$user_profile = D('user_profile');
+			$where = array(
+				'openid' => $info->openid,
+			);
+			$user_data_temp = $user_profile->where($where)->find();
+			if (!$user_data_temp) {
+				if ($info->subscribe) {
+					$user_data = array(
+						'openid' => $info->openid,
+						'imgurl' => $info->headimgurl,
+						'male' => $info->sex,
+					);
+				} else {
+					$user_data = array(
+						'openid' => $info->openid,
+					);
+				}
+				$user_profile->data($user_data)->add();
+				$this->assign('openid', $info->openid);
+				$this->display();
+			}else{
+				// 若已存在该openid用户并且已绑定手机号码，则直接跳转基本信息页面
+				if($user_data_temp['mobile']){
+					$this->redirect('index/basic_info');
+				}else{
+					$user_data = array(
+						'imgurl' => $info->headimgurl,
+						'male' => $info->sex,
+					);
+					$user_profile->where($where)->save($user_data);
+					$this->assign('openid', $info->openid);
+					$this->display();
+				}
+				
+			}
 		}
-		$this->display();
 	}
 	public function bind_phone() {
 		Vendor('sms_demo.SendTemplateSMS');
@@ -107,8 +110,11 @@ class IndexController extends Controller {
 		$data['service_start'] = strtotime($_POST['service_start']);
 		$data['service_end'] = strtotime($_POST['service_end']);
 		// dump($data);die;
-		$rs = M('user_profile')->add($data);
-		$this->redirect('index/detail_info', array('id' => $rs['id']));
+		$where=array(
+				'openid'=>$_SESSION['memberinfo']->openid,
+			);
+		$rs = M('user_profile')->where($where)->save($data);
+		$this->redirect('index/detail_info');
 	}
 
 	public function detail_info() {
