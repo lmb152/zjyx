@@ -18,7 +18,11 @@
                 <lab el class="weui_label">姓名：</label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
-                <input class="weui_input" type="text" id="tell" name="user_name" placeholder="请输入姓名">
+                <if condition="$user_data['user_name']">
+                    <input class="weui_input" type="text" id="tell" value="{$user_data['user_name']}" name="user_name" placeholder="请输入姓名">
+                <else />
+                    <input class="weui_input" type="text" id="tell" name="user_name" placeholder="请输入姓名">
+                </if>
             </div>
         </div>
         <div class="weui_cell cell_box">
@@ -27,8 +31,8 @@
             </div>
             <div class="weui_cell_bd weui_cell_primary">
                 <select name="male" class="weui_input">
-                    <option value='0'>男</option>
-                    <option value='1'>女</option>
+                    <option value='1' <if condition="$user_data['male'] eq 1">selected="true"</if> >男</option>
+                    <option value='0' <if condition="$user_data['male'] eq 0">selected="true"</if> >女</option>
                 </select>
             </div>
         </div>
@@ -38,10 +42,10 @@
             </div>
             <div class="weui_cell_bd weui_cell_primary">
                 <select name="political" class="weui_input">
-                    <option value='0'>党员</option>
-                    <option value='1'>预备党员</option>
-                    <option value='2'>团员</option>
-                    <option value='3'>群众</option>
+                    <option value='0' <if condition="$user_data['political'] eq 0">selected="true"</if> >党员</option>
+                    <option value='1' <if condition="$user_data['political'] eq 1">selected="true"</if> >预备党员</option>
+                    <option value='2' <if condition="$user_data['political'] eq 2">selected="true"</if> >团员</option>
+                    <option value='3' <if condition="$user_data['political'] eq 3">selected="true"</if> >群众</option>
                 </select>
             </div>
         </div>
@@ -51,8 +55,8 @@
             </div>
             <div class="weui_cell_bd weui_cell_primary">
                 <select name="marriage" class="weui_input">
-                    <option value='0'>未婚</option>
-                    <option value='1'>已婚</option>
+                    <option value='0' <if condition="$user_data['marriage'] eq 0">selected="true"</if> >未婚</option>
+                    <option value='1' <if condition="$user_data['marriage'] eq 1">selected="true"</if>>已婚</option>
                 </select>
             </div>
         </div>
@@ -61,8 +65,13 @@
                 <label class="weui_label">出生年月：</label>
             </div>
             <div class="weui_cell_bd weui_cell_primary start_date_right">
+                <if condition="$user_data['birthday']">
+                    <input name="birthday" value="{$user_data['birthday']|date='Y-m-d',###}" type="text" id="start_date" class="weui_input"  readonly="readonly">
+                <else />
+                    <input name="birthday" type="text" id="start_date" class="weui_input">
+                </if>
                 <!-- <input type="text" id="datepicker"   name="birthday" class="weui_input"> -->
-                <input name="birthday" type="text" id="start_date" class="weui_input"  readonly="readonly">
+                
             </div>
         </div>
         <div class="weui_cell cell_box">
@@ -70,7 +79,11 @@
                 <label class="weui_label">籍贯：</label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
-                <input name="native_place" type="text" class="weui_input" />
+                <if condition="$user_data['native_place']">
+                    <input name="native_place" type="text" value="{$user_data['native_place']}" class="weui_input" />
+                <else />
+                    <input name="native_place" type="text" class="weui_input" />
+                </if>
             </div>
         </div>
         <div class="weui_cell cell_box">
@@ -78,7 +91,11 @@
                 <label class="weui_label">民族：</label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
-                <input name="ethnic" type="text" class="weui_input" />
+                <if condition="$user_data['native_place']">
+                    <input name="ethnic" type="text" value="{$user_data['ethnic']}" class="weui_input" />
+                <else />
+                    <input name="ethnic" type="text" class="weui_input" />
+                </if>
             </div>
         </div>
         <div class="weui_cell">
@@ -87,13 +104,13 @@
             </div>
             <div class="weui_cell_bd weui_cell_primary">
                 <select name="education" class="weui_input">
-                    <option value='0'>小学</option>
-                    <option value='1'>初中</option>
-                    <option value='2'>高中</option>
-                    <option value='3'>大学专科</option>
-                    <option value='4'>大学本科</option>
-                    <option value='5'>硕士</option>
-                    <option value='6'>博士</option>
+                    <option value='0' <if condition="$user_data['education'] eq 0">selected="true"</if>>小学</option>
+                    <option value='1' <if condition="$user_data['education'] eq 1">selected="true"</if>>初中</option>
+                    <option value='2' <if condition="$user_data['education'] eq 2">selected="true"</if>>高中</option>
+                    <option value='3' <if condition="$user_data['education'] eq 3">selected="true"</if>>大学专科</option>
+                    <option value='4' <if condition="$user_data['education'] eq 4">selected="true"</if>>大学本科</option>
+                    <option value='5' <if condition="$user_data['education'] eq 5">selected="true"</if>>硕士</option>
+                    <option value='6' <if condition="$user_data['education'] eq 6">selected="true"</if>>博士</option>
                 </select>
             </div>
         </div>
@@ -102,7 +119,11 @@
                 <label class="weui_label">身高：</label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
-                <input name="height" type="text" class="weui_input" />
+                <if condition="$user_data['height']">
+                    <input name="height" type="text" value="{$user_data['height']}" class="weui_input" />
+                <else />
+                    <input name="height" type="text" class="weui_input" />
+                </if>
             </div>
         </div>
         <div class="weui_cell cell_box">
@@ -110,7 +131,11 @@
                 <label class="weui_label">体重：</label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
-                <input name="weight" type="text" class="weui_input" />
+                <if condition="$user_data['weight']">
+                    <input name="weight" type="text" value="{$user_data['weight']}" class="weui_input" />
+                <else />
+                    <input name="weight" type="text" class="weui_input" />
+                </if>
             </div>
         </div>
         <div class="weui_cell cell_box">
@@ -118,7 +143,11 @@
                 <label class="weui_label">服役时间：</label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
-            	<input name="service_start" type="text" id="start_dates" class="weui_input"  readonly="readonly">
+                <if condition="$user_data['service_start']">
+                    <input name="service_start" value="{$user_data['service_start']|date='Y-m-d',###}" type="text" id="start_date" class="weui_input">
+                <else />
+                    <input name="service_start" type="text" id="start_date" class="weui_input">
+                </if>
             </div>
         </div>
         <div class="weui_cell cell_box">
@@ -126,7 +155,11 @@
                 <label class="weui_label">>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
-            	<input name="service_end" type="text" id="start_datess" class="weui_input"  readonly="readonly">
+                <if condition="$user_data['service_end']">
+                    <input name="service_end" value="{$user_data['service_end']|date='Y-m-d',###}" type="text" id="start_date" class="weui_input">
+                <else />
+                    <input name="service_end" type="text" id="start_date" class="weui_input">
+                </if>
             </div>
         </div>
         <div class="weui_cell">
@@ -134,7 +167,11 @@
                 <lab el class="weui_label">退伍证号：</label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
-                <input class="weui_input" type="text" id="tell" name="badge_number" placeholder="请输入退伍证号">
+                <if condition="$user_data['badge_number']">
+                    <input name="badge_number" value="{$user_data['badge_number']}" type="text" id="start_date" class="weui_input">
+                <else />
+                    <input name="badge_number" type="text" id="start_date" class="weui_input">
+                </if>
             </div>
         </div>
         <div class="weui_cell"></div>

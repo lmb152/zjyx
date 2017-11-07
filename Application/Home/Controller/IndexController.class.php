@@ -72,8 +72,13 @@ class IndexController extends Controller {
 		}
 	}
 	public function basic_info() {
-		
-		$this->assign('mobile', $_GET['mobile']);
+		$info = $_SESSION['memberinfo'];
+		$user=D('user_profile');
+		$condition=array(
+				'openid'=>$info->openid,
+			);
+		$user_data=$user->where($condition)->find();
+		$this->assign('user_data', $user_data);
 		$this->display();
 	}
 	// 基本信息保存
@@ -118,6 +123,13 @@ class IndexController extends Controller {
 	}
 
 	public function detail_info() {
+		$info = $_SESSION['memberinfo'];
+		$user=D('user_profile');
+		$condition=array(
+				'openid'=>$info->openid,
+			);
+		$user_data=$user->where($condition)->find();
+		$this->assign('user_data', $user_data);
 		$this->display();
 	}
 	// 详细信息保存
