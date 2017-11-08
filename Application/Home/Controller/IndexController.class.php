@@ -125,15 +125,51 @@ class IndexController extends Controller {
 	public function detail_info() {
 		$info = $_SESSION['memberinfo'];
 		$user=D('user_profile');
+		$army=D('user_army');
+		$education=D('user_education');
 		$condition=array(
 				'openid'=>$info->openid,
 			);
 		$user_data=$user->where($condition)->find();
+		// 查询工作经历
+		$condition=array(
+				'u_id'=>$user_data['id'];
+			);
+		$user_army_data=$army->where($condition)->select();
+		$user_education_data=$education->where($condition)->select();
+		$user_data['army_data']=$user_army_data;
+		$user_data['education_data']=$user_education_data;
 		$this->assign('user_data', $user_data);
 		$this->display();
 	}
 	// 详细信息保存
 	public function detail_info_save() {
+		$data=I('post.');
+		if(!$data['target_position']){
+			$this->error('目标岗位不能为空');
+		}
+		if(!$data['expected_salary']){
+			$this->error('期望薪资不能为空');
+		}
+		if(!$data['duty_time']){
+			$this->error('到岗时间不能为空');
+		}
+		if(!$data['self_evaluation']){
+			$this->error('自我评价不能为空');
+		}
+		$info = $_SESSION['memberinfo'];
+		$profile_data=array(
+				'target_position'=>$data['target_position'],
+				'expected_salary'=>$data['expected_salary'],
+				'duty_time'=>strtotime($data['duty_time']),
+				'honor'=>$data['honor'],
+				'self_evaluation'=>$data['self_evaluation']
+			);
+		$user_profile=D('user_profile');
+		$condition=array(
+				'openid'=>$info->openid,
+			);
+		$user_profile->where($condition)->save($profile_data);
 		$this->redirect('index/info_finish');
 	}
 	public function info_finish() {
