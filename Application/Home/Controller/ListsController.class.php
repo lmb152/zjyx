@@ -1,7 +1,7 @@
 <?php
 namespace Home\Controller;
 use Think\Controller;
-
+header("Content-type: text/html; charset=utf-8"); 
 class ListsController extends Controller {
 	public function _initialize() {
 		// 获取用户openid
@@ -12,6 +12,33 @@ class ListsController extends Controller {
 		}
 	}
 	public function index() {
+		// 获取城市列表
+		$area=D('area');
+		$p_condition=array(
+				'parent_id'=>0,
+			);
+		$provice=$area->where($p_condition)->select();
+		foreach ($provice as $key => &$value) {
+			$c_condition=array(
+					'parent_id'=>$value['id'],
+				);
+			$city=$area->where($c_condition)->select();
+			$value['cities']=$city;
+		}
+		$this->assign('provice',$provice);
+		// 获取行业类目
+		$industry=D('industry');
+		$industry_parent=$industry->group('industry_parent')->select();
+		foreach ($industry_parent as $key => &$value) {
+			$value['industry_name']=$value['industry_parent'];
+			$condition=array(
+					'industry_parent'=>$value['industry_parent']
+				);
+			$industry_child=$industry->where($condition)->select();
+			$value['industry']=$industry_child;
+		}
+		$this->assign('industry',$industry_parent);
+
 		$qstr = $_GET['qstr'] && trim($_GET['qstr']) ? trim($_GET['qstr']) : '';
 		if ($qstr != "") {
 			$whereStr = "p_name like '%" . $qstr . "%'";
@@ -26,9 +53,8 @@ class ListsController extends Controller {
 		$num = 2; //请求条数
 		$list = M('position')->where($where)->page($page, $num)->select();
 		// $list = M("table")->page($page, $num)->select();
-
+		//判断ajax请求
 		if (IS_POST) {
-//判断ajax请求
 			$count = count($list);
 			if ($count < $num) { //判断是否到尾页
 				$list[]['id'] = 0; //到尾页返回0
