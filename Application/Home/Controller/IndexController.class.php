@@ -131,7 +131,6 @@ class IndexController extends Controller {
 			'openid' => $info->openid,
 		);
 		$user_data = $user->where($condition)->find();
-		// 查询工作经历
 		$condition = array(
 			'u_id' => $user_data['id'],
 		);
@@ -139,6 +138,8 @@ class IndexController extends Controller {
 		$user_education_data = $education->where($condition)->select();
 		$user_data['army_data'] = $user_army_data;
 		$user_data['education_data'] = $user_education_data;
+		$user_data['army_num'] = count($user_army_data);
+		$user_data['education_num'] = count($user_education_data);
 		$this->assign('user_data', $user_data);
 		$this->display();
 	}

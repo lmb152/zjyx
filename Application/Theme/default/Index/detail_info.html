@@ -86,7 +86,8 @@
             </div>
         </div>
         <div id="InputsWrapper">
-            <foreach name="data['army_data']" item="v" >
+            {}
+            <foreach name="user_data.army_data" item="v" >
                 <div class="weui_cell cell_box">
                     <div class="weui_cell_hd">
                         <label class="weui_label">时间：</label>
@@ -120,6 +121,38 @@
                     </div>
                 </div>
             </foreach> 
+            <div class="weui_cell cell_box">
+                    <div class="weui_cell_hd">
+                        <label class="weui_label">时间：</label>
+                    </div>
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <input name="service_start" id="start_date" type="text" class="weui_input" />
+                    </div>
+                </div>
+                <div class="weui_cell cell_box">
+                    <div class="weui_cell_hd">
+                        <label class="weui_label">></label>
+                    </div>
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <input name="service_end" id="start_date" type="text" class="weui_input" />
+                    </div>
+                </div>
+                <div class="weui_cell cell_box">
+                    <div class="weui_cell_hd">
+                        <label class="weui_label">部门：</label>
+                    </div>
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <input name="height" type="text" class="weui_input" />
+                    </div>
+                </div>
+                <div class="weui_cell cell_box">
+                    <div class="weui_cell_hd">
+                        <label class="weui_label">职务：</label>
+                    </div>
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <input name="weight" type="text" class="weui_input" />
+                    </div>
+                </div>
         </div>
         <div id="InputsWrapper_edu">
             <div class="weui_cell">
