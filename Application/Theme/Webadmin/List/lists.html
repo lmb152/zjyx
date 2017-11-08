@@ -27,12 +27,31 @@
                                     <td>{$vo['id']}</td>
                                     <td>{$vo['user_name']}</td>
                                     <td>
-                                        <if condition="$vo['male'] eq 0">男
-                                            <else/>女</if>
+                                        <if condition="$vo['male'] eq 1">
+                                            男
+                                        <else/>
+                                            女
+                                        </if>
                                     </td>
                                     <td>{$vo['native_place']}</td>
                                     <td>{$vo['ethnic']}</td>
-                                    <td>{$vo['education']}</td>
+                                    <td>
+                                        <if condition="$vo['education'] eq 0">
+                                            小学
+                                        <elif condition="$vo['education'] eq 1">
+                                            初中
+                                        <elif condition="$vo['education'] eq 2">
+                                            高中
+                                        <elif condition="$vo['education'] eq 3">
+                                            大学专科
+                                        <elif condition="$vo['education'] eq 4">
+                                            大学本科
+                                        <elif condition="$vo['education'] eq 5">
+                                            硕士
+                                        <elif condition="$vo['education'] eq 6">
+                                            博士
+                                        </if>
+                                    </td>
                                     <td>{$vo['target_position']}</td>
                                     <td>
                                         <if condition="$vo['type'] eq 0"><span style="color: red;">未审核</span>
