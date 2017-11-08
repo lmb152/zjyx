@@ -57,10 +57,21 @@ class IndexController extends Controller {
 	public function bind_phone() {
 		Vendor('sms_demo.SendTemplateSMS');
 		$srand = rand(100000, 999999);
-		$_SESSION['srand']=$srand;
+		
 		$phone=$_POST['phone'];
-		// $send_back=sendTemplateSMS($phone, array($srand, '60s'), "215435");
-		print_r($_SESSION['srand']);
+		$user_profile = D('user_profile');
+		$where = array(
+			'mobile' => $phone,
+		);
+		$is_mobile_bind=$user_profile->where($where)->find();
+		header('Content-type: application/json');
+		if($is_mobile_bind){
+			print json_encode(array('status'=>0,'msg'=>'手机号已被绑定'));
+		}else{
+			$_SESSION['srand']=$srand;
+			// $send_back=sendTemplateSMS($phone, array($srand, '60s'), "215435");
+			print json_encode(array('status'=>1,'msg'=>'短信发送成功'));
+		}
 		
 	}
 	public function bind_phone_save() {

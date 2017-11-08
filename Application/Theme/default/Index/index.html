@@ -42,27 +42,31 @@
     });
     $('#send_sms').click(function(){
         var obj = $(this);
-        obj.attr("disabled", "disabled"); /*按钮倒计时*/
-        var time = 60;
-        var set = setInterval(function() {
-            obj.val(--time + "(s)");
-        }, 1000); /*等待时间*/
-        setTimeout(function() {
-            obj.attr("disabled", false).val("重新获取验证码"); /*倒计时*/
-            clearInterval(set);
-        }, 60000);
         var data = {
             phone:$('#tell').val(),
         };
-        console.log(data);
         var url = "{:U('index/bind_phone')}";
         $.ajax({
             type: "POST",
             datatype:'json',
             url: url,
             data: data,
-            success: function(msg) {
-                
+            success: function(callback) {
+                console.log(callback);
+                if(!callback.status){
+                    obj.attr("disabled", "disabled")
+                    alert(callback.msg);
+                }else{
+                    obj.attr("disabled", "disabled"); /*按钮倒计时*/
+                    var time = 60;
+                    var set = setInterval(function() {
+                        obj.val(--time + "(s)");
+                    }, 1000); /*等待时间*/
+                    setTimeout(function() {
+                        obj.attr("disabled", false).val("重新获取验证码"); /*倒计时*/
+                        clearInterval(set);
+                    }, 60000);
+                }
             }
         });
     });
