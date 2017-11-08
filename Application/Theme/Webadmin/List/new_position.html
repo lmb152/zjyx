@@ -32,7 +32,16 @@
                         <div class="form-group">
                             <label for="inputPassword" class="col-sm-3 control-label">公司行业</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" value="{$list['industry']}" name="industry" placeholder="请输入公司行业">
+                                <select class="form-control" name="industry">
+                                    <volist name="lists" id="vo">
+                                        <if condition="$vo['id'] eq $list['industry'] ">
+                                            <option value="{$vo['id']}" selected="selected">{$vo['industry_name']}</option>
+                                            <else />
+                                            <option value="{$vo['id']}">{$vo['industry_name']}</option>
+                                        </if>
+                                    </volist>
+                                </select>
+                                <!-- <input type="text" class="form-control" value="{$list['industry']}" name="industry" placeholder="请输入公司行业">-->
                             </div>
                         </div>
                         <div class="form-group">

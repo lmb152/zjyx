@@ -154,12 +154,13 @@ class ListController extends CommonController {
 	}
 	// 编辑
 	public function new_position() {
+		$list = M('industry')->select();
 		$id = $_GET['id'];
 		if ($id) {
 			$rs = M('position')->where('p_id=' . $id)->find();
 			$this->assign('list', $rs);
 		}
-
+		$this->assign('lists', $list);
 		$this->display();
 	}
 	public function saveNew_position() {
