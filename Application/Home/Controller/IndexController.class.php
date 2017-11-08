@@ -9,7 +9,7 @@ class IndexController extends Controller {
 		if (!isset($info->openid)) {
 			// 授权登录获取openid
 			$this->redirect('/Wechat');
-		}else {
+		} else {
 			$user_profile = D('user_profile');
 			$where = array(
 				'openid' => $info->openid,
@@ -30,11 +30,11 @@ class IndexController extends Controller {
 				$user_profile->data($user_data)->add();
 				$this->assign('openid', $info->openid);
 				$this->display();
-			}else{
+			} else {
 				// 若已存在该openid用户并且已绑定手机号码，则直接跳转基本信息页面
-				if($user_data_temp['mobile']){
+				if ($user_data_temp['mobile']) {
 					$this->redirect('index/basic_info');
-				}else{
+				} else {
 					$user_data = array(
 						'imgurl' => $info->headimgurl,
 						'male' => $info->sex,
@@ -43,18 +43,18 @@ class IndexController extends Controller {
 					$this->assign('openid', $info->openid);
 					$this->display();
 				}
-				
+
 			}
 		}
 	}
 	public function bind_phone() {
 		Vendor('sms_demo.SendTemplateSMS');
 		$srand = rand(100000, 999999);
-		$_SESSION['srand']=$srand;
-		$phone=$_POST['phone'];
+		$_SESSION['srand'] = $srand;
+		$phone = $_POST['phone'];
 		// $send_back=sendTemplateSMS($phone, array($srand, '60s'), "215435");
 		print_r($_SESSION['srand']);
-		
+
 	}
 	public function bind_phone_save() {
 		if ($_POST['certifycode'] == $_SESSION['srand']) {
@@ -62,9 +62,9 @@ class IndexController extends Controller {
 			$where = array(
 				'openid' => $_POST['openid'],
 			);
-			$user_data_mobile=array(
-					'mobile'=>$_POST['phone'],
-				);
+			$user_data_mobile = array(
+				'mobile' => $_POST['phone'],
+			);
 			$user_profile->where($where)->save($user_data_mobile);
 			$this->redirect('index/basic_info');
 		} else {
@@ -73,11 +73,11 @@ class IndexController extends Controller {
 	}
 	public function basic_info() {
 		$info = $_SESSION['memberinfo'];
-		$user=D('user_profile');
-		$condition=array(
-				'openid'=>$info->openid,
-			);
-		$user_data=$user->where($condition)->find();
+		$user = D('user_profile');
+		$condition = array(
+			'openid' => $info->openid,
+		);
+		$user_data = $user->where($condition)->find();
 		$this->assign('user_data', $user_data);
 		$this->display();
 	}
@@ -115,60 +115,60 @@ class IndexController extends Controller {
 		$data['service_start'] = strtotime($_POST['service_start']);
 		$data['service_end'] = strtotime($_POST['service_end']);
 		// dump($data);die;
-		$where=array(
-				'openid'=>$_SESSION['memberinfo']->openid,
-			);
+		$where = array(
+			'openid' => $_SESSION['memberinfo']->openid,
+		);
 		$rs = M('user_profile')->where($where)->save($data);
 		$this->redirect('index/detail_info');
 	}
 
 	public function detail_info() {
 		$info = $_SESSION['memberinfo'];
-		$user=D('user_profile');
-		$army=D('user_army');
-		$education=D('user_education');
-		$condition=array(
-				'openid'=>$info->openid,
-			);
-		$user_data=$user->where($condition)->find();
+		$user = D('user_profile');
+		$army = D('user_army');
+		$education = D('user_education');
+		$condition = array(
+			'openid' => $info->openid,
+		);
+		$user_data = $user->where($condition)->find();
 		// 查询工作经历
-		$condition=array(
-				'u_id'=>$user_data['id'];
-			);
-		$user_army_data=$army->where($condition)->select();
-		$user_education_data=$education->where($condition)->select();
-		$user_data['army_data']=$user_army_data;
-		$user_data['education_data']=$user_education_data;
+		$condition = array(
+			'u_id' => $user_data['id'],
+		);
+		$user_army_data = $army->where($condition)->select();
+		$user_education_data = $education->where($condition)->select();
+		$user_data['army_data'] = $user_army_data;
+		$user_data['education_data'] = $user_education_data;
 		$this->assign('user_data', $user_data);
 		$this->display();
 	}
 	// 详细信息保存
 	public function detail_info_save() {
-		$data=I('post.');
-		if(!$data['target_position']){
+		$data = I('post.');
+		if (!$data['target_position']) {
 			$this->error('目标岗位不能为空');
 		}
-		if(!$data['expected_salary']){
+		if (!$data['expected_salary']) {
 			$this->error('期望薪资不能为空');
 		}
-		if(!$data['duty_time']){
+		if (!$data['duty_time']) {
 			$this->error('到岗时间不能为空');
 		}
-		if(!$data['self_evaluation']){
+		if (!$data['self_evaluation']) {
 			$this->error('自我评价不能为空');
 		}
 		$info = $_SESSION['memberinfo'];
-		$profile_data=array(
-				'target_position'=>$data['target_position'],
-				'expected_salary'=>$data['expected_salary'],
-				'duty_time'=>strtotime($data['duty_time']),
-				'honor'=>$data['honor'],
-				'self_evaluation'=>$data['self_evaluation']
-			);
-		$user_profile=D('user_profile');
-		$condition=array(
-				'openid'=>$info->openid,
-			);
+		$profile_data = array(
+			'target_position' => $data['target_position'],
+			'expected_salary' => $data['expected_salary'],
+			'duty_time' => strtotime($data['duty_time']),
+			'honor' => $data['honor'],
+			'self_evaluation' => $data['self_evaluation'],
+		);
+		$user_profile = D('user_profile');
+		$condition = array(
+			'openid' => $info->openid,
+		);
 		$user_profile->where($condition)->save($profile_data);
 		$this->redirect('index/info_finish');
 	}
