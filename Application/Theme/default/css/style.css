@@ -771,6 +771,7 @@ i.cate_sort {
     color: #000;
     float: right;
     margin: 20px;
+    z-index: 99999999;
 }
 .push_msk_content{
     position: fixed;
@@ -4160,11 +4161,16 @@ i.sort_com {
 }
 
 .copyrights {
-    overflow: hidden;
-    height: 0;
-    text-indent: -9999px;
-    font-size: 0;
-    line-height: 0;
+    font-size: 14px;
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+    border-top: #ccc solid 1px;
+    padding: 2px;
+    /*left: 2.5%;*/
+    color: #959595;
+    background: #f0f1f1;
 }
 .img_logo{
     width: 65%;

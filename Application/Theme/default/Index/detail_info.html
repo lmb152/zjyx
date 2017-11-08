@@ -19,9 +19,6 @@
         cursor: pointer;
     }
     </style>
-    <script src="__PUBLIC__/LCalendar/js/LCalendar.js" type="text/javascript"></script>
-    <!-- <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/index.css" /> -->
-    <link rel="stylesheet" type="text/css" href="__PUBLIC__/LCalendar/css/LCalendar.css" />
     <form class="form" action="{:U('index/detail_info_save')}" method="post" enctype="multipart/form-data">
         <div class="weui_cell">
             <h4>个人详细信息</h4></div>
@@ -57,9 +54,9 @@
             </div>
             <div class="weui_cell_bd weui_cell_primary">
                 <if condition="$user_data['duty_time']">
-                    <input name="duty_time" type="text" id="start_date"  value="{$user_data['duty_time']|date='Y-m-d',###}" class="weui_input" />
+                    <input name="duty_time" type="text" id="start_date" readonly="true"  value="{$user_data['duty_time']|date='Y-m-d',###}" class="weui_input calendar_box" />
                 <else />
-                    <input name="duty_time" type="text" id="start_date"  class="weui_input" />
+                    <input name="duty_time" type="text" id="start_date" readonly="true"  class="weui_input" />
                 </if>
             </div>
         </div>
@@ -86,22 +83,21 @@
             </div>
         </div>
         <div id="InputsWrapper">
-            {}
-            <foreach name="user_data.army_data" item="v" >
+            <foreach name="army_data" item="v" >
                 <div class="weui_cell cell_box">
                     <div class="weui_cell_hd">
                         <label class="weui_label">时间：</label>
                     </div>
                     <div class="weui_cell_bd weui_cell_primary">
-                        <input name="service_start" id="start_date" type="text" class="weui_input" />
+                        <input name="service_start[{$v.army_id}]" id="start_date_{$v.army_id}" value="{$v.start_time|date='Y-m-d',###}" readonly="true" type="text" class="weui_input calendar_box" />
                     </div>
                 </div>
                 <div class="weui_cell cell_box">
                     <div class="weui_cell_hd">
-                        <label class="weui_label">></label>
+                        <label class="weui_label">>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                     </div>
                     <div class="weui_cell_bd weui_cell_primary">
-                        <input name="service_end" id="start_date" type="text" class="weui_input" />
+                        <input name="service_end[{$v.army_id}]" id="end_date_{$v.army_id}" value="{$v.end_time|date='Y-m-d',###}" readonly="true" type="text" class="weui_input calendar_box" />
                     </div>
                 </div>
                 <div class="weui_cell cell_box">
@@ -109,7 +105,7 @@
                         <label class="weui_label">部门：</label>
                     </div>
                     <div class="weui_cell_bd weui_cell_primary">
-                        <input name="height" type="text" class="weui_input" />
+                        <input name="department[{$v.army_id}]" type="text" value="{$v.department}" class="weui_input" />
                     </div>
                 </div>
                 <div class="weui_cell cell_box">
@@ -117,7 +113,7 @@
                         <label class="weui_label">职务：</label>
                     </div>
                     <div class="weui_cell_bd weui_cell_primary">
-                        <input name="weight" type="text" class="weui_input" />
+                        <input name="position[{$v.army_id}]" type="text" value="{$v.position}" class="weui_input" />
                     </div>
                 </div>
             </foreach> 
@@ -126,15 +122,15 @@
                         <label class="weui_label">时间：</label>
                     </div>
                     <div class="weui_cell_bd weui_cell_primary">
-                        <input name="service_start" id="start_date" type="text" class="weui_input" />
+                        <input name="new_service_start[0]" readonly="true" id="new_service_start_0" type="text" class="weui_input calendar_box" />
                     </div>
                 </div>
                 <div class="weui_cell cell_box">
                     <div class="weui_cell_hd">
-                        <label class="weui_label">></label>
+                        <label class="weui_label">>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                     </div>
                     <div class="weui_cell_bd weui_cell_primary">
-                        <input name="service_end" id="start_date" type="text" class="weui_input" />
+                        <input name="new_service_end[0]" readonly="true" id="new_service_end_0" type="text" class="weui_input calendar_box" />
                     </div>
                 </div>
                 <div class="weui_cell cell_box">
@@ -142,7 +138,7 @@
                         <label class="weui_label">部门：</label>
                     </div>
                     <div class="weui_cell_bd weui_cell_primary">
-                        <input name="height" type="text" class="weui_input" />
+                        <input name="new_department[0]" type="text" class="weui_input" />
                     </div>
                 </div>
                 <div class="weui_cell cell_box">
@@ -150,7 +146,7 @@
                         <label class="weui_label">职务：</label>
                     </div>
                     <div class="weui_cell_bd weui_cell_primary">
-                        <input name="weight" type="text" class="weui_input" />
+                        <input name="new_position[0]" type="text" class="weui_input" />
                     </div>
                 </div>
         </div>
@@ -160,23 +156,57 @@
                     <label class="weui_label">教育经历：</label>
                 </div>
                 <div class="weui_cell_bd weui_cell_primary">
-                    <a class=" add_edu_row">+</a>
+                    <a class="add_edu_row" id="AddMoreEduBox">+</a>
                 </div>
             </div>
+            <foreach name="education_data" item="v" >
+                <div class="weui_cell cell_box">
+                    <div class="weui_cell_hd">
+                        <label class="weui_label">学习时间：</label>
+                    </div>
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <input name="edu_service_start[{$v.army_id}]" id="edu_start_date_{$v.army_id}" value="{$v.start_time|date='Y-m-d',###}" readonly="true" type="text" class="weui_input calendar_box" />
+                    </div>
+                </div>
+                <div class="weui_cell cell_box">
+                    <div class="weui_cell_hd">
+                        <label class="weui_label">>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    </div>
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <input name="edu_service_end[{$v.army_id}]" id="edu_end_date_{$v.army_id}" value="{$v.end_time|date='Y-m-d',###}" readonly="true" type="text" class="weui_input calendar_box" />
+                    </div>
+                </div>
+                <div class="weui_cell cell_box">
+                    <div class="weui_cell_hd">
+                        <label class="weui_label">学校：</label>
+                    </div>
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <input name="school[{$v.army_id}]" type="text" value="{$v.school}" class="weui_input" />
+                    </div>
+                </div>
+                <div class="weui_cell cell_box">
+                    <div class="weui_cell_hd">
+                        <label class="weui_label">学位：</label>
+                    </div>
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <input name="degree[{$v.army_id}]" type="text" value="{$v.degree}" class="weui_input" />
+                    </div>
+                </div>
+            </foreach> 
             <div class="weui_cell cell_box">
                 <div class="weui_cell_hd">
                     <label class="weui_label">学习时间：</label>
                 </div>
                 <div class="weui_cell_bd weui_cell_primary">
-                    <input name="service_start" id="start_date" type="text" class="weui_input" />
+                    <input name="new_edu_service_start[0]" id="new_edu_service_start_0" type="text" class="weui_input calendar_box" />
                 </div>
             </div>
             <div class="weui_cell cell_box">
                 <div class="weui_cell_hd">
-                    <label class="weui_label">></label>
+                    <label class="weui_label">>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                 </div>
                 <div class="weui_cell_bd weui_cell_primary">
-                    <input name="service_end" id="start_date" type="text" class="weui_input" />
+                    <input name="new_edu_service_end[0]" id="new_edu_service_end_0" type="text" class="weui_input calendar_box" />
                 </div>
             </div>
             <div class="weui_cell cell_box">
@@ -184,7 +214,7 @@
                     <label class="weui_label">学校：</label>
                 </div>
                 <div class="weui_cell_bd weui_cell_primary">
-                    <input name="height" type="text" class="weui_input" />
+                    <input name="new_school[0]" type="text" class="weui_input" />
                 </div>
             </div>
             <div class="weui_cell cell_box">
@@ -192,7 +222,7 @@
                     <label class="weui_label">学历：</label>
                 </div>
                 <div class="weui_cell_bd weui_cell_primary">
-                    <input name="weight" type="text" class="weui_input" />
+                    <input name="new_degree[0]" type="text" class="weui_input" />
                 </div>
             </div>
         </div>
@@ -211,7 +241,7 @@
             </div>
         </div>
         <div class="weui_cell"></div>
-        <div class="weui_btn_area" style="margin-top:20px;margin-bottom:80px;">
+        <div class="weui_btn_area" style="margin-top:20px;margin-bottom:100px;">
             <input class="weui_btn weui_btn_primary" type="submit" value="完成简历填写" />
         </div>
     </form>
@@ -225,6 +255,68 @@
             'minDate': (new Date().getFullYear() - 3) + '-' + 1 + '-' + 1, //最小日期
             'maxDate': (new Date().getFullYear() + 3) + '-' + 12 + '-' + 31 //最大日期
         });
+        var calendar = new LCalendar();
+        calendar.init({
+            'trigger': '#new_service_start_0', //标签id
+            'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
+            'minDate': (new Date().getFullYear() - 3) + '-' + 1 + '-' + 1, //最小日期
+            'maxDate': (new Date().getFullYear() + 3) + '-' + 12 + '-' + 31 //最大日期
+        });
+        var calendar = new LCalendar();
+        calendar.init({
+            'trigger': '#new_service_end_0', //标签id
+            'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
+            'minDate': (new Date().getFullYear() - 3) + '-' + 1 + '-' + 1, //最小日期
+            'maxDate': (new Date().getFullYear() + 3) + '-' + 12 + '-' + 31 //最大日期
+        });
+        
+        <foreach name="army_data" item="v" >
+        var calendar = new LCalendar();
+        calendar.init({
+            'trigger': '#start_date_{$v.army_id}', //标签id
+            'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
+            'minDate': (new Date().getFullYear() - 3) + '-' + 1 + '-' + 1, //最小日期
+            'maxDate': (new Date().getFullYear() + 3) + '-' + 12 + '-' + 31 //最大日期
+        });
+        var calendar = new LCalendar();
+        calendar.init({
+            'trigger': '#end_date_{$v.army_id}', //标签id
+            'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
+            'minDate': (new Date().getFullYear() - 3) + '-' + 1 + '-' + 1, //最小日期
+            'maxDate': (new Date().getFullYear() + 3) + '-' + 12 + '-' + 31 //最大日期
+        });
+        </foreach>
+        var calendar = new LCalendar();
+        calendar.init({
+            'trigger': '#new_edu_service_start_0', //标签id
+            'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
+            'minDate': (new Date().getFullYear() - 3) + '-' + 1 + '-' + 1, //最小日期
+            'maxDate': (new Date().getFullYear() + 3) + '-' + 12 + '-' + 31 //最大日期
+        });
+        var calendar = new LCalendar();
+        calendar.init({
+            'trigger': '#new_edu_service_end_0', //标签id
+            'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
+            'minDate': (new Date().getFullYear() - 3) + '-' + 1 + '-' + 1, //最小日期
+            'maxDate': (new Date().getFullYear() + 3) + '-' + 12 + '-' + 31 //最大日期
+        });
+        
+        <foreach name="education_data" item="v" >
+        var calendar = new LCalendar();
+        calendar.init({
+            'trigger': '#edu_start_date_{$v.army_id}', //标签id
+            'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
+            'minDate': (new Date().getFullYear() - 3) + '-' + 1 + '-' + 1, //最小日期
+            'maxDate': (new Date().getFullYear() + 3) + '-' + 12 + '-' + 31 //最大日期
+        });
+        var calendar = new LCalendar();
+        calendar.init({
+            'trigger': '#edu_end_date_{$v.army_id}', //标签id
+            'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
+            'minDate': (new Date().getFullYear() - 3) + '-' + 1 + '-' + 1, //最小日期
+            'maxDate': (new Date().getFullYear() + 3) + '-' + 12 + '-' + 31 //最大日期
+        });
+        </foreach>
     </script>
     <script language="javascript" src="{$Think.const.JS_URL}/append_element.js"></script>
     
