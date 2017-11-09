@@ -29,9 +29,10 @@
             <div class="weui_cell_bd weui_cell_primary">
                 <if condition="$user_data['target_position']">
                     <input class="weui_input" type="text" id="tell" value="{$user_data['target_position']}" name="target_position" placeholder="请输入目标岗位">
-                    <else />
+                <else />
                     <input class="weui_input" type="text" id="tell" name="target_position" placeholder="请输入目标岗位">
                 </if>
+                
             </div>
         </div>
         <div class="weui_cell cell_box">
@@ -41,9 +42,10 @@
             <div class="weui_cell_bd weui_cell_primary">
                 <if condition="$user_data['expected_salary']">
                     <input name="expected_salary" type="number" value="{$user_data['expected_salary']}" class="weui_input" />
-                    <else />
+                <else />
                     <input name="expected_salary" type="number" class="weui_input" />
                 </if>
+                
             </div>
         </div>
         <div class="weui_cell cell_box">
@@ -52,9 +54,9 @@
             </div>
             <div class="weui_cell_bd weui_cell_primary">
                 <if condition="$user_data['duty_time']">
-                    <input name="duty_time" type="text" id="start_date" readonly="true" value="{$user_data['duty_time']|date='Y-m-d',###}" class="weui_input calendar_box" />
-                    <else />
-                    <input name="duty_time" type="text" id="start_date" readonly="true" class="weui_input" />
+                    <input name="duty_time" type="text" id="start_date" readonly="true"  value="{$user_data['duty_time']|date='Y-m-d',###}" class="weui_input calendar_box" />
+                <else />
+                    <input name="duty_time" type="text" id="start_date" readonly="true"  class="weui_input" />
                 </if>
             </div>
         </div>
@@ -65,7 +67,7 @@
         </div>
         <div class="weui_cell">
             <div class="weui_cell_bd weui_cell_primary">
-                <textarea class="weui_input" name="honor" rows="3" placeholder="请在此处输入获得的荣誉">
+                <textarea class="weui_input" name="honor" rows="3" placeholder="请在此处输入获得的荣誉" >
                     <if condition="$user_data['honor']">
                         {$user_data['honor']}
                     </if>
@@ -81,7 +83,7 @@
             </div>
         </div>
         <div id="InputsWrapper">
-            <foreach name="army_data" item="v">
+            <foreach name="army_data" item="v" >
                 <div class="weui_cell cell_box">
                     <div class="weui_cell_hd">
                         <label class="weui_label">时间：</label>
@@ -114,39 +116,39 @@
                         <input name="position[{$v.army_id}]" type="text" value="{$v.position}" class="weui_input" />
                     </div>
                 </div>
-            </foreach>
+            </foreach> 
             <div class="weui_cell cell_box">
-                <div class="weui_cell_hd">
-                    <label class="weui_label">时间：</label>
+                    <div class="weui_cell_hd">
+                        <label class="weui_label">时间：</label>
+                    </div>
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <input name="new_service_start[0]" readonly="true" id="new_service_start_0" type="text" class="weui_input calendar_box" />
+                    </div>
                 </div>
-                <div class="weui_cell_bd weui_cell_primary">
-                    <input name="new_service_start[0]" readonly="true" id="new_service_start_0" type="text" class="weui_input calendar_box" />
+                <div class="weui_cell cell_box">
+                    <div class="weui_cell_hd">
+                        <label class="weui_label">>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    </div>
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <input name="new_service_end[0]" readonly="true" id="new_service_end_0" type="text" class="weui_input calendar_box" />
+                    </div>
                 </div>
-            </div>
-            <div class="weui_cell cell_box">
-                <div class="weui_cell_hd">
-                    <label class="weui_label">>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <div class="weui_cell cell_box">
+                    <div class="weui_cell_hd">
+                        <label class="weui_label">部门：</label>
+                    </div>
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <input name="new_department[0]" type="text" class="weui_input" />
+                    </div>
                 </div>
-                <div class="weui_cell_bd weui_cell_primary">
-                    <input name="new_service_end[0]" readonly="true" id="new_service_end_0" type="text" class="weui_input calendar_box" />
+                <div class="weui_cell cell_box">
+                    <div class="weui_cell_hd">
+                        <label class="weui_label">职务：</label>
+                    </div>
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <input name="new_position[0]" type="text" class="weui_input" />
+                    </div>
                 </div>
-            </div>
-            <div class="weui_cell cell_box">
-                <div class="weui_cell_hd">
-                    <label class="weui_label">部门：</label>
-                </div>
-                <div class="weui_cell_bd weui_cell_primary">
-                    <input name="new_department[0]" type="text" class="weui_input" />
-                </div>
-            </div>
-            <div class="weui_cell cell_box">
-                <div class="weui_cell_hd">
-                    <label class="weui_label">职务：</label>
-                </div>
-                <div class="weui_cell_bd weui_cell_primary">
-                    <input name="new_position[0]" type="text" class="weui_input" />
-                </div>
-            </div>
         </div>
         <div id="InputsWrapper_edu">
             <div class="weui_cell">
@@ -157,7 +159,7 @@
                     <a class="add_edu_row" id="AddMoreEduBox">+</a>
                 </div>
             </div>
-            <foreach name="education_data" item="v">
+            <foreach name="education_data" item="v" >
                 <div class="weui_cell cell_box">
                     <div class="weui_cell_hd">
                         <label class="weui_label">学习时间：</label>
@@ -190,7 +192,7 @@
                         <input name="degree[{$v.army_id}]" type="text" value="{$v.degree}" class="weui_input" />
                     </div>
                 </div>
-            </foreach>
+            </foreach> 
             <div class="weui_cell cell_box">
                 <div class="weui_cell_hd">
                     <label class="weui_label">学习时间：</label>
@@ -246,79 +248,76 @@
 </block>
 <block name="js_content">
     <script type="text/javascript">
-    var calendar = new LCalendar();
-    calendar.init({
-        'trigger': '#start_date', //标签id
-        'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
-        'minDate': '1900-1-1', //最小日期 注意：该值会覆盖标签内定义的日期范围
-        'maxDate': '2099-12-30' //最大日期 注意：该值会覆盖标签内定义的日期范围
-    });
-    var calendar = new LCalendar();
-    calendar.init({
-        'trigger': '#new_service_start_0', //标签id
-        'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
-        'minDate': '1900-1-1', //最小日期 注意：该值会覆盖标签内定义的日期范围
-        'maxDate': '2099-12-30' //最大日期 注意：该值会覆盖标签内定义的日期范围
-    });
-    var calendar = new LCalendar();
-    calendar.init({
-        'trigger': '#new_service_end_0', //标签id
-        'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
-        'minDate': '1900-1-1', //最小日期 注意：该值会覆盖标签内定义的日期范围
-        'maxDate': '2099-12-30' //最大日期 注意：该值会覆盖标签内定义的日期范围
-    });
-
-    <
-    foreach name = "army_data"
-    item = "v" >
         var calendar = new LCalendar();
-    calendar.init({
-        'trigger': '#start_date_{$v.army_id}', //标签id
-        'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
-        'minDate': '1900-1-1', //最小日期 注意：该值会覆盖标签内定义的日期范围
-        'maxDate': '2099-12-30' //最大日期 注意：该值会覆盖标签内定义的日期范围
-    });
-    var calendar = new LCalendar();
-    calendar.init({
-        'trigger': '#end_date_{$v.army_id}', //标签id
-        'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
-        'minDate': '1900-1-1', //最小日期 注意：该值会覆盖标签内定义的日期范围
-        'maxDate': '2099-12-30' //最大日期 注意：该值会覆盖标签内定义的日期范围
-    }); 
-    </foreach>
-    var calendar = new LCalendar();
-    calendar.init({
-        'trigger': '#new_edu_service_start_0', //标签id
-        'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
-        'minDate': '1900-1-1', //最小日期 注意：该值会覆盖标签内定义的日期范围
-        'maxDate': '2099-12-30' //最大日期 注意：该值会覆盖标签内定义的日期范围
-    });
-    var calendar = new LCalendar();
-    calendar.init({
-        'trigger': '#new_edu_service_end_0', //标签id
-        'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
-        'minDate': '1900-1-1', //最小日期 注意：该值会覆盖标签内定义的日期范围
-        'maxDate': '2099-12-30' //最大日期 注意：该值会覆盖标签内定义的日期范围
-    });
-
-    <
-    foreach name = "education_data"
-    item = "v" >
+        calendar.init({
+            'trigger': '#start_date', //标签id
+            'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
+            'minDate': '1900-1-1', //最小日期 注意：该值会覆盖标签内定义的日期范围
+            'maxDate': '2099-12-30' //最大日期 注意：该值会覆盖标签内定义的日期范围
+        });
         var calendar = new LCalendar();
-    calendar.init({
-        'trigger': '#edu_start_date_{$v.army_id}', //标签id
-        'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
-        'minDate': '1900-1-1', //最小日期 注意：该值会覆盖标签内定义的日期范围
-        'maxDate': '2099-12-30' //最大日期 注意：该值会覆盖标签内定义的日期范围
-    });
-    var calendar = new LCalendar();
-    calendar.init({
-        'trigger': '#edu_end_date_{$v.army_id}', //标签id
-        'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
-        'minDate': '1900-1-1', //最小日期 注意：该值会覆盖标签内定义的日期范围
-        'maxDate': '2099-12-30' //最大日期 注意：该值会覆盖标签内定义的日期范围
-    }); 
-    </foreach>
+        calendar.init({
+            'trigger': '#new_service_start_0', //标签id
+            'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
+            'minDate': '1900-1-1', //最小日期 注意：该值会覆盖标签内定义的日期范围
+            'maxDate': '2099-12-30' //最大日期 注意：该值会覆盖标签内定义的日期范围
+        });
+        var calendar = new LCalendar();
+        calendar.init({
+            'trigger': '#new_service_end_0', //标签id
+            'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
+            'minDate': '1900-1-1', //最小日期 注意：该值会覆盖标签内定义的日期范围
+            'maxDate': '2099-12-30' //最大日期 注意：该值会覆盖标签内定义的日期范围
+        });
+        
+        <foreach name="army_data" item="v" >
+        var calendar = new LCalendar();
+        calendar.init({
+            'trigger': '#start_date_{$v.army_id}', //标签id
+            'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
+            'minDate': '1900-1-1', //最小日期 注意：该值会覆盖标签内定义的日期范围
+            'maxDate': '2099-12-30' //最大日期 注意：该值会覆盖标签内定义的日期范围
+        });
+        var calendar = new LCalendar();
+        calendar.init({
+            'trigger': '#end_date_{$v.army_id}', //标签id
+            'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
+            'minDate': '1900-1-1', //最小日期 注意：该值会覆盖标签内定义的日期范围
+            'maxDate': '2099-12-30' //最大日期 注意：该值会覆盖标签内定义的日期范围
+        });
+        </foreach>
+        var calendar = new LCalendar();
+        calendar.init({
+            'trigger': '#new_edu_service_start_0', //标签id
+            'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
+            'minDate': '1900-1-1', //最小日期 注意：该值会覆盖标签内定义的日期范围
+            'maxDate': '2099-12-30' //最大日期 注意：该值会覆盖标签内定义的日期范围
+        });
+        var calendar = new LCalendar();
+        calendar.init({
+            'trigger': '#new_edu_service_end_0', //标签id
+            'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
+            'minDate': '1900-1-1', //最小日期 注意：该值会覆盖标签内定义的日期范围
+            'maxDate': '2099-12-30' //最大日期 注意：该值会覆盖标签内定义的日期范围
+        });
+        
+        <foreach name="education_data" item="v" >
+        var calendar = new LCalendar();
+        calendar.init({
+            'trigger': '#edu_start_date_{$v.army_id}', //标签id
+            'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
+            'minDate': '1900-1-1', //最小日期 注意：该值会覆盖标签内定义的日期范围
+            'maxDate': '2099-12-30' //最大日期 注意：该值会覆盖标签内定义的日期范围
+        });
+        var calendar = new LCalendar();
+        calendar.init({
+            'trigger': '#edu_end_date_{$v.army_id}', //标签id
+            'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
+            'minDate': '1900-1-1', //最小日期 注意：该值会覆盖标签内定义的日期范围
+            'maxDate': '2099-12-30' //最大日期 注意：该值会覆盖标签内定义的日期范围
+        });
+        </foreach>
     </script>
     <script language="javascript" src="{$Think.const.JS_URL}/append_element.js"></script>
+    
 </block>

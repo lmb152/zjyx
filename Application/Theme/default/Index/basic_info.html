@@ -16,7 +16,7 @@
             <div class="weui_cell_bd weui_cell_primary">
                 <if condition="$user_data['user_name']">
                     <input class="weui_input" type="text" id="tell" value="{$user_data['user_name']}" name="user_name" placeholder="请输入姓名">
-                    <else />
+                <else />
                     <input class="weui_input" type="text" id="tell" name="user_name" placeholder="请输入姓名">
                 </if>
             </div>
@@ -62,11 +62,12 @@
             </div>
             <div class="weui_cell_bd weui_cell_primary start_date_right">
                 <if condition="$user_data['birthday']">
-                    <input name="birthday" value="{$user_data['birthday']|date='Y-m-d',###}" type="text" id="start_date" class="weui_input" readonly="readonly">
-                    <else />
+                    <input name="birthday" value="{$user_data['birthday']|date='Y-m-d',###}" type="text" id="start_date" class="weui_input"  readonly="readonly">
+                <else />
                     <input name="birthday" type="text" id="start_date" class="weui_input">
                 </if>
                 <!-- <input type="text" id="datepicker"   name="birthday" class="weui_input"> -->
+                
             </div>
         </div>
         <div class="weui_cell cell_box">
@@ -76,7 +77,7 @@
             <div class="weui_cell_bd weui_cell_primary">
                 <if condition="$user_data['native_place']">
                     <input name="native_place" type="text" value="{$user_data['native_place']}" class="weui_input" />
-                    <else />
+                <else />
                     <input name="native_place" type="text" class="weui_input" />
                 </if>
             </div>
@@ -88,7 +89,7 @@
             <div class="weui_cell_bd weui_cell_primary">
                 <if condition="$user_data['native_place']">
                     <input name="ethnic" type="text" value="{$user_data['ethnic']}" class="weui_input" />
-                    <else />
+                <else />
                     <input name="ethnic" type="text" class="weui_input" />
                 </if>
             </div>
@@ -116,7 +117,7 @@
             <div class="weui_cell_bd weui_cell_primary">
                 <if condition="$user_data['height']">
                     <input name="height" type="text" value="{$user_data['height']}" class="weui_input" />
-                    <else />
+                <else />
                     <input name="height" type="text" class="weui_input" />
                 </if>
             </div>
@@ -128,7 +129,7 @@
             <div class="weui_cell_bd weui_cell_primary">
                 <if condition="$user_data['weight']">
                     <input name="weight" type="text" value="{$user_data['weight']}" class="weui_input" />
-                    <else />
+                <else />
                     <input name="weight" type="text" class="weui_input" />
                 </if>
             </div>
@@ -140,7 +141,7 @@
             <div class="weui_cell_bd weui_cell_primary">
                 <if condition="$user_data['service_start']">
                     <input name="service_start" value="{$user_data['service_start']|date='Y-m-d',###}" type="text" id="start_date_army_start" class="weui_input">
-                    <else />
+                <else />
                     <input name="service_start" type="text" id="start_date" class="weui_input">
                 </if>
             </div>
@@ -152,7 +153,7 @@
             <div class="weui_cell_bd weui_cell_primary">
                 <if condition="$user_data['service_end']">
                     <input name="service_end" value="{$user_data['service_end']|date='Y-m-d',###}" type="text" id="start_date_army_end" class="weui_input">
-                    <else />
+                <else />
                     <input name="service_end" type="text" id="start_date" class="weui_input">
                 </if>
             </div>
@@ -164,7 +165,7 @@
             <div class="weui_cell_bd weui_cell_primary">
                 <if condition="$user_data['badge_number']">
                     <input name="badge_number" value="{$user_data['badge_number']}" type="text" id="start_date" class="weui_input">
-                    <else />
+                <else />
                     <input name="badge_number" type="text" id="start_date" class="weui_input">
                 </if>
             </div>
@@ -196,25 +197,25 @@
         'trigger': '#start_date', //标签id
         'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
         'minDate': '1900-1-1', //最小日期 注意：该值会覆盖标签内定义的日期范围
-        'maxDate': '2099-12-30' //最大日期 注意：该值会覆盖标签内定义的日期范围日期
+        'maxDate': '2099-12-30' //最大日期 注意：该值会覆盖标签内定义的日期范围
     });
     var calendar = new LCalendar();
     calendar.init({
         'trigger': '#start_date_army_start', //标签id
         'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
         'minDate': '1900-1-1', //最小日期 注意：该值会覆盖标签内定义的日期范围
-        'maxDate': '2099-12-30' //最大日期 注意：该值会覆盖标签内定义的日期范围日期
+        'maxDate': '2099-12-30' //最大日期 注意：该值会覆盖标签内定义的日期范围
     });
     var calendar = new LCalendar();
     calendar.init({
         'trigger': '#start_date_army_end', //标签id
         'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
         'minDate': '1900-1-1', //最小日期 注意：该值会覆盖标签内定义的日期范围
-        'maxDate': '2099-12-30' //最大日期 注意：该值会覆盖标签内定义的日期范围日期
+        'maxDate': '2099-12-30' //最大日期 注意：该值会覆盖标签内定义的日期范围
     });
-    //      $(function() {
-    //          $('#start_date').date();
-    //          $('#end_date').date();
-    //      });
+    //		$(function() {
+    //			$('#start_date').date();
+    //			$('#end_date').date();
+    //		});
     </script>
 </block>
