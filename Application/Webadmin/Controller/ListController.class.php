@@ -220,8 +220,10 @@ class ListController extends CommonController {
 			if ($_POST['employee_position'] != '') {
 				$rt = M('area')->where('id=' . $_POST['employee_position'])->find();
 				$data['location'] = $rs['name'] . '|' . $rt['name'];
+			} else {
+				$data['location'] = $rs['name'] . '|';
 			}
-			$data['location'] = $rs['name'] . '|';
+
 		}
 		$data['pub_time'] = time();
 		// dump($data);die;
