@@ -27,7 +27,7 @@
                                     <td style="width: 15%">{$list['user_name']}</td>
                                     <td style="color: #006bff;">性别</td>
                                     <td style="width: 10%">
-                                        <if condition="$list['male'] eq 0">男
+                                        <if condition="$list['male'] eq 1">男
                                             <else/>女</if>
                                     </td>
                                     <td style="color: #006bff;">政治面貌</td>
@@ -43,11 +43,26 @@
                                     <td style="color: #006bff;">民族</td>
                                     <td>{$list['ethnic']}</td>
                                     <td style="color: #006bff;">出生日期</td>
-                                    <td>{$list['birthday']|date='Y-m-d H-i-s',###}</td>
+                                    <td>{$list['birthday']|date='Y-m-d',###}</td>
                                 </tr>
                                 <tr>
                                     <td style="color: #006bff;">学历</td>
-                                    <td colspan=>{$list['education']}</td>
+                                    <td >
+                                        <if condition="$list['education'] eq 0">
+                                            小学
+                                        <elseif condition="$list['education'] eq 1"/>
+                                            初中
+                                        <elseif condition="$list['education'] eq 2"/>
+                                            高中
+                                        <elseif condition="$list['education'] eq 3"/>
+                                            大学专科
+                                        <elseif condition="$list['education'] eq 4"/>
+                                            大学本科
+                                        <elseif condition="$list['education'] eq 5"/>
+                                            硕士
+                                        <elseif condition="$list['education'] eq 6"/>
+                                            博士
+                                        </if></td>
                                     <td style="color: #006bff;">籍贯</td>
                                     <td colspan="3">{$list['native_place']}</td>
                                 </tr>
@@ -69,10 +84,10 @@
                                     </tr>
                                     <tr>
                                         <td style="color: #006bff;">服役时间</td>
-                                        <td style="width: 15%" colspan="2">{$list['service_start']|date='Y-m-d H-i-s',###}</td>
+                                        <td style="width: 15%" colspan="2">{$list['service_start']|date='Y-m-d',###}</td>
                                         <td style="color: #006bff;">退役时间</td>
                                         <td style="width: 10%" colspan="2">
-                                            {$list['service_end']|date='Y-m-d H-i-s',###}
+                                            {$list['service_end']|date='Y-m-d',###}
                                         </td>
                                         <!-- <td style="color: #006bff;">退伍证号</td>
                                     <td style="width: 20%">{$list['mobile']}</td> -->
@@ -92,7 +107,7 @@
                                     <td style="color: #006bff;">期望薪资(元)</td>
                                     <td style="width: 10%">{$list['expected_salary']}</td>
                                     <td style="color: #006bff;">到岗时间</td>
-                                    <td style="width: 20%">{$list['duty_time']|date='Y-m-d H-i-s',###}</td>
+                                    <td style="width: 20%">{$list['duty_time']|date='Y-m-d',###}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -103,7 +118,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <textarea  id="tar" onKeyup="return c(this);" style="width: 100%;border: 0;height: 150px; resize:none">{$list['target_position']}</textarea>
+                                        <textarea  id="tar" onKeyup="return c(this);" style="width: 100%;border: 0;height: 150px; resize:none">{$list['honor']}</textarea>
                                     </td>
                                 </tr>
                             </thead>
@@ -115,7 +130,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <textarea  id="tar" onKeyup="return c(this);" style="width: 100%;border: 0;height: 150px;resize:none">{$list['target_position']}</textarea>
+                                        <textarea  id="tar" onKeyup="return c(this);" style="width: 100%;border: 0;height: 150px;resize:none">{$list['self_evaluation']}</textarea>
                                     </td>
                                 </tr>
                             </thead>
