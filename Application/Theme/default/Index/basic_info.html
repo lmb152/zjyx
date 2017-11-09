@@ -140,7 +140,7 @@
             </div>
             <div class="weui_cell_bd weui_cell_primary">
                 <if condition="$user_data['service_start']">
-                    <input name="service_start" value="{$user_data['service_start']|date='Y-m-d',###}" type="text" id="start_date" class="weui_input">
+                    <input name="service_start" value="{$user_data['service_start']|date='Y-m-d',###}" type="text" id="start_date_army_start" class="weui_input">
                 <else />
                     <input name="service_start" type="text" id="start_date" class="weui_input">
                 </if>
@@ -152,7 +152,7 @@
             </div>
             <div class="weui_cell_bd weui_cell_primary">
                 <if condition="$user_data['service_end']">
-                    <input name="service_end" value="{$user_data['service_end']|date='Y-m-d',###}" type="text" id="start_date" class="weui_input">
+                    <input name="service_end" value="{$user_data['service_end']|date='Y-m-d',###}" type="text" id="start_date_army_end" class="weui_input">
                 <else />
                     <input name="service_end" type="text" id="start_date" class="weui_input">
                 </if>
@@ -171,7 +171,7 @@
             </div>
         </div>
         <div class="weui_cell"></div>
-        <div class="weui_btn_area" style="margin-top:80px">
+        <div class="weui_btn_area" style="margin-top: 35px;padding-bottom: 25px;">
             <input class="weui_btn weui_btn_primary" type="submit" value="保存并下一步" />
         </div>
     </form>
@@ -201,14 +201,14 @@
     });
     var calendar = new LCalendar();
     calendar.init({
-        'trigger': '#start_dates', //标签id
+        'trigger': '#start_date_army_start', //标签id
         'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
         'minDate': (new Date().getFullYear() - 3) + '-' + 1 + '-' + 1, //最小日期
         'maxDate': (new Date().getFullYear() + 3) + '-' + 12 + '-' + 31 //最大日期
     });
     var calendar = new LCalendar();
     calendar.init({
-        'trigger': '#start_datess', //标签id
+        'trigger': '#start_date_army_end', //标签id
         'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
         'minDate': (new Date().getFullYear() - 3) + '-' + 1 + '-' + 1, //最小日期
         'maxDate': (new Date().getFullYear() + 3) + '-' + 12 + '-' + 31 //最大日期

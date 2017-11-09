@@ -17,19 +17,12 @@
 <meta content="black" name="apple-mobile-web-app-status-bar-style">
 <meta content="telephone=no" name="format-detection">
 <link rel="apple-touch-icon-precomposed" href="{$Think.const.AIMG_URL}/favicon.ico">
-<script>
-var logined = 0
-</script>
+
 <title>中解英才网</title>
 </head>
 
 <body>
-<script>
-var now_page = 1,
-search_value = '';
-</script>
-
-		<div id="menu">
+	<div id="menu">
 		<ul>
 			<li class="nav_index menu_cur"><a href="{:U('/index/')}"><i></i><span>个人信息</span><b></b><div class="clear"></div></a></li>
 			<li class="nav_site"><a href="{:U('/lists/')}"><i></i><span>职位列表</span><b></b><div class="clear"></div></a></li>
@@ -38,15 +31,14 @@ search_value = '';
 	<div id="header">
 		<div class="wrap">
 			<i class="menu_open"></i>
-			<div class="logo"><a style="    font-size: 20px;
-    line-height: 40px;
-    text-align: center;" href="/" title="中解英才网">中解英才</a></div>
+			<div class="logo">
+				<a style="font-size: 20px;line-height: 40px;text-align: center;" href="/" title="中解英才网">中解英才</a>
+			</div>
 		</div>
 		<div class="logo_msk"></div>
 	</div>
 	<div id="container">
 		<block name="main">主内容</block>
-		
 	</div>
 	<div class="copyrights">中解远行,版权所有</div>
 	<script language="javascript" src="{$Think.const.JS_URL}/zepto.min.js"></script>
