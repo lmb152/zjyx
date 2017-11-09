@@ -4,7 +4,21 @@
         <div class="container">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h3 class="panel-title">{$listname}列表</h3>
+                     <span class="panel-title" style="margin: 0 auto">{$listname}列表</span>
+                     <span style="float: right;" class="input-group">
+
+                    <form action="{:U('Webadmin/list/lists',array('name'=>2))}" method="POST" >
+
+                        <input type="text" name="qstr" value="{$qstr}"  placeholder="职位名或公司名关键字"  class="form-control" style="width: 76%;height: 28px;">
+                        <button class="input-group-addon" type="submit" style="width: 24%; ">搜索</button>
+
+                        <!-- <input type="text" name="qstr" value="{$qstr}"  placeholder="职位名或公司名关键字" style="float: left;">
+                        <button style="color: #fff;height: 24px;background-color: #337ab7;line-height: 12px"  type="submit" >搜索</button>
+ -->
+
+
+                    </form>
+                </span>
                 </div>
                 <div class="panel-body">
                     <table class="table table-striped">

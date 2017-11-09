@@ -91,9 +91,21 @@
                             </div>
                             <else />
                             <div class="form-group">
-                                <label for="inputPassword" class="col-sm-3 control-label">公司地址</label>
-                                <div class="col-sm-7">
-                                    <input type="text" class="form-control" value="{$list['location']}" name="location" placeholder="请输入公司地址">
+                                <label for="inputPassword" class="col-sm-3 control-label">公司地址(修改请重新下拉选择)</label>
+                                <div class="col-sm-3">
+                                    <!--  <input type="text" class="form-control" value="{$list['location']}" name="location" placeholder="请输入公司地址"> -->
+                                    <select class="form-control" id="depart" name="employee_department">
+                                        <option  selected="" value="{$addres[0]}">{$addres[0]}</option>
+                                        <volist name="lists_company" id="selectId">
+                                            <option value="{$selectId['id']}">{$selectId['name']}</option>
+                                        </volist>
+                                    </select>
+                                </div>
+                                <div class="col-sm-4">
+                                    <!--  <input type="text" class="form-control" value="{$list['location']}" name="location" placeholder="请输入公司地址"> -->
+                                    <select class="form-control" id="position" name="employee_position">
+                                        <option selected="" value="{$addres[1]}">{$addres[1]}</option>
+                                    </select>
                                 </div>
                             </div>
                         </if>

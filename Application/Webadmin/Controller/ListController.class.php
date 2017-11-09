@@ -11,24 +11,35 @@ class ListController extends CommonController {
 	// 列表
 	public function lists() {
 		if ($_GET['name'] == 1) {
+			$qstr = $_POST['qstr'] && trim($_POST['qstr']) ? trim($_POST['qstr']) : '';
+			if ($qstr != "") {
+				$where = "user_name like '%" . $qstr . "%' or target_position like '%" . $qstr . "%'";
+			}
 			$User = M('user_profile'); // 实例化User对象
 			$count = $User->count(); // 查询满足要求的总记录数
 			$Page = new \Think\Page($count, 10); // 实例化分页类 传入总记录数和每页显示的记录数(25)
 			$show = $Page->show(); // 分页显示输出
 			// 进行分页数据查询 注意limit方法的参数要使用Page类的属性
-			$list = $User->order('id')->limit($Page->firstRow . ',' . $Page->listRows)->select();
+			$list = $User->order('id')->where($where)->limit($Page->firstRow . ',' . $Page->listRows)->select();
+			// dump($list);die;
 			$this->assign('list', $list); // 赋值数据集
 			$this->assign('page', $show); // 赋值分页输出
+			$this->assign('qstr', $qstr); // 赋值分页输出
 			$b = "简历";
 			$this->assign('listname', $b);
 			$this->display();
 		} else {
+			$qstr = $_POST['qstr'] && trim($_POST['qstr']) ? trim($_POST['qstr']) : '';
+			if ($qstr != "") {
+				$where = "p_name like '%" . $qstr . "%' or company like '%" . $qstr . "%'";
+			}
 			$User = M('position'); // 实例化User对象
 			$count = $User->count(); // 查询满足要求的总记录数
 			$Page = new \Think\Page($count, 10); // 实例化分页类 传入总记录数和每页显示的记录数(25)
 			$show = $Page->show(); // 分页显示输出
 			// 进行分页数据查询 注意limit方法的参数要使用Page类的属性
-			$list = $User->order('p_id')->limit($Page->firstRow . ',' . $Page->listRows)->select();
+			$list = $User->order('p_id')->where($where)->limit($Page->firstRow . ',' . $Page->listRows)->select();
+			$this->assign('qstr', $qstr); // 赋值分页输出
 			$this->assign('list', $list); // 赋值数据集
 			$this->assign('page', $show); // 赋值分页输出
 			$b = "职位";
@@ -159,6 +170,8 @@ class ListController extends CommonController {
 		$id = $_GET['id'];
 		if ($id) {
 			$rs = M('position')->where('p_id=' . $id)->find();
+			$addres = explode("|", $rs['location']);
+			$this->assign('addres', $addres);
 			$this->assign('list', $rs);
 		}
 		$this->assign('lists', $list);
@@ -201,13 +214,17 @@ class ListController extends CommonController {
 		if ($_POST['employee_department'] == "0") {
 			$this->error('请选择公司地址');
 		}
-		if ($_POST['employee_position'] == "0") {
-			$this->error('请选择公司地址');
+
+		if (is_numeric($_POST['employee_department'])) {
+			$rs = M('area')->where('id=' . $_POST['employee_department'])->find();
+			if ($_POST['employee_position'] != '') {
+				$rt = M('area')->where('id=' . $_POST['employee_position'])->find();
+				$data['location'] = $rs['name'] . '|' . $rt['name'];
+			}
+			$data['location'] = $rs['name'] . '|';
 		}
-		$rs = M('area')->where('id=' . $_POST['employee_department'])->find();
-		$rt = M('area')->where('id=' . $_POST['employee_position'])->find();
-		$data['location'] = $rs['name'] . $rt['name'];
 		$data['pub_time'] = time();
+		// dump($data);die;
 		if ($_POST['id'] != '') {
 			// dump($data);die;
 			$rs = M('position')->where('p_id=' . $_POST['id'])->save($data);
