@@ -7,6 +7,7 @@
         margin: 10px;
     }
     </style>
+    <script src="http://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
     <div class="content">
         <div class="container">
             <div class="panel panel-primary">
@@ -33,6 +34,7 @@
                             <label for="inputPassword" class="col-sm-3 control-label">公司行业</label>
                             <div class="col-sm-7">
                                 <select class="form-control" name="industry">
+                                    <option selected="" value="0">请选择行业</option>
                                     <volist name="lists" id="vo">
                                         <if condition="$vo['id'] eq $list['industry'] ">
                                             <option value="{$vo['id']}" selected="selected">{$vo['industry_name']}</option>
@@ -68,12 +70,33 @@
                                 <textarea class="form-control" name="company_info">{$list['company_info']}</textarea>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="inputPassword" class="col-sm-3 control-label">公司地址</label>
-                            <div class="col-sm-7">
-                                <input type="text" class="form-control" value="{$list['location']}" name="location" placeholder="请输入公司地址">
+                        <if condition="$list['location'] eq '' ">
+                            <div class="form-group">
+                                <label for="inputPassword" class="col-sm-3 control-label">公司地址</label>
+                                <div class="col-sm-3">
+                                    <!--  <input type="text" class="form-control" value="{$list['location']}" name="location" placeholder="请输入公司地址"> -->
+                                    <select class="form-control" id="depart" name="employee_department">
+                                        <option selected="" value="0">请选择省份</option>
+                                        <volist name="lists_company" id="selectId">
+                                            <option value="{$selectId['id']}">{$selectId['name']}</option>
+                                        </volist>
+                                    </select>
+                                </div>
+                                <div class="col-sm-4">
+                                    <!--  <input type="text" class="form-control" value="{$list['location']}" name="location" placeholder="请输入公司地址"> -->
+                                    <select class="form-control" id="position" name="employee_position">
+                                        <option selected="" value="0">请选择城市</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
+                            <else />
+                            <div class="form-group">
+                                <label for="inputPassword" class="col-sm-3 control-label">公司地址</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" value="{$list['location']}" name="location" placeholder="请输入公司地址">
+                                </div>
+                            </div>
+                        </if>
                         <div style="clear:both;">
                             <input type="submit" value="保存" class="btn btn-large btn-success">
                             <a href="{:U('Webadmin/list/lists',array('name'=>2))}">
@@ -85,4 +108,21 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+    $(function() {
+        $("#depart").change(function() {
+            var selectObj = document.getElementById('selectId');
+            $.ajax({
+                type: "GET",
+                url: "{:U('Webadmin/list/getaddress')}",
+                data: {
+                    parent_id: $(this).val()
+                },
+                success: function(msg) {
+                    $('#position').html(msg);
+                }
+            });
+        });
+    });
+    </script>
 </block>

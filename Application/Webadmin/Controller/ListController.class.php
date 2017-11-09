@@ -155,17 +155,58 @@ class ListController extends CommonController {
 	// 编辑
 	public function new_position() {
 		$list = M('industry')->select();
+		$list_company = M('area')->where('parent_id=0')->select();
 		$id = $_GET['id'];
 		if ($id) {
 			$rs = M('position')->where('p_id=' . $id)->find();
 			$this->assign('list', $rs);
 		}
 		$this->assign('lists', $list);
+		$this->assign('lists_company', $list_company);
 		$this->display();
+	}
+	public function getaddress() {
+		$list = M('area')->where('parent_id=' . $_GET['parent_id'])->select();
+		foreach ($list as $key => $val) {
+			$opt .= "<option value='" . $val['id'] . "'>" . $val['name'] . "</option>";
+		}
+
+		echo $opt;
+		// echo json_encode($opt);
 	}
 	public function saveNew_position() {
 		$data = I('post.');
 		// dump($data);die;
+		if ($_POST['p_name'] == "") {
+			$this->error('请填写职位名称');
+		}
+		if ($_POST['company'] == "") {
+			$this->error('请填写公司名称');
+		}
+		if ($_POST['industry'] == 0) {
+			$this->error('请选择行业名称');
+		}
+		if ($_POST['salary'] == "") {
+			$this->error('请填写薪资');
+		}
+		if ($_POST['bright_spot'] == "") {
+			$this->error('请填写职位亮点');
+		}
+		if ($_POST['description'] == "") {
+			$this->error('请填写职位描述');
+		}
+		if ($_POST['company_info'] == "") {
+			$this->error('请填写公司简介');
+		}
+		if ($_POST['employee_department'] == "0") {
+			$this->error('请选择公司地址');
+		}
+		if ($_POST['employee_position'] == "0") {
+			$this->error('请选择公司地址');
+		}
+		$rs = M('area')->where('id=' . $_POST['employee_department'])->find();
+		$rt = M('area')->where('id=' . $_POST['employee_position'])->find();
+		$data['location'] = $rs['name'] . $rt['name'];
 		$data['pub_time'] = time();
 		if ($_POST['id'] != '') {
 			// dump($data);die;

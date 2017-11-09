@@ -63,6 +63,7 @@ class ListsController extends Controller {
 		// 	echo json_encode($list); //将数组转成json格式返回
 		// 	exit; //中断后面的display()
 		// }
+		$this->assign('qstr', $qstr);
 		$this->assign('list', $list);
 		$this->display();
 	}
