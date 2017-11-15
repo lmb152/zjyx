@@ -22,7 +22,7 @@
                                 <th>民族</th>
                                 <th>学历</th>
                                 <th>目标岗位</th>
-                                <th>审核</th>
+                                <th>状态</th>
                                 <th>操作</th>
                             </tr>
                         </thead>
@@ -59,13 +59,13 @@
                                     </td>
                                     <td>{$vo['target_position']}</td>
                                     <td>
-                                        <if condition="$vo['type'] eq 0"><span style="color: red;">未审核</span>
+                                        <if condition="$vo['status'] eq 0"><span style="color: red;">未审核</span>
                                             <else/><span style="color: #009aff;">审核已通过</span></if>
                                     </td>
                                     <td>
-                                        <if condition="($_SESSION['role'] eq 'admin') and ($vo['type'] neq 1)">
+                                        <!-- <if condition="($_SESSION['role'] eq 'admin') and ($vo['type'] neq 1)">
                                             <a class="passed" href="{:U('Webadmin/list/passed',array('id'=>$vo['id'],'name'=>1))}">审核通过</a>
-                                        </if>
+                                        </if> -->
                                         <a href="{:U('Webadmin/list/edit',array('id'=>$vo['id']))}">详情</a>
                                         <a class="delete" href="{:U('Webadmin/list/delete',array('id'=>$vo['id'],'name'=>1))}">删除</a>
                                     </td>

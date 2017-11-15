@@ -142,7 +142,7 @@
                 <if condition="$user_data['service_start']">
                     <input name="service_start" value="{$user_data['service_start']|date='Y-m-d',###}" type="text" id="start_date_army_start" class="weui_input">
                 <else />
-                    <input name="service_start" type="text" id="start_date" class="weui_input">
+                    <input name="service_start" type="text" id="start_date_army_start" class="weui_input">
                 </if>
             </div>
         </div>
@@ -154,7 +154,7 @@
                 <if condition="$user_data['service_end']">
                     <input name="service_end" value="{$user_data['service_end']|date='Y-m-d',###}" type="text" id="start_date_army_end" class="weui_input">
                 <else />
-                    <input name="service_end" type="text" id="start_date" class="weui_input">
+                    <input name="service_end" type="text" id="start_date_army_end" class="weui_input">
                 </if>
             </div>
         </div>
@@ -177,20 +177,6 @@
     </form>
 </block>
 <block name="js_content">
-    <script type="text/javascript">
-    function clickButton(obj) {
-        var obj = $(obj);
-        obj.attr("disabled", "disabled"); /*按钮倒计时*/
-        var time = 60;
-        var set = setInterval(function() {
-            obj.val(--time + "(s)");
-        }, 1000); /*等待时间*/
-        setTimeout(function() {
-            obj.attr("disabled", false).val("重新获取验证码"); /*倒计时*/
-            clearInterval(set);
-        }, 60000);
-    }
-    </script>
     <script type="text/javascript">
     var calendar = new LCalendar();
     calendar.init({

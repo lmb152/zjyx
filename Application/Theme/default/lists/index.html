@@ -1,9 +1,9 @@
 <extend name="./base" />
 <block name="main">
     <div class="search_wrap">
-        <form action="{:U('/lists/index')}" method="get">
+        <form action="{:U('/lists/index')}" method="get" id="search_input">
             <input type="text" name="qstr" class="search_input" value="{$qstr}" placeholder="搜索职位" />
-            <i class="reset_input"><i></i></i>
+            <input type="submit"  value="搜索" class="search_submit"/>
         </form>
     </div>
     <div id="sort">
@@ -47,7 +47,7 @@
     </div>
     <div id="content">
         <div id="list">
-            <ul>
+            <ul id="position_list">
                 <volist name="list" id="vo">
                     <li>
                         <div class="wrap">
@@ -73,7 +73,7 @@
                                           <div class="clear"></div>
                                         </dl>
                                         <dl class="list_info_comment">
-                                          {$vo['pub_time']|date='m-d',###}
+                                          {$vo['pub_time']}
                                           <div class="clear"></div>
                                         </dl>
                                         <div class="clear"></div>
@@ -86,7 +86,7 @@
                 </volist>
             </ul>
             <!-- <div   id="sss" class="list_loading"><i></i><span>努力加载中...</span></div> -->
-            <div id="ankz"><a href="#" id="sss">加载更多</a></div>
+            <div id="more_position"><a href="#" id="sss">加载更多</a></div>
         </div>
     </div>
     <div id="sort_content">
@@ -174,29 +174,34 @@
                 </div>
             </div>
         </div>
-        
+        <input type="hidden" id="page_num" value="2"/>
     </div>
-    <div class="push_msk"></div>
-   <!--  <script>
-    var ys = 2; //从第二页开始获取数据
-    $("#sss").click(function() {
-        $.ajax({
-            type: "POST",
-            dataType: "json",
-            url: '/lists/position_info',
-            data: { page: ys },
-            success: function(data) {
-                var str = ""; //定义变量保存内容
-                $.each(data, function(index, array) { //循环遍历json
-                    if (array['id']) { //判断是否还有数据
-                        str += '<li>' + array['id'] + '</li>'; //获取内容填写成HTNL
-                    } else
-                        $("#ankz").html("没有更多内容了..");
+   
+</block>
+<block name="js_content">
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#more_position').click(function(){
+                $.ajax({
+                    url:window.location.href,
+                    type:'post',
+                    data:{'page':$('#page_num').val()},
+                    dataType:'json',
+                    success:function(result){
+                        console.log(result);
+                        $('#page_num').val(result.page_num);
+                        if(result.no_more){
+                            $('#more_position').fadeOut();
+                        }
+                        $(result.data).each(function(index,data){
+                            console.log(data);
+                            var html='<li><div class="wrap"><a class="alist" href="/lists/position_info/p_id/'+data.p_id+'.html"><div class="list_info"><div class="list_info_i"><dl class="list_info_views"><h4>'+data.location+data.p_name+'</h4><div class="clear"></div></dl><dl class="list_info_comment">'+data.salary+'元<div class="clear"></div></dl><div class="clear"></div></div><div class="list_info_i"><dl class="list_info_views"><h5>'+data.company+'</h5><div class="clear"></div></dl><dl class="list_info_comment">'+data.pub_time+'<div class="clear"></div></dl><div class="clear"></div></div></div><div class="clear"></div></a></div></li>';
+                            $('#position_list').append(html);
+                        })
+                        
+                    }
                 });
-                $("#list").append(str); //把HTML添加到容器
-                ys++; //页数+1
-            }
+            });
         });
-    });
-    </script> -->
+    </script>
 </block>

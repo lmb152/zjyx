@@ -97,6 +97,7 @@ class ListController extends CommonController {
 		$this->assign('body_title', $rs['user_name']);
 
 		// }
+		$this->assign('eid',$id);
 		$this->assign('list', $rs);
 		$this->assign('rt', $rt);
 		$this->assign('ret', $ret);
@@ -112,6 +113,14 @@ class ListController extends CommonController {
 		} else {
 			$this->error('未做修改推荐理由', U('Webadmin/list/lists', array('name' => 1)), 3);
 		}
+	}
+	public function passed_profile(){
+		$id=I('param.id');
+		$condition=array(
+				'id'=>$id
+			);
+		$rs = M('user_profile')->where($condition)->save(array('status'=>1));
+		$this->success('审核通过成功', U('Webadmin/list/lists'), 3);
 	}
 	// 删除
 	public function delete() {

@@ -38,6 +38,7 @@ class IndexController extends Controller {
 				$this->assign('openid', $info->openid);
 				$this->display();
 			} else {
+
 				// 若已存在该openid用户并且已绑定手机号码，则直接跳转基本信息页面
 				if ($user_data_temp['mobile']) {
 					$this->redirect('index/basic_info');
@@ -69,7 +70,7 @@ class IndexController extends Controller {
 			print json_encode(array('status' => 0, 'msg' => '手机号已被绑定'));
 		} else {
 			$_SESSION['srand'] = $srand;
-			// $send_back=sendTemplateSMS($phone, array($srand, '60s'), "215435");
+			$send_back=sendTemplateSMS($phone, array($srand, '60s'), "215435");
 			print json_encode(array('status' => 1, 'msg' => '短信发送成功'));
 		}
 	}

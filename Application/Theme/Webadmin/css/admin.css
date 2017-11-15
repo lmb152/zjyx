@@ -13,7 +13,7 @@ body
 }
 
 .Webadmin_top{
-    background: #fed993;
+    background: #347ab7;
     height: 50px;
     position: fixed;
     width: 100%;
@@ -25,7 +25,7 @@ body
 	margin-top:10px
 }
 .top_right a{
-	color: #000000;
+	color: #fff;
 }
 .toptitle{
 	float: left; 
@@ -34,7 +34,7 @@ body
 .toptitle span{
 	font-family: Microsoft YaHei;
 	font-size: 20px;
-	color: #000000;
+	color: #fff;
 	line-height: 50px;
 }
 .Webadmin_left{

@@ -49,20 +49,32 @@ class ListsController extends Controller {
 		if ($whereStr != "") {
 			$where['_string'] = $whereStr;
 		}
-		// $page = $_POST['page'] ? $_POST['page'] : 1; //获取请求的页数
-		// $num = 2; //请求条数
+		// 获取总条数
+		$all_num=M("position")->where($where)->select();
+		$count=count($all_num);
+
+		$page = $_POST['page'] ? $_POST['page'] : 1; //获取请求的页数
+		$num = 2; //请求条数
 		// dump($where);exit;
-		$list = M('position')->where($where)->select();
-		// $list = M("table")->page($page, $num)->select();
+		// $list = M('position')
+		$list = M("position")->page($page, $num)->where($where)->select();
+		foreach ($list as $key => &$value) {
+			$value['pub_time']=date('m-d',$value['pub_time']);
+		}
 		//判断ajax请求
-		// if (IS_POST) {
-		// 	$count = count($list);
-		// 	if ($count < $num) { //判断是否到尾页
-		// 		$list[]['id'] = 0; //到尾页返回0
-		// 	}
-		// 	echo json_encode($list); //将数组转成json格式返回
-		// 	exit; //中断后面的display()
-		// }
+		if (IS_POST) {
+			$ajax_back=array();
+			$ajax_back=$list;
+			unset($list);
+			header('Content-type:text/json');
+			$list['data']=$ajax_back;
+			$list['page_num']=$page+1;
+			if($count<=$page*$num){
+				$list['no_more']=1;
+			}
+			echo json_encode($list); //将数组转成json格式返回
+			exit; //中断后面的display()
+		}
 		$this->assign('qstr', $qstr);
 		$this->assign('list', $list);
 		$this->display();

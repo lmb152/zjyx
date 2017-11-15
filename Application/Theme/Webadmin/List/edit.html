@@ -23,30 +23,40 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td style="color: #006bff;">姓名</td>
+                                    <td>姓名</td>
                                     <td style="width: 15%">{$list['user_name']}</td>
-                                    <td style="color: #006bff;">性别</td>
+                                    <td>性别</td>
                                     <td style="width: 10%">
                                         <if condition="$list['male'] eq 1">男
                                             <else/>女</if>
                                     </td>
-                                    <td style="color: #006bff;">政治面貌</td>
-                                    <td style="width: 20%">{$list['political']}</td>
+                                    <td>政治面貌</td>
+                                    <td style="width: 20%">
+                                        <if condition="$list['political'] eq 0">
+                                            党员
+                                        <elseif condition="$list['political'] eq 1"/>
+                                            预备党员
+                                        <elseif condition="$list['political'] eq 2"/>
+                                            团员
+                                        <elseif condition="$list['political'] eq 3"/>
+                                            群众
+                                        </if>
+                                    </td>
                                 </tr>
                                 <!--第一行-->
                                 <tr>
-                                    <td style="color: #006bff;">婚姻状态</td>
+                                    <td>婚姻状态</td>
                                     <td>
                                         <if condition="$list['marriage'] eq 0">未婚
                                             <else/>已婚</if>
                                     </td>
-                                    <td style="color: #006bff;">民族</td>
+                                    <td>民族</td>
                                     <td>{$list['ethnic']}</td>
-                                    <td style="color: #006bff;">出生日期</td>
+                                    <td>出生日期</td>
                                     <td>{$list['birthday']|date='Y-m-d',###}</td>
                                 </tr>
                                 <tr>
-                                    <td style="color: #006bff;">学历</td>
+                                    <td>学历</td>
                                     <td >
                                         <if condition="$list['education'] eq 0">
                                             小学
@@ -63,50 +73,54 @@
                                         <elseif condition="$list['education'] eq 6"/>
                                             博士
                                         </if></td>
-                                    <td style="color: #006bff;">籍贯</td>
+                                    <td>籍贯</td>
                                     <td colspan="3">{$list['native_place']}</td>
                                 </tr>
                                 <tr>
-                                    <td style="color: #006bff;">身高(cm)</td>
+                                    <td>身高(cm)</td>
                                     <td style="width: 15%">{$list['height']}</td>
-                                    <td style="color: #006bff;">体重(kg)</td>
+                                    <td>体重(kg)</td>
                                     <td style="width: 10%">
                                         {$list['weight']}
                                     </td>
-                                    <td style="color: #006bff;">手机号</td>
+                                    <td>手机号</td>
                                     <td style="width: 20%">{$list['mobile']}</td>
                                 </tr>
                                 <if condition="$list['badge_number'] eq ''">
                                     <else/>
                                     <tr>
-                                        <td style="color: #006bff;">退伍证号</td>
+                                        <td>退伍证号</td>
                                         <td style="width: 20%" colspan="5">{$list['badge_number']}</td>
                                     </tr>
                                     <tr>
-                                        <td style="color: #006bff;">服役时间</td>
+                                        <td>服役时间</td>
                                         <td style="width: 15%" colspan="2">{$list['service_start']|date='Y-m-d',###}</td>
-                                        <td style="color: #006bff;">退役时间</td>
+                                        <td>退役时间</td>
                                         <td style="width: 10%" colspan="2">
                                             {$list['service_end']|date='Y-m-d',###}
                                         </td>
-                                        <!-- <td style="color: #006bff;">退伍证号</td>
+                                        <!-- <td>退伍证号</td>
                                     <td style="width: 20%">{$list['mobile']}</td> -->
                                     </tr>
                                 </if>
                                 <tr>
-                                    <td style="color: #006bff;">微信ID</td>
-                                    <td style="width: 15%">{$list['openid']}</td>
-                                    <td style="color: #006bff;">微信头像</td>
-                                    <td style="width: 10%">{$list['img_src']}</td>
-                                    <td style="color: #006bff;">微信昵称</td>
-                                    <td style="width: 20%">{$list['nick_name']}</td>
+                                    <td>微信ID</td>
+                                    <td style="width: 15%" colspan="3">{$list['openid']}</td>
+                                    <td>微信头像</td>
+                                    <td style="width: 10%">
+                                        <img src="{$list['imgurl']}"/>
+                                        
+                                    </td>
+                                    
+                                   <!--  <td>微信昵称</td>
+                                    <td style="width: 20%">{$list['nick_name']}</td> -->
                                 </tr>
                                 <tr>
-                                    <td style="color: #006bff;">目标岗位</td>
+                                    <td>目标岗位</td>
                                     <td style="width: 15%">{$list['target_position']}</td>
-                                    <td style="color: #006bff;">期望薪资(元)</td>
+                                    <td>期望薪资(元)</td>
                                     <td style="width: 10%">{$list['expected_salary']}</td>
-                                    <td style="color: #006bff;">到岗时间</td>
+                                    <td>到岗时间</td>
                                     <td style="width: 20%">{$list['duty_time']|date='Y-m-d',###}</td>
                                 </tr>
                             </tbody>
@@ -114,7 +128,7 @@
                         <table class="table table-bordered" style="width: 90%;margin: 10px auto;padding: 5px 0">
                             <thead>
                                 <tr>
-                                    <th colspan="6" style="color: #006bff;">获得荣誉</th>
+                                    <th colspan="6">获得荣誉</th>
                                 </tr>
                                 <tr>
                                     <td>
@@ -126,7 +140,7 @@
                         <table class="table table-bordered" style="width: 90%;margin: 10px auto;padding: 5px 0">
                             <thead>
                                 <tr>
-                                    <th colspan="6" style="color: #006bff;">自我评价</th>
+                                    <th colspan="6">自我评价</th>
                                 </tr>
                                 <tr>
                                     <td>
@@ -190,6 +204,9 @@
                                 </tr>
                         </table>
                         <div style="clear:both;">
+                            <a href="{:U('Webadmin/list/passed_profile',array('id'=>$eid))}">
+                                <button type="button" class="btn btn-primary">审核通过</button>
+                            </a>
                             <input type="submit" value="保存" class="btn btn-large btn-success">
                             <a href="{:U('Webadmin/list/lists',array('name'=>1))}">
                                 <button type="button" class="btn btn-primary">返回简历列表</button>

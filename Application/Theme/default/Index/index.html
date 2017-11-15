@@ -21,7 +21,7 @@
             </div>
             <div class="weui_cell_ft">
                
-                <input id="send_sms" style="width:117px;" type="button" class="weui_btn weui_btn weui_btn_mini weui_btn_primary" disabled="disabled" value="获取验证码"/> </div>
+                <input id="send_sms" style="width:85px;" type="button" class="weui_btn weui_btn weui_btn_mini weui_btn_primary" disabled="disabled" value="获取验证码"/> </div>
         </div>
         <input type="hidden" name="openid" value="<?php echo $openid;?>"/>
         <div class="weui_cell"></div>
@@ -42,6 +42,15 @@
     });
     $('#send_sms').click(function(){
         var obj = $(this);
+        obj.attr("disabled", "disabled"); /*按钮倒计时*/
+        var time = 60;
+        var set = setInterval(function() {
+            obj.val(--time + "s");
+        }, 1000); /*等待时间*/
+        setTimeout(function() {
+            obj.attr("disabled", false).val("重新获取验证码"); /*倒计时*/
+            clearInterval(set);
+        }, 60000);
         var data = {
             phone:$('#tell').val(),
         };
@@ -57,15 +66,7 @@
                     obj.attr("disabled", "disabled")
                     alert(callback.msg);
                 }else{
-                    obj.attr("disabled", "disabled"); /*按钮倒计时*/
-                    var time = 60;
-                    var set = setInterval(function() {
-                        obj.val(--time + "(s)");
-                    }, 1000); /*等待时间*/
-                    setTimeout(function() {
-                        obj.attr("disabled", false).val("重新获取验证码"); /*倒计时*/
-                        clearInterval(set);
-                    }, 60000);
+                    
                 }
             }
         });

@@ -370,7 +370,7 @@ i {
 
 #list li {
     display: block;
-    height: 110px;
+    /*height: 110px;*/
 }
 
 #list li.touch {
@@ -392,7 +392,7 @@ i {
 .list_info {
     margin-left: 15px;
     padding-top: 5px;
-    height: 90px;
+    /*height: 90px;*/
 }
 
 .list_info h4 {
@@ -425,9 +425,9 @@ i {
 }
 
 .list_info_i {
-    overflow: hidden;
+    /*overflow: hidden;*/
     margin-top: 20px;
-    height: 20px;
+    /*height: 20px;*/
 }
 
 .list_info_i dl {
@@ -761,7 +761,7 @@ i.cate_sort {
     left: 0;
     visibility: hidden;
     width: 100%;
-    height: 9999px;
+    height: 96%;
     background: #ccc;
     opacity: 0.7;
     z-index: 999;
@@ -775,7 +775,7 @@ i.cate_sort {
 }
 .push_msk_content{
     position: fixed;
-    top: 30%;
+    top: 15%;
     display: none;
     z-index: 9999;
     width: 80%;
@@ -1059,9 +1059,24 @@ i.cate_sort {
     color: #6c6c6c;
     text-indent: 10px;
     line-height: 16px;
-    -o-border-radius: 5px;
+    float: left;
 }
-
+.search_submit{
+    display: block;
+    margin: 12.5px 0 5px 0;
+    /*margin-top: 12.5px;*/
+    padding: 10px 30px 10px 10px;
+    width: 15%;
+    height: 35px;
+    border: none;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 0;
+    background-color: #fff;
+    color: #6c6c6c;
+    line-height: 16px; 
+    float: left;
+}
 .reset_input {
     position: absolute;
     top: 10px;
@@ -1093,7 +1108,7 @@ i.cate_sort {
 }
 
 #sort_content {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     z-index: 999;
@@ -4193,4 +4208,12 @@ i.sort_com {
 .cell_box{
     width: 50%;
     float: left;
+}
+#more_position{
+    text-align: center;
+    margin-top: 10px;
+}
+#more_position a{
+    color: #777777;
+    cursor: pointer;
 }
