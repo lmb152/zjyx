@@ -227,8 +227,8 @@ class IndexController extends Controller {
 		}
 		foreach ($army_data as $key => $value) {
 			$update_data = array(
-				'start_time' => strtotime($value['service_start']),
-				'end_time' => strtotime($value['service_end']),
+				'start_time' => $value['service_start']?strtotime($value['service_start']):'',
+				'end_time' => $value['service_end']?strtotime($value['service_end']):'',
 				'department' => trim($value['department']),
 				'position' => trim($value['position']),
 			);
@@ -263,8 +263,8 @@ class IndexController extends Controller {
 
 		foreach ($new_army_data as $key => $value) {
 			$update_data = array(
-				'start_time' => strtotime($value['service_start']),
-				'end_time' => strtotime($value['service_end']),
+				'start_time' => $value['service_start']?strtotime($value['service_start']):'',
+				'end_time' => $value['service_end']?strtotime($value['service_end']):'',
 				'department' => trim($value['department']),
 				'position' => trim($value['position']),
 				'u_id' => $uid,
@@ -295,8 +295,8 @@ class IndexController extends Controller {
 		}
 		foreach ($edu_data as $key => $value) {
 			$update_data = array(
-				'start_time' => strtotime($value['service_start']),
-				'end_time' => strtotime($value['service_end']),
+				'start_time' => $value['service_start']?strtotime($value['service_start']):'',
+				'end_time' => $value['service_end']?strtotime($value['service_end']):'',
 				'school' => trim($value['school']),
 				'degree' => trim($value['degree']),
 			);
@@ -331,8 +331,8 @@ class IndexController extends Controller {
 
 		foreach ($new_edu_data as $key => $value) {
 			$update_data = array(
-				'start_time' => strtotime($value['service_start']),
-				'end_time' => strtotime($value['service_end']),
+				'start_time' => $value['service_start']?strtotime($value['service_start']):'',
+				'end_time' => $value['service_end']?strtotime($value['service_end']):'',
 				'school' => trim($value['school']),
 				'degree' => trim($value['degree']),
 				'u_id' => $uid,

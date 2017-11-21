@@ -37,7 +37,7 @@
                                     <td>{$vo['p_name']}</td>
                                     <td>{$vo['company']}</td>
                                     <td>{$vo['salary']}</td>
-                                    <td>{$vo['pub_time']|date='Y-m-d H-i-s',###}</td>
+                                    <td>{$vo['pub_time']|date='Y-m-d H:i:s',###}</td>
                                     <td>
                                         <if condition="$vo['type'] eq 0"><span style="color: red;">未审核</span>
                                             <else/><span style="color: #009aff;">审核已通过</span></if>

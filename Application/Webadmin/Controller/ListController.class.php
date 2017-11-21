@@ -24,10 +24,10 @@ class ListController extends CommonController {
 			}
 			$User = M('user_profile'); // 实例化User对象
 			$count = $User->count(); // 查询满足要求的总记录数
-			$Page = new \Think\Page($count, 10); // 实例化分页类 传入总记录数和每页显示的记录数(25)
+			$Page = new \Think\Page($count, 30); // 实例化分页类 传入总记录数和每页显示的记录数(25)
 			$show = $Page->show(); // 分页显示输出
 			// 进行分页数据查询 注意limit方法的参数要使用Page类的属性
-			$list = $User->order('id')->where($where)->limit($Page->firstRow . ',' . $Page->listRows)->select();
+			$list = $User->order('id')->where($where)->order("status desc,created desc")->limit($Page->firstRow . ',' . $Page->listRows)->select();
 			// dump($list);die;
 			$this->assign('list', $list); // 赋值数据集
 			$this->assign('page', $show); // 赋值分页输出
@@ -49,10 +49,10 @@ class ListController extends CommonController {
 			}
 			$User = M('position'); // 实例化User对象
 			$count = $User->count(); // 查询满足要求的总记录数
-			$Page = new \Think\Page($count, 10); // 实例化分页类 传入总记录数和每页显示的记录数(25)
+			$Page = new \Think\Page($count, 30); // 实例化分页类 传入总记录数和每页显示的记录数(25)
 			$show = $Page->show(); // 分页显示输出
 			// 进行分页数据查询 注意limit方法的参数要使用Page类的属性
-			$list = $User->order('p_id')->where($where)->limit($Page->firstRow . ',' . $Page->listRows)->select();
+			$list = $User->order('p_id')->where($where)->order('istop desc,type desc')->limit($Page->firstRow . ',' . $Page->listRows)->select();
 			$this->assign('qstr', $qstr); // 赋值分页输出
 			$this->assign('list', $list); // 赋值数据集
 			$this->assign('page', $show); // 赋值分页输出

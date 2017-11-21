@@ -29,15 +29,15 @@ class ListsController extends Controller {
 		$this->assign('provice', $provice);
 		// 获取行业类目
 		$industry = D('industry');
-		$industry_parent = $industry->group('industry_parent')->select();
-		foreach ($industry_parent as $key => &$value) {
-			$value['industry_name'] = $value['industry_parent'];
-			$condition = array(
-				'industry_parent' => $value['industry_parent'],
-			);
-			$industry_child = $industry->where($condition)->select();
-			$value['industry'] = $industry_child;
-		}
+		$industry_parent = $industry->select();
+		// foreach ($industry_parent as $key => &$value) {
+		// 	$value['industry_name'] = $value['industry_parent'];
+		// 	$condition = array(
+		// 		'industry_parent' => $value['industry_parent'],
+		// 	);
+		// 	$industry_child = $industry->where($condition)->select();
+		// 	$value['industry'] = $industry_child;
+		// }
 		$this->assign('industry', $industry_parent);
 
 		$qstr = $_GET['qstr'] && trim($_GET['qstr']) ? trim($_GET['qstr']) : '';

@@ -105,7 +105,7 @@
                         <label class="weui_label">时间：</label>
                     </div>
                     <div class="weui_cell_bd weui_cell_primary">
-                        <input name="service_start[{$v.army_id}]" id="start_date_{$v.army_id}" value="{$v.start_time|date='Y-m-d',###}" readonly="true" type="text" class="weui_input calendar_box" />
+                        <input name="service_start[{$v.army_id}]" id="start_date_{$v.army_id}" <if condition="$v.start_time neq 0"> value="{$v.start_time|date='Y-m',###}" </if> readonly="true" type="text" class="weui_input calendar_box" />
                     </div>
                 </div>
                 <div class="weui_cell cell_box">
@@ -113,7 +113,8 @@
                         <label class="weui_label">>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                     </div>
                     <div class="weui_cell_bd weui_cell_primary">
-                        <input name="service_end[{$v.army_id}]" id="end_date_{$v.army_id}" value="{$v.end_time|date='Y-m-d',###}" readonly="true" type="text" class="weui_input calendar_box" />
+
+                        <input name="service_end[{$v.army_id}]" id="end_date_{$v.army_id}" <if condition="$v.end_time neq 0">  value="{$v.end_time|date='Y-m',###}"  </if> readonly="true" type="text" class="weui_input calendar_box" />
                     </div>
                 </div>
                 <div class="weui_cell cell_box">
@@ -181,7 +182,7 @@
                         <label class="weui_label">学习时间：</label>
                     </div>
                     <div class="weui_cell_bd weui_cell_primary">
-                        <input name="edu_service_start[{$v.army_id}]" id="edu_start_date_{$v.army_id}" value="{$v.start_time|date='Y-m-d',###}" readonly="true" type="text" class="weui_input calendar_box" />
+                        <input name="edu_service_start[{$v.army_id}]" id="edu_start_date_{$v.army_id}" <if condition="$v.start_time neq 0">  value="{$v.start_time|date='Y-m',###}" </if>readonly="true" type="text" class="weui_input calendar_box" />
                     </div>
                 </div>
                 <div class="weui_cell cell_box">
@@ -189,7 +190,7 @@
                         <label class="weui_label">>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                     </div>
                     <div class="weui_cell_bd weui_cell_primary">
-                        <input name="edu_service_end[{$v.army_id}]" id="edu_end_date_{$v.army_id}" value="{$v.end_time|date='Y-m-d',###}" readonly="true" type="text" class="weui_input calendar_box" />
+                        <input name="edu_service_end[{$v.army_id}]" id="edu_end_date_{$v.army_id}" <if condition="$v.end_time neq 0"> value="{$v.end_time|date='Y-m',###}"</if> readonly="true" type="text" class="weui_input calendar_box" />
                     </div>
                 </div>
                 <div class="weui_cell cell_box">
