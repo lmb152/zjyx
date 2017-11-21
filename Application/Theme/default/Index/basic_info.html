@@ -6,7 +6,7 @@
         float: left;
     }
     </style>
-    <form class="form" action="{:U('index/basic_info_save')}" method="post">
+    <form class="form form-horizontal" action="{:U('index/basic_info_save')}"  method="post">
         <div class="weui_cell">
             <h4>个人基本信息</h4></div>
         <div class="weui_cell">
@@ -15,9 +15,9 @@
             </div>
             <div class="weui_cell_bd weui_cell_primary">
                 <if condition="$user_data['user_name']">
-                    <input class="weui_input" type="text" id="tell" value="{$user_data['user_name']}" name="user_name" placeholder="请输入姓名">
+                    <input class="weui_input" type="text" id="user_name" value="{$user_data['user_name']}" name="user_name" placeholder="请输入姓名">
                 <else />
-                    <input class="weui_input" type="text" id="tell" name="user_name" placeholder="请输入姓名">
+                    <input class="weui_input" type="text" id="user_name" name="user_name" placeholder="请输入姓名">
                 </if>
             </div>
         </div>
@@ -26,9 +26,10 @@
                 <label class="weui_label">性别：</label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
-                <select name="male" class="weui_input">
+                <select name="male" id="male" class="weui_input">
+                    <option value='00'>请选择</option>
                     <option value='1' <if condition="$user_data['male'] eq 1">selected="true"</if> >男</option>
-                    <option value='0' <if condition="$user_data['male'] eq 0">selected="true"</if> >女</option>
+                    <option value='2' <if condition="$user_data['male'] eq 2">selected="true"</if> >女</option>
                 </select>
             </div>
         </div>
@@ -37,11 +38,12 @@
                 <label class="weui_label">政治面貌：</label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
-                <select name="political" class="weui_input">
-                    <option value='0' <if condition="$user_data['political'] eq 0">selected="true"</if> >党员</option>
-                    <option value='1' <if condition="$user_data['political'] eq 1">selected="true"</if> >预备党员</option>
-                    <option value='2' <if condition="$user_data['political'] eq 2">selected="true"</if> >团员</option>
-                    <option value='3' <if condition="$user_data['political'] eq 3">selected="true"</if> >群众</option>
+                <select id="political" name="political" class="weui_input">
+                    <option value='00'>请选择</option>
+                    <option value='1' <if condition="$user_data['political'] eq 1">selected="true"</if> >党员</option>
+                    <option value='2' <if condition="$user_data['political'] eq 2">selected="true"</if> >预备党员</option>
+                    <option value='3' <if condition="$user_data['political'] eq 3">selected="true"</if> >团员</option>
+                    <option value='4' <if condition="$user_data['political'] eq 4">selected="true"</if> >群众</option>
                 </select>
             </div>
         </div>
@@ -50,9 +52,10 @@
                 <label class="weui_label">婚姻：</label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
-                <select name="marriage" class="weui_input">
-                    <option value='0' <if condition="$user_data['marriage'] eq 0">selected="true"</if> >未婚</option>
-                    <option value='1' <if condition="$user_data['marriage'] eq 1">selected="true"</if>>已婚</option>
+                <select id="marriage" name="marriage" class="weui_input">
+                    <option value='00' >请选择</option>
+                    <option value='1' <if condition="$user_data['marriage'] eq 1">selected="true"</if> >未婚</option>
+                    <option value='2' <if condition="$user_data['marriage'] eq 2">selected="true"</if>>已婚</option>
                 </select>
             </div>
         </div>
@@ -62,9 +65,9 @@
             </div>
             <div class="weui_cell_bd weui_cell_primary start_date_right">
                 <if condition="$user_data['birthday']">
-                    <input name="birthday" value="{$user_data['birthday']|date='Y-m-d',###}" type="text" id="start_date" class="weui_input"  readonly="readonly">
+                    <input name="birthday" value="{$user_data['birthday']|date='Y-m',###}" type="text" id="birthday" class="weui_input date_choose "  readonly="readonly">
                 <else />
-                    <input name="birthday" type="text" id="start_date" class="weui_input">
+                    <input name="birthday" type="text" id="birthday" class="weui_input date_choose">
                 </if>
                 <!-- <input type="text" id="datepicker"   name="birthday" class="weui_input"> -->
                 
@@ -76,9 +79,9 @@
             </div>
             <div class="weui_cell_bd weui_cell_primary">
                 <if condition="$user_data['native_place']">
-                    <input name="native_place" type="text" value="{$user_data['native_place']}" class="weui_input" />
+                    <input name="native_place" type="text" id="native_place" value="{$user_data['native_place']}" class="weui_input" />
                 <else />
-                    <input name="native_place" type="text" class="weui_input" />
+                    <input name="native_place" type="text" id="native_place" class="weui_input" />
                 </if>
             </div>
         </div>
@@ -88,9 +91,9 @@
             </div>
             <div class="weui_cell_bd weui_cell_primary">
                 <if condition="$user_data['native_place']">
-                    <input name="ethnic" type="text" value="{$user_data['ethnic']}" class="weui_input" />
+                    <input name="ethnic" id="ethnic" type="text" value="{$user_data['ethnic']}" class="weui_input" />
                 <else />
-                    <input name="ethnic" type="text" class="weui_input" />
+                    <input name="ethnic" id="ethnic" type="text" class="weui_input" />
                 </if>
             </div>
         </div>
@@ -99,8 +102,9 @@
                 <lab el class="weui_label">学历：</label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
-                <select name="education" class="weui_input">
-                    <option value='0' <if condition="$user_data['education'] eq 0">selected="true"</if>>小学</option>
+                <select id="education" name="education" class="weui_input">
+                    <option value='00' >请选择</option>
+                    <option value='7' <if condition="$user_data['education'] eq 7">selected="true"</if>>小学</option>
                     <option value='1' <if condition="$user_data['education'] eq 1">selected="true"</if>>初中</option>
                     <option value='2' <if condition="$user_data['education'] eq 2">selected="true"</if>>高中</option>
                     <option value='3' <if condition="$user_data['education'] eq 3">selected="true"</if>>大学专科</option>
@@ -116,9 +120,9 @@
             </div>
             <div class="weui_cell_bd weui_cell_primary">
                 <if condition="$user_data['height']">
-                    <input name="height" type="text" value="{$user_data['height']}" class="weui_input" />
+                    <input name="height" id="height" type="text" value="{$user_data['height']}" class="weui_input" />
                 <else />
-                    <input name="height" type="text" class="weui_input" />
+                    <input name="height" id="height" type="text" class="weui_input" />
                 </if>
             </div>
         </div>
@@ -128,9 +132,9 @@
             </div>
             <div class="weui_cell_bd weui_cell_primary">
                 <if condition="$user_data['weight']">
-                    <input name="weight" type="text" value="{$user_data['weight']}" class="weui_input" />
+                    <input name="weight" id="weight" type="text" value="{$user_data['weight']}" class="weui_input" />
                 <else />
-                    <input name="weight" type="text" class="weui_input" />
+                    <input name="weight" id="weight" type="text" class="weui_input" />
                 </if>
             </div>
         </div>
@@ -140,9 +144,9 @@
             </div>
             <div class="weui_cell_bd weui_cell_primary">
                 <if condition="$user_data['service_start']">
-                    <input name="service_start" value="{$user_data['service_start']|date='Y-m-d',###}" type="text" id="start_date_army_start" class="weui_input">
+                    <input name="service_start" value="{$user_data['service_start']|date='Y-m',###}" type="text" id="start_date_army_start" class="weui_input date_choose">
                 <else />
-                    <input name="service_start" type="text" id="start_date_army_start" class="weui_input">
+                    <input name="service_start" type="text" id="start_date_army_start" class="weui_input date_choose">
                 </if>
             </div>
         </div>
@@ -152,9 +156,9 @@
             </div>
             <div class="weui_cell_bd weui_cell_primary">
                 <if condition="$user_data['service_end']">
-                    <input name="service_end" value="{$user_data['service_end']|date='Y-m-d',###}" type="text" id="start_date_army_end" class="weui_input">
+                    <input name="service_end" value="{$user_data['service_end']|date='Y-m',###}" type="text" id="start_date_army_end" class="weui_input date_choose">
                 <else />
-                    <input name="service_end" type="text" id="start_date_army_end" class="weui_input">
+                    <input name="service_end" type="text" id="start_date_army_end" class="weui_input date_choose">
                 </if>
             </div>
         </div>
@@ -164,44 +168,103 @@
             </div>
             <div class="weui_cell_bd weui_cell_primary">
                 <if condition="$user_data['badge_number']">
-                    <input name="badge_number" value="{$user_data['badge_number']}" type="text" id="start_date" class="weui_input">
+                    <input name="badge_number" value="{$user_data['badge_number']}" type="text" id="badge_number" class="weui_input">
                 <else />
-                    <input name="badge_number" type="text" id="start_date" class="weui_input">
+                    <input name="badge_number"  type="text" id="badge_number" class="weui_input">
                 </if>
             </div>
         </div>
         <div class="weui_cell"></div>
         <div class="weui_btn_area" style="margin-top: 35px;padding-bottom: 25px;">
-            <input class="weui_btn weui_btn_primary" type="submit" value="保存并下一步" />
+            <input class="weui_btn weui_btn_primary"  id="basic_subbtn" type="submit" value="保存并下一步" />
         </div>
     </form>
 </block>
 <block name="js_content">
     <script type="text/javascript">
-    var calendar = new LCalendar();
-    calendar.init({
-        'trigger': '#start_date', //标签id
-        'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
-        'minDate': '1900-1-1', //最小日期 注意：该值会覆盖标签内定义的日期范围
-        'maxDate': '2099-12-30' //最大日期 注意：该值会覆盖标签内定义的日期范围
-    });
-    var calendar = new LCalendar();
-    calendar.init({
-        'trigger': '#start_date_army_start', //标签id
-        'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
-        'minDate': '1900-1-1', //最小日期 注意：该值会覆盖标签内定义的日期范围
-        'maxDate': '2099-12-30' //最大日期 注意：该值会覆盖标签内定义的日期范围
-    });
-    var calendar = new LCalendar();
-    calendar.init({
-        'trigger': '#start_date_army_end', //标签id
-        'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
-        'minDate': '1900-1-1', //最小日期 注意：该值会覆盖标签内定义的日期范围
-        'maxDate': '2099-12-30' //最大日期 注意：该值会覆盖标签内定义的日期范围
-    });
-    //		$(function() {
-    //			$('#start_date').date();
-    //			$('#end_date').date();
-    //		});
+        $(function () {
+            $('#test').val('选日期');
+            var nowData = new Date();
+            nowData.setDate(nowData.getDate()+1);
+
+            var opt= { 
+                theme:'ios', //设置显示主题 
+                mode:'scroller', //设置日期选择方式，这里用滚动
+                display:'bottom', //设置控件出现方式及样式
+                preset : 'date', //日期:年 月 日 时 分
+                // minDate: nowData, 
+                maxDate: nowData,
+                dateFormat: 'yy-mm', // 日期格式
+                dateOrder: 'yymm', //面板中日期排列格式
+                stepMinute: 5, //设置分钟步长
+                yearText:'年', 
+                monthText:'月',
+                dayText:'日',
+                // hourText:'时',
+                // minuteText:'分',
+                lang:'zh' //设置控件语言};
+            };
+            $('.date_choose').mobiscroll(opt);
+            // $('#test2').mobiscroll(opt2);
+            // $('.date_choose').unbind('change').change(function(){
+            //     var sss = $('#test').val()
+            // });
+        })
+        $('#basic_subbtn').click(function(){
+            if($('#user_name').val().length==0){
+                alert('请填写姓名');
+                return false;
+            }
+            if($('#male').val()=='00'){
+                alert('请选择性别');
+                return false;
+            }
+            if($('#political').val()=='00'){
+                alert('请政治面貌');
+                return false;
+            }
+            if($('#marriage').val()=='00'){
+                alert('请选择婚姻状态');
+                return false;
+            }
+            if($('#birthday').val().length==0){
+                alert('请选择出生年月');
+                return false;
+            }
+            if($('#native_place').val().length==0){
+                alert('请填写籍贯');
+                return false;
+            }
+            if($('#ethnic').val().length==0){
+                alert('请填写民族');
+                return false;
+            }
+            if($('#education').val()=='00'){
+                alert('请选择学历');
+                return false;
+            }
+            if($('#height').val().length==0 || isNaN($('#height').val())){
+                alert('请正确填写身高');
+                return false;
+            }
+            if($('#weight').val().length==0 || isNaN($('#weight').val())){
+                alert('请正确填写体重');
+                return false;
+            }
+            
+            if($('#start_date_army_start').val().length==0){
+                alert('请选择服役开始年月');
+                return false;
+            }
+            if($('#start_date_army_end').val().length==0){
+                alert('请选择服役结束年月');
+                return false;
+            }
+            if($('#start_date_army_start').val()>=$('#start_date_army_end').val()){
+                alert('服役结束时间不能小于或者等于服役开始时间');
+                return false;
+            }
+            return true;
+        });
     </script>
 </block>

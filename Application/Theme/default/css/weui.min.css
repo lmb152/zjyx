@@ -529,7 +529,7 @@ button.weui_btn_plain_default,input.weui_btn_plain_default {
 }
 
 .weui_input {
-	width: 100%;
+	width: 140%;
 	border: 0;
 	outline: 0;
 	-webkit-appearance: none;

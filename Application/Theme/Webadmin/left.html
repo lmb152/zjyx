@@ -3,6 +3,12 @@
         <div class="user-sidebar-box user-account-nav">
             <ul class="user-account-nav-list clearfix">
                 <li class="user-account-nav-list-item">
+                    <a href="{:U('Webadmin/index/index')}" class="user-account-nav-item">
+                        <i class="user-nav-main"></i>
+                        <span>首页</span>
+                    </a>
+                </li>
+                <li class="user-account-nav-list-item">
                     <a href="{:U('Webadmin/list/lists',array('name'=>'1'))}" class="user-account-nav-item">
                         <i class="user-nav-main"></i>
                         <span>简历列表</span>
@@ -14,6 +20,14 @@
                         <span>职位列表</span>
                     </a>
                 </li>
+                <if condition="$_SESSION['role'] eq admin">
+                    <li class="user-account-nav-list-item">
+                        <a href="{:U('Webadmin/user/lists',array('id'=>$v['id']))}" class="user-account-nav-item">
+                            <i class="user-nav-main"></i>
+                            <span>用户管理</span>
+                        </a>
+                    </li>
+                </if>
                <!--  <li class="user-account-nav-list-item">
                     <a href="#" class="user-account-nav-item">
                         <i class="user-nav-main"></i>
@@ -38,7 +52,7 @@
                     </ul>
                 </li> -->
                 <!-- 管理员权限 -->
-                <if condition="$_SESSION['role'] eq admin">
+                <!-- <if condition="$_SESSION['role'] eq admin">
                     <li class="user-account-nav-list-item">
                         <div class="user-account-nav-item">
                             <i class="user-nav-message-manage"></i><span>超级管理员</span>
@@ -54,7 +68,7 @@
                             </li> 
                         </ul>
                     </li>
-                </if>
+                </if> -->
                 
             </ul>
         </div>

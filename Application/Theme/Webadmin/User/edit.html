@@ -7,7 +7,7 @@
 			      	<h3 class="panel-title">{$body_title}</h3>
 			   </div>
 			   <div class="panel-body">
-					<form method="post" action="{:U('Webadmin/user/save')}" class="bs-example bs-example-form" role="form">
+					<form method="post" action="{:U('Webadmin/user/save')}" class="bs-example bs-example-form form-horizontal" role="form">
 						<!-- 编辑内容 -->
 						<if condition='$isedit eq 1'>
 							<div class="input-group">
@@ -19,14 +19,29 @@
 								<span class="input-group-addon">角色</span>
 								<select class="form-control" name="role">
 									<option value="{$user.role}">{$user.role}</option>
-									<option value="Webadmin">Webadmin</option>
-									<option value="editor">editor</option>
+									<option value="admin">管理员</option>
+									<option value="company">企业用户</option>
 								</select>
 							</div>
 							<br>
 							<div class="input-group">
 								<span class="input-group-addon">邮箱</span>
 								<input type="text" name="email" value="{$user.email}" class="form-control" placeholder="请填写邮箱">
+							</div>
+							<br/>
+							<div class="input-group">
+								<span class="input-group-addon">公司名称</span>
+								<input type="text" name="company" value="{$user.company}" class="form-control" placeholder="请填写公司名称">
+							</div>
+							<br>
+							<div class="input-group">
+								<span class="input-group-addon">联系人</span>
+								<input type="text" name="contact" value="{$user.contact}" class="form-control" placeholder="请填写公司联系人">
+							</div>
+							<br>
+							<div class="input-group">
+								<span class="input-group-addon">联系电话</span>
+								<input type="text" name="mobile" value="{$user.mobile}" class="form-control" placeholder="请填写公司联系电话">
 							</div>
 							<br>
 							<input type="hidden" name="id" value="{$user.id}">
@@ -45,8 +60,8 @@
 							<div class="input-group">
 								<span class="input-group-addon">角色</span>
 								<select class="form-control" name="role">
-									<option value="Webadmin">Webadmin</option>
-									<option value="editor">editor</option>
+									<option value="admin">管理员</option>
+									<option value="company">企业用户</option>
 								</select>
 							</div>
 							<br>
@@ -54,9 +69,24 @@
 								<span class="input-group-addon">邮箱</span>
 								<input type="text" name="email" value="" class="form-control" placeholder="请填写邮箱">
 							</div>
+							<br/>
+							<div class="input-group">
+								<span class="input-group-addon">公司名称</span>
+								<input type="text" name="company" value="" class="form-control" placeholder="请填写公司名称">
+							</div>
+							<br>
+							<div class="input-group">
+								<span class="input-group-addon">联系人</span>
+								<input type="text" name="contact" value="" class="form-control" placeholder="请填写公司联系人">
+							</div>
+							<br>
+							<div class="input-group">
+								<span class="input-group-addon">联系电话</span>
+								<input type="text" name="mobile" value="" class="form-control" placeholder="请填写公司联系电话">
+							</div>
 							<br>
 						</if>
-						<input type="submit" value="保存" class="btn btn-large btn-success">
+						<input type="submit"  value="保存" class="btn btn-large btn-success ajax-post"  target-form="form-horizontal">
 					</form>
 				</div>
 			</div>

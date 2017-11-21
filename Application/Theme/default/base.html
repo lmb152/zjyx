@@ -13,6 +13,8 @@
 <link rel="stylesheet" type="text/css" href="{$Think.const.CSS_URL}/weui.min.css">
 <link rel="stylesheet" type="text/css" href="{$Think.const.CSS_URL}/jquery-weui.css">
 <link rel="stylesheet" type="text/css" href="{$Think.const.CSS_URL}/demos.css">
+<link href="{$Think.const.CSS_URL}/mobiscroll.animation.css" rel="stylesheet" type="text/css" />
+<link href="{$Think.const.CSS_URL}/mobiscroll.scroller.css" rel="stylesheet" type="text/css" />
 <meta content="yes" name="apple-mobile-web-app-capable">
 <meta content="black" name="apple-mobile-web-app-status-bar-style">
 <meta content="telephone=no" name="format-detection">
@@ -40,14 +42,20 @@
 	<div id="container">
 		<block name="main">主内容</block>
 	</div>
-	<div class="copyrights">中解远行,版权所有</div>
+	<div class="copyrights">中解远行版权所有</div>
 	<script language="javascript" src="{$Think.const.JS_URL}/zepto.min.js"></script>
 	<script language="javascript" src="{$Think.const.JS_URL}/fx.js"></script>
 	<script language="javascript" src="{$Think.const.JS_URL}/script.js"></script>
 	<script language="javascript" src="{$Think.const.JS_URL}/jquery-1.9.1.min.js"></script>
-	<script src="__PUBLIC__/LCalendar/js/LCalendar.js" type="text/javascript"></script>
-    <!-- <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/index.css" /> -->
-    <link rel="stylesheet" type="text/css" href="__PUBLIC__/LCalendar/css/LCalendar.css" />
+	<script src="{$Think.const.JS_URL}/mobiscroll.core.js"></script>
+    <script src="{$Think.const.JS_URL}/mobiscroll.widget.js"></script>
+    <script src="{$Think.const.JS_URL}/mobiscroll.scroller.js"></script>
+    <script src="{$Think.const.JS_URL}/mobiscroll.util.datetime.js"></script>
+    <script src="{$Think.const.JS_URL}/mobiscroll.datetimebase.js"></script>
+    <script src="{$Think.const.JS_URL}/mobiscroll.widget.ios.js"></script>
+    <script src="{$Think.const.JS_URL}/mobiscroll.i18n.zh.js"></script>
+   
 	<block name="js_content"></block>
+	<script src="{$Think.const.JS_URL}/pop_msg.js"></script>
 </body>
 </html>

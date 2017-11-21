@@ -10,7 +10,7 @@ class UserController extends CommonController {
     public function lists(){
     	$user=M('user');
 		$p=getpage($user,'',C('VAR_PAGE'));
-        $condition['name']=array('NEQ','lndx2016');
+        $condition['name']=array('NEQ','superadmin');
 		$list=$user->where($condition)->select();
 		$this->assign('page',$p->show());
     	$this->assign('users',$list);

@@ -36,10 +36,10 @@
                                 <select class="form-control" name="industry">
                                     <option selected="" value="0">请选择行业</option>
                                     <volist name="lists" id="vo">
-                                        <if condition="$vo['id'] eq $list['industry'] ">
+                                        <if condition="$vo['industry_name'] eq $list['industry'] ">
                                             <option value="{$vo['id']}" selected="selected">{$vo['industry_name']}</option>
                                             <else />
-                                            <option value="{$vo['id']}">{$vo['industry_name']}</option>
+                                            <option value="{$vo['industry_name']}">{$vo['industry_name']}</option>
                                         </if>
                                     </volist>
                                 </select>
@@ -53,7 +53,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword" class="col-sm-3 control-label">职位亮点</label>
+                            <label for="inputPassword" class="col-sm-3 control-label">任职要求</label>
                             <div class="col-sm-7">
                                 <textarea class="form-control" name="bright_spot">{$list['bright_spot']}</textarea>
                             </div>
@@ -110,7 +110,15 @@
                             </div>
                         </if>
                         <div style="clear:both;">
-                            <input type="submit" value="保存" class="btn btn-large btn-success">
+                            <if condition="$passed eq 1">
+                                <a href="{:U('Webadmin/list/passed_position',array('id'=>$eid))}">
+                                    <button type="button" class="btn btn-primary">审核通过</button>
+                                </a>
+                                <a href="{:U('Webadmin/list/top_position',array('id'=>$eid))}">
+                                    <button type="button" class="btn btn-primary">置顶</button>
+                                </a>
+                            </if>
+                            <input type="submit" target-form="form-horizontal" value="保存" class="btn btn-large btn-success ajax-post">
                             <a href="{:U('Webadmin/list/lists',array('name'=>2))}">
                                 <button type="button" class="btn btn-primary">不保存返回职位列表</button>
                             </a>

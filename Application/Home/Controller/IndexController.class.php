@@ -27,11 +27,13 @@ class IndexController extends Controller {
 					$user_data = array(
 						'openid' => $info->openid,
 						'imgurl' => $info->headimgurl,
-						'male' => $info->sex,
+						'male' => $info->sex==1?1:0,
+						'created'=>time()
 					);
 				} else {
 					$user_data = array(
 						'openid' => $info->openid,
+						'created'=>time()
 					);
 				}
 				$user_profile->data($user_data)->add();
@@ -65,13 +67,16 @@ class IndexController extends Controller {
 			'mobile' => $phone,
 		);
 		$is_mobile_bind = $user_profile->where($where)->find();
-		header('Content-type: application/json');
+		// header('Content-type: application/json');
 		if ($is_mobile_bind) {
-			print json_encode(array('status' => 0, 'msg' => '手机号已被绑定'));
+			$this->error('手机号已被绑定');
+			// print json_encode(array('status' => 0, 'msg' => '手机号已被绑定'));
 		} else {
 			$_SESSION['srand'] = $srand;
-			$send_back=sendTemplateSMS($phone, array($srand, '60s'), "215435");
-			print json_encode(array('status' => 1, 'msg' => '短信发送成功'));
+			print $srand;
+			$send_back=sendTemplateSMS($phone, array($srand, '5分钟'), "215435");
+			// $this->success('短信发送成功');
+			// print json_encode(array('status' => 1, 'msg' => '短信发送成功'));
 		}
 	}
 	public function bind_phone_save() {
@@ -84,9 +89,10 @@ class IndexController extends Controller {
 				'mobile' => $_POST['phone'],
 			);
 			$user_profile->where($where)->save($user_data_mobile);
-			$this->redirect('index/basic_info');
+			$this->success('手机号码验证成功',U('/index/basic_info'),3);
 		} else {
-			$this->error('验证码错误,请重新获取');
+			$this->error('验证码错误',U('/index/index'),3);
+			// $this->error('验证码错误,请重新获取');
 		}
 	}
 	public function basic_info() {
@@ -126,9 +132,9 @@ class IndexController extends Controller {
 		if ($_POST['service_end'] == "") {
 			$this->error('服役结束时间不能为空');
 		}
-		if ($_POST['badge_number'] == "") {
-			$this->error('退伍证号不能为空');
-		}
+		// if ($_POST['badge_number'] == "") {
+		// 	$this->error('退伍证号不能为空');
+		// }
 		$data['birthday'] = strtotime($_POST['birthday']);
 		$data['service_start'] = strtotime($_POST['service_start']);
 		$data['service_end'] = strtotime($_POST['service_end']);
@@ -174,9 +180,9 @@ class IndexController extends Controller {
 		if (!$data['duty_time']) {
 			$this->error('到岗时间不能为空');
 		}
-		if (!$data['self_evaluation']) {
-			$this->error('自我评价不能为空');
-		}
+		// if (!$data['self_evaluation']) {
+		// 	$this->error('自我评价不能为空');
+		// }
 
 		$user_profile = D('user_profile');
 		$user_army = D('user_army');
@@ -186,7 +192,7 @@ class IndexController extends Controller {
 		$profile_data = array(
 			'target_position' => trim($data['target_position']),
 			'expected_salary' => trim($data['expected_salary']),
-			'duty_time' => strtotime($data['duty_time']),
+			'duty_time' => $data['duty_time'],
 			'honor' => trim($data['honor']),
 			'self_evaluation' => trim($data['self_evaluation']),
 		);

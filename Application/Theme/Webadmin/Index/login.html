@@ -10,13 +10,8 @@
 	<title>中解英才网 &lsaquo; 后台登录</title>
 	<link rel='dns-prefetch' href='//s.w.org' />
     <link rel='stylesheet' href='{$Think.const.ACSS_URL}/styles.css' type='text/css' media='all' />
-    <script type="text/javascript" src="{$Think.const.AJS_URL}/jquery.js"></script>
-    <script src="{$Think.const.AJS_URL}/jquery.backstretch.min.js"></script>
-<script>
-jQuery(function(){
-var imgsrc = "{$Think.const.AIMG_URL}";
-var listArr = [imgsrc+"/1.jpg",imgsrc+"/2.jpg",imgsrc+"/3.jpg",imgsrc+"/4.jpg"];
-jQuery('.login').backstretch(listArr, {fade: 1000,duration: 5000});});</script><style type="text/css">
+   
+<style type="text/css">
 body { background: none; }
 #login {width: 320px;margin: auto;background: #FFF;margin-top: 8%;padding: 20px;border-radius: 3px;box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.2);}
 .login form {margin-top: 0;margin-left: 0;padding:6px 24px 10px;-webkit-box-shadow:none;box-shadow:none;}
@@ -26,9 +21,46 @@ body { background: none; }
 .wp-core-ui .button-primary.focus, .wp-core-ui .button-primary.hover, .wp-core-ui .button-primary:focus, .wp-core-ui .button-primary:hover{background:#1F1F1F}
 .wp-core-ui .button.button-large{height:40px;line-height:38px;font-size:16px;}
 input{outline:none!important}
-</style>
-<style type="text/css">
        .login h1 a { background-image:url({$Think.const.AIMG_URL}/logo.png);background-size: 120px;width: 120px;height: 120px;margin: 20px auto 15px; }
+       .mask {
+  height:100%;
+  width:100%;
+  position:fixed;
+  top:0;
+  z-index:1000;
+  background-color: #000;
+  background-color: rgba(0,0,0,0.7);
+}
+.msg{
+  position: absolute;
+  z-index: 1003;
+  left: 50%;
+  top: 200px;
+  width: 450px;
+  margin-left: -225px;
+  font-size: 14px;
+  border: 3px solid #ccc;
+  background-color: #fff;
+}
+.msg .msg-title{
+/* height: 20px;*/
+ padding: 12px;
+ background-color: #FAFAFA;
+ border-bottom:1px solid  #E6E6E6;
+ text-align: center;
+}
+.msg .msg-title a{
+  color: #A1A1A1;
+  float: right;
+}
+.msg .msg-title a:hover{
+  text-decoration:none;
+  color: #4D4538;
+}
+.msg .msg-content
+{
+  padding: 30px;
+}
  </style><meta name='robots' content='noindex,follow' />
 	<meta name="viewport" content="width=device-width" />
 		</head>
@@ -36,7 +68,7 @@ input{outline:none!important}
 		<div id="login">
 		<h1><a href="http://wx.81zjyc.com" title="中解英才网" tabindex="-1">中解英才网</a></h1>
 	
-<form name="loginform" id="loginform" action="{:U('Webadmin/index/login')}" method="post">
+<form class="form-horizontal" action="{:U('Webadmin/index/login')}" method="post">
 	<p>
 		<label for="user_login">用户名或电子邮件地址<br />
 		<input type="text"id="user_login" name="username" class="input" value="" size="20" /></label>
@@ -47,33 +79,28 @@ input{outline:none!important}
 	</p>
 		<!-- <p class="forgetmenot"><label for="rememberme"><input name="rememberme" type="checkbox" id="rememberme" value="forever"  /> 记住我的登录信息</label></p> -->
 	<p class="submit">
-		<input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large" value="登录" />
-		<input type="hidden" name="redirect_to" value="http://wx.81zjyc.com/admin/" />
-		<input type="hidden" name="testcookie" value="1" />
+		<input type="submit" class="button button-primary button-large "  target-form="form-horizontal" value="登录"/>
+		<!-- <input type="hidden" name="redirect_to" value="http://wx.81zjyc.com/admin/" />
+		<input type="hidden" name="testcookie" value="1" /> -->
 	</p>
 </form>
 
-<!-- <p id="nav">
-	<a href="#">忘记密码？</a>
-</p> -->
-
-<script type="text/javascript">
-function wp_attempt_focus(){
-setTimeout( function(){ try{
-d = document.getElementById('user_login');
-d.focus();
-d.select();
-} catch(e){}
-}, 200);
-}
-
-wp_attempt_focus();
-if(typeof wpOnload=='function')wpOnload();
-</script>
-	
 	</div>
 
 	
 		<div class="clear"></div>
 	</body>
+	<script src="{$Think.const.AJS_URL}/jquery-1.9.1.min.js"></script>
+    
+	   
+    <script src="{$Think.const.AJS_URL}/jquery.backstretch.min.js"></script>
+	<script>
+		$(function(){
+			var imgsrc = "{$Think.const.AIMG_URL}";
+			var listArr = [imgsrc+"/1.jpg",imgsrc+"/2.jpg",imgsrc+"/3.jpg",imgsrc+"/4.jpg"];
+			$('.login').backstretch(listArr, {fade: 1000,duration: 5000});}
+		);
+	</script>
+	<script src="{$Think.const.AJS_URL}/pop_msg.js"></script> 
+	
 	</html>

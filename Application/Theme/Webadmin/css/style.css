@@ -129,3 +129,43 @@ body {
 .vcode-img{
     width: 154px;
 }
+/*遮罩*/
+.mask {
+  height:100%;
+  width:100%;
+  position:fixed;
+  top:0;
+  z-index:1000;
+  background-color: #000;
+  background-color: rgba(0,0,0,0.7);
+}
+.msg{
+  position: absolute;
+  z-index: 1003;
+  left: 50%;
+  top: 200px;
+  width: 450px;
+  margin-left: -225px;
+  font-size: 14px;
+  border: 3px solid #ccc;
+  background-color: #fff;
+}
+.msg .msg-title{
+/* height: 20px;*/
+ padding: 12px;
+ background-color: #FAFAFA;
+ border-bottom:1px solid  #E6E6E6;
+ text-align: center;
+}
+.msg .msg-title a{
+  color: #A1A1A1;
+  float: right;
+}
+.msg .msg-title a:hover{
+  text-decoration:none;
+  color: #4D4538;
+}
+.msg .msg-content
+{
+  padding: 30px;
+}

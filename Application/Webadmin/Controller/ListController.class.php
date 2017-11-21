@@ -10,10 +10,17 @@ class ListController extends CommonController {
 	}
 	// 列表
 	public function lists() {
+		$passed=0;
 		if ($_GET['name'] == 1) {
+			$where='1 ';
 			$qstr = $_POST['qstr'] && trim($_POST['qstr']) ? trim($_POST['qstr']) : '';
 			if ($qstr != "") {
-				$where = "user_name like '%" . $qstr . "%' or target_position like '%" . $qstr . "%'";
+				$where = "and user_name like '%" . $qstr . "%' or target_position like '%" . $qstr . "%'";
+			}
+			if($_SESSION['role']=='company'){
+				$where .= ' and status=1';
+			}else{
+				$passed=1;
 			}
 			$User = M('user_profile'); // 实例化User对象
 			$count = $User->count(); // 查询满足要求的总记录数
@@ -26,12 +33,19 @@ class ListController extends CommonController {
 			$this->assign('page', $show); // 赋值分页输出
 			$this->assign('qstr', $qstr); // 赋值分页输出
 			$b = "简历";
+			$this->assign('passed',$passed);
 			$this->assign('listname', $b);
 			$this->display();
 		} else {
 			$qstr = $_POST['qstr'] && trim($_POST['qstr']) ? trim($_POST['qstr']) : '';
+			$where='1 ';
 			if ($qstr != "") {
-				$where = "p_name like '%" . $qstr . "%' or company like '%" . $qstr . "%'";
+				$where = " and p_name like '%" . $qstr . "%' or company like '%" . $qstr . "%'";
+			}
+			if($_SESSION['role']=='company'){
+				$where .= ' and uid='.$_SESSION['uid'];
+			}else{
+				$passed=1;
 			}
 			$User = M('position'); // 实例化User对象
 			$count = $User->count(); // 查询满足要求的总记录数
@@ -43,6 +57,7 @@ class ListController extends CommonController {
 			$this->assign('list', $list); // 赋值数据集
 			$this->assign('page', $show); // 赋值分页输出
 			$b = "职位";
+			$this->assign('passed',$passed);
 			$this->assign('listname', $b);
 			$this->display('new_lists');
 		}
@@ -97,6 +112,11 @@ class ListController extends CommonController {
 		$this->assign('body_title', $rs['user_name']);
 
 		// }
+		$passed=0;
+		if($_SESSION['role']=='admin'){
+			$passed=1;
+		}
+		$this->assign('passed',$passed);
 		$this->assign('eid',$id);
 		$this->assign('list', $rs);
 		$this->assign('rt', $rt);
@@ -106,12 +126,12 @@ class ListController extends CommonController {
 	// 编辑
 	public function save() {
 		$data['reason'] = $_POST['reason'];
-		// dump($data);die;
+		$data['mobile'] = $_POST['mobile'];
 		$rs = M('user_profile')->where('id=' . $_GET['id'])->save($data);
-		if ($result) {
-			$this->success('修改推荐理由成功', U('Webadmin/list/lists', array('name' => 1)), 3);
-		} else {
-			$this->error('未做修改推荐理由', U('Webadmin/list/lists', array('name' => 1)), 3);
+		if($rs){
+			$this->success('修改成功', U('Webadmin/list/lists', array('name' => 1)), 3);
+		}else {
+			$this->error('未做任何修改', U('Webadmin/list/lists', array('name' => 1)), 3);
 		}
 	}
 	public function passed_profile(){
@@ -120,7 +140,7 @@ class ListController extends CommonController {
 				'id'=>$id
 			);
 		$rs = M('user_profile')->where($condition)->save(array('status'=>1));
-		$this->success('审核通过成功', U('Webadmin/list/lists'), 3);
+		$this->success('审核通过成功', U('Webadmin/list/lists/name/1'), 3);
 	}
 	// 删除
 	public function delete() {
@@ -147,30 +167,14 @@ class ListController extends CommonController {
 
 	}
 	// 审核通过
-	public function passed() {
+	public function passed_position() {
 		$id = I('param.id');
-		if ($id) {
-			if ($_GET['name'] == 1) {
-				$article = M('user_profile');
-				$data['type'] = 1;
-				$data['id'] = $id;
-				$result = $article->save($data);
-			} else {
-				$article = M('position');
-				$data['type'] = 1;
-				$data['p_id'] = $id;
-				$result = $article->save($data);
-			}
 
-			if (isset($result)) {
-				echo '1';
-			} else {
-				echo '0';
-			}
-		} else {
-			echo '0';
-		}
-
+		$condition=array(
+				'p_id'=>$id
+			);
+		M('position')->where($condition)->save(array('type'=>1));
+		$this->success('审核通过成功', U('Webadmin/list/lists'), 3);
 	}
 	// 编辑
 	public function new_position() {
@@ -183,6 +187,12 @@ class ListController extends CommonController {
 			$this->assign('addres', $addres);
 			$this->assign('list', $rs);
 		}
+		$passed=0;
+		if($_SESSION['role']=='admin'){
+			$passed=1;
+		}
+		$this->assign('passed',$passed);
+		$this->assign('eid',$id);
 		$this->assign('lists', $list);
 		$this->assign('lists_company', $list_company);
 		$this->display();
@@ -205,7 +215,7 @@ class ListController extends CommonController {
 		if ($_POST['company'] == "") {
 			$this->error('请填写公司名称');
 		}
-		if ($_POST['industry'] == 0) {
+		if (!$_POST['industry']) {
 			$this->error('请选择行业名称');
 		}
 		if ($_POST['salary'] == "") {
@@ -234,6 +244,8 @@ class ListController extends CommonController {
 			}
 
 		}
+		$data['uid']=$_SESSION['uid'];
+		$data['type']=0;
 		$data['pub_time'] = time();
 		// dump($data);die;
 		if ($_POST['id'] != '') {
@@ -253,5 +265,102 @@ class ListController extends CommonController {
 			}
 		}
 
+	}
+	public function top_position(){
+		$id = I('param.id');
+		$condition=array(
+				'p_id'=>$id
+			);
+		M('position')->where($condition)->save(array('istop'=>1));
+		$this->success('置顶成功', U('Webadmin/list/lists'), 3);
+	}
+	public function download(){
+		Vendor('PhpWord.PHPWord');
+		// $PHPWord = new \PHPWord();
+		// $document = $PHPWord->loadTemplate('./Public/Template.docx');
+		// $PHPWord = new \PHPWord();
+
+		// // New portrait section
+		// $section = $PHPWord->createSection();
+
+		// // Add table
+		// $table = $section->addTable();
+		// $id = I('param.id');
+		// $rs = M('user_profile')->where('id=' . $id)
+		// 	->find();
+		// $rt = M('user_army')->where('u_id=' . $id)->select();
+		// $ret = M('user_education')->where('u_id=' . $id)->select();
+		// $this->assign('body_title', $rs['user_name']);
+
+		// $this->assign('list', $rs);
+		// $this->assign('rt', $rt);
+		// $this->assign('ret', $ret);
+
+		// $table->addRow();
+		// $styleCell=array('gridSpan' => 6);
+		// $table->addCell(600, $styleCell)->addText(iconv('utf-8', 'GB2312//IGNORE', $rs['user_name'].'的个人简历'));
+		// $table->addCell(100)->addText('http://www.111cn.net');
+		// $table->addRow();
+		// $table->addCell(100)->addText('PHP');
+		// $table->addCell(100)->addText('python');
+		// $table->addCell(100)->addText('java');
+		// $section->addTextBreak(10);
+
+
+
+		// $objWriter = \PHPWord_IOFactory::createWriter($PHPWord, 'Word2007');
+		// $filename = './Public/'.time().'.docx'; 
+		// $objWriter->save($filename);
+		$PHPWord = new \PHPWord();
+
+		// New portrait section
+		$section = $PHPWord->createSection();
+
+		// Define table style arrays
+		$styleTable = array('borderSize'=> 0, 'borderColor' => 'ffffff', 'cellMargin' => 80 , 'marginLeft' => 1134,'marginRight' => 1134,'marginTop' => 1134,'marginBottom' => 1134,'align' => 'right','valign' => 'right');
+		$styleFirstRow = array('borderBottomSize' => 18, 'borderBottomColor' => '000000', 'bgColor' => '666666','valign' => 'center');
+
+		// Define cell style arrays
+		$styleCell = array('align' => 'center','borderSize' => 1, 'bgColor' => ffffff, );
+		$styleCellBTLR = array('valign'=>'center', 'textDirection'=> \PHPWord_Style_Cell::TEXT_DIR_BTLR);
+
+		// Define font style for first row
+		$fontStyle = array('bold'=>true, 'valign' => 'right' , 'align' => 'right' , 'size'=>24);
+
+		$fontStyles = array('color'=>'000000', 'size'=>18, 'bold'=>true , 'align' => 'right' , 'valign' => 'right');
+
+		$titleStyles = array('color'=> 000000 ,'size'=>24);
+		$PHPWord->addFontStyle('myOwnStyle', $fontStyles);
+
+		// Add table style
+		$PHPWord->addTableStyle('myOwnTableStyle', $styleTable, $styleFirstRow);
+
+		// Add table
+		$table = $section->addTable('myOwnTableStyle');
+
+		// Add row
+
+
+		$i=0;
+		$table->addRow(100);
+		$table->addCell(9600)->addText('各科室工作完成情况', array( 'size' => 30 ,'bold'=>true) , array( 'align' => 'center'));
+		$table->addRow(100);
+
+		$table->addCell(1500, $styleCell )->addText(iconv('utf-8', 'gbk', '各科室工作完成情况'), $fontStyles , array( 'align' => 'center'));
+		$table->addCell(3300, $styleCell)->addText('各科室工作完成情况',$fontStyles, array( 'align' => 'center'));
+		$table->addCell(3300, $styleCell)->addText('各科室工作完成情况', $fontStyles, array( 'align' => 'center'));
+		$table->addCell(1500, $styleCell)->addText('各科室工作完成情况', $fontStyles, array( 'align' => 'center'));
+
+
+		$time = time();
+		$objWriter = \PHPWord_IOFactory::createWriter($PHPWord, 'Word2007');
+		$objWriter->save("./Public/中文test.docx");
+
+
+		
+		//文件的类型 
+		header('Content-type: application/docx'); 
+		header('Content-Disposition: attachment; filename="'.$rs['user_name'].'.docx"'); 
+		readfile("$filename"); 
 	}
 }

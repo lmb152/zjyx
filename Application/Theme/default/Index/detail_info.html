@@ -2,12 +2,17 @@
 <block name="main">
     <style type="text/css">
     .cell_box {
-        width: 40%;
+        width: 43%;
         float: left;
     }
-
+    .weui_cell {
+        padding: 10px !important;
+    }
     .weui_cell textarea {
         height: 80px;
+        border: #ccc solid 1px;
+        width: 100%;
+        display: block !important;
     }
 
     .add_army_row,
@@ -28,22 +33,22 @@
             </div>
             <div class="weui_cell_bd weui_cell_primary">
                 <if condition="$user_data['target_position']">
-                    <input class="weui_input" type="text" id="tell" value="{$user_data['target_position']}" name="target_position" placeholder="请输入目标岗位">
+                    <input class="weui_input" type="text" id="target_position" value="{$user_data['target_position']}" name="target_position" placeholder="请输入目标岗位">
                 <else />
-                    <input class="weui_input" type="text" id="tell" name="target_position" placeholder="请输入目标岗位">
+                    <input class="weui_input" type="text" id="target_position" name="target_position" placeholder="请输入目标岗位">
                 </if>
                 
             </div>
         </div>
         <div class="weui_cell cell_box">
             <div class="weui_cell_hd">
-                <label class="weui_label">期望薪资：</label>
+                <label class="weui_label">期望月薪：</label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
                 <if condition="$user_data['expected_salary']">
-                    <input name="expected_salary" type="number" value="{$user_data['expected_salary']}" class="weui_input" />
+                    <input name="expected_salary" id="expected_salary" type="number" value="{$user_data['expected_salary']}" class="weui_input" />
                 <else />
-                    <input name="expected_salary" type="number" class="weui_input" />
+                    <input name="expected_salary" id="expected_salary" type="number" class="weui_input" />
                 </if>
                 
             </div>
@@ -54,9 +59,18 @@
             </div>
             <div class="weui_cell_bd weui_cell_primary">
                 <if condition="$user_data['duty_time']">
-                    <input name="duty_time" type="text" id="start_date" readonly="true"  value="{$user_data['duty_time']|date='Y-m-d',###}" class="weui_input calendar_box" />
+                    <select name="duty_time" id="duty_time" class="weui_input">
+                        <option <if condition="$user_data['duty_time'] eq '立即到岗'">selected="true"</if> value="立即到岗">立即到岗</option>
+                        <option <if condition="$user_data['duty_time'] eq '1个月内'">selected="true"</if> value="1个月内">1个月内</option>
+                        <option <if condition="$user_data['duty_time'] eq '1个月以上'">selected="true"</if>  value="1个月以上">1个月以上</option>
+                    </select>
                 <else />
-                    <input name="duty_time" type="text" id="start_date" readonly="true"  class="weui_input" />
+                    <select name="duty_time" id="duty_time" class="weui_input">
+                        <option value="0">请选择</option>
+                        <option value="立即到岗">立即到岗</option>
+                        <option value="1个月内">1个月内</option>
+                        <option value="1个月以上">1个月以上</option>
+                    </select>
                 </if>
             </div>
         </div>
@@ -65,24 +79,26 @@
                 <label class="weui_label">获得荣誉：</label>
             </div>
         </div>
-        <div class="weui_cell">
+        <div class="weui_cell" style="display:block !important;">
             <div class="weui_cell_bd weui_cell_primary">
-                <textarea class="weui_input" name="honor" rows="3" placeholder="请在此处输入获得的荣誉" >
-                    <if condition="$user_data['honor']">
-                        {$user_data['honor']}
-                    </if>
-                </textarea>
+                <if condition="$user_data['honor']">
+                    <textarea  class="weui_input" id="honor" name="honor" rows="3" placeholder="请在此处输入获得的荣誉">{$user_data['honor']}</textarea>
+                <else/>
+                    <textarea  class="weui_input" id="honor" name="honor" rows="3" placeholder="请在此处输入获得的荣誉"></textarea>
+                </if>
+                
             </div>
         </div>
-        <div class="weui_cell">
-            <div class="weui_cell_hd">
-                <label class="weui_label">工作经历：</label>
-            </div>
-            <div class="weui_cell_bd weui_cell_primary">
-                <a class="add_army_row" id="AddMoreFileBox">+</a>
-            </div>
-        </div>
+       
         <div id="InputsWrapper">
+            <div class="weui_cell">
+                <div class="weui_cell_hd">
+                    <label class="weui_label">工作经历：</label>
+                </div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <a class="add_army_row" id="AddMoreFileBox">+</a>
+                </div>
+            </div>
             <foreach name="army_data" item="v" >
                 <div class="weui_cell cell_box">
                     <div class="weui_cell_hd">
@@ -189,7 +205,16 @@
                         <label class="weui_label">学位：</label>
                     </div>
                     <div class="weui_cell_bd weui_cell_primary">
-                        <input name="degree[{$v.army_id}]" type="text" value="{$v.degree}" class="weui_input" />
+                        <select name="degree[{$v.army_id}]" class="weui_input">
+                            <option value="{$v.degree}">{$v.degree}</option>
+                            <option value="小学">小学</option>
+                            <option value="初中">初中</option>
+                            <option value="高中">高中</option>
+                            <option value="大学专科">大学专科</option>
+                            <option value="大学本科">大学本科</option>
+                            <option value="硕士">硕士</option>
+                            <option value="博士">博士</option>
+                        </select>
                     </div>
                 </div>
             </foreach> 
@@ -219,10 +244,18 @@
             </div>
             <div class="weui_cell cell_box">
                 <div class="weui_cell_hd">
-                    <label class="weui_label">学历：</label>
+                    <label class="weui_label">学位：</label>
                 </div>
                 <div class="weui_cell_bd weui_cell_primary">
-                    <input name="new_degree[0]" type="text" class="weui_input" />
+                    <select name="new_degree[0]" class="weui_input">
+                        <option value="小学">小学</option>
+                        <option value="初中">初中</option>
+                        <option value="高中">高中</option>
+                        <option value="大学专科">大学专科</option>
+                        <option value="大学本科">大学本科</option>
+                        <option value="硕士">硕士</option>
+                        <option value="博士">博士</option>
+                    </select>
                 </div>
             </div>
         </div>
@@ -233,90 +266,79 @@
         </div>
         <div class="weui_cell">
             <div class="weui_cell_bd weui_cell_primary">
-                <textarea name="self_evaluation" class="weui_input">
-                    <if condition="$user_data['self_evaluation']">
-                        {$user_data['self_evaluation']}
-                    </if>
-                </textarea>
+                <if condition="$user_data['self_evaluation']">
+                    <textarea name="self_evaluation" class="weui_input" rows='3' placeholder="请在此处输入自我评价">{$user_data['self_evaluation']}</textarea>
+                <else/>
+                    <textarea name="self_evaluation" class="weui_input" rows='3' placeholder="请在此处输入自我评价"></textarea>
+                </if>
+                
             </div>
         </div>
         <div class="weui_cell"></div>
         <div class="weui_btn_area" style="margin-top: 35px;padding-bottom: 35px;">
-            <input class="weui_btn weui_btn_primary" type="submit" value="完成简历填写" />
+            <input class="weui_btn weui_btn_primary" id="detail_submitbtn" type="submit" value="完成简历填写" />
         </div>
     </form>
 </block>
 <block name="js_content">
     <script type="text/javascript">
-        var calendar = new LCalendar();
-        calendar.init({
-            'trigger': '#start_date', //标签id
-            'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
-            'minDate': '1900-1-1', //最小日期 注意：该值会覆盖标签内定义的日期范围
-            'maxDate': '2099-12-30' //最大日期 注意：该值会覆盖标签内定义的日期范围
+        $(function () {
+            $('#test').val('选日期');
+            var nowData = new Date();
+            nowData.setDate(nowData.getDate()+1);
+
+            var opt= { 
+                theme:'ios', //设置显示主题 
+                mode:'scroller', //设置日期选择方式，这里用滚动
+                display:'bottom', //设置控件出现方式及样式
+                preset : 'date', //日期:年 月 日 时 分
+                // minDate: nowData, 
+                maxDate: nowData,
+                dateFormat: 'yy-mm', // 日期格式
+                dateOrder: 'yymm', //面板中日期排列格式
+                stepMinute: 5, //设置分钟步长
+                yearText:'年', 
+                monthText:'月',
+                dayText:'日',
+                // hourText:'时',
+                // minuteText:'分',
+                lang:'zh' //设置控件语言};
+            };
+            $('.calendar_box').mobiscroll(opt);
+            // $('#test2').mobiscroll(opt2);
+            // $('.date_choose').unbind('change').change(function(){
+            //     var sss = $('#test').val()
+            // });
+        })
+    </script>
+    <script type="text/javascript">
+        $('#detail_submitbtn').click(function(){
+            if($('#target_position').val().length==0){
+                alert('请填写目标岗位');
+                return false;
+            }
+            if($('#expected_salary').val().length==0){
+                alert('请填写期望月薪'); 
+                return false;
+            }
+            if($('#duty_time').val()==0){
+                alert('请选择到岗时间');
+                return false;
+            }
+            if($('#honor').val()==0){
+                alert('请填写获荣誉');
+                return false;
+            }
         });
-        var calendar = new LCalendar();
-        calendar.init({
-            'trigger': '#new_service_start_0', //标签id
-            'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
-            'minDate': '1900-1-1', //最小日期 注意：该值会覆盖标签内定义的日期范围
-            'maxDate': '2099-12-30' //最大日期 注意：该值会覆盖标签内定义的日期范围
-        });
-        var calendar = new LCalendar();
-        calendar.init({
-            'trigger': '#new_service_end_0', //标签id
-            'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
-            'minDate': '1900-1-1', //最小日期 注意：该值会覆盖标签内定义的日期范围
-            'maxDate': '2099-12-30' //最大日期 注意：该值会覆盖标签内定义的日期范围
-        });
-        
-        <foreach name="army_data" item="v" >
-        var calendar = new LCalendar();
-        calendar.init({
-            'trigger': '#start_date_{$v.army_id}', //标签id
-            'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
-            'minDate': '1900-1-1', //最小日期 注意：该值会覆盖标签内定义的日期范围
-            'maxDate': '2099-12-30' //最大日期 注意：该值会覆盖标签内定义的日期范围
-        });
-        var calendar = new LCalendar();
-        calendar.init({
-            'trigger': '#end_date_{$v.army_id}', //标签id
-            'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
-            'minDate': '1900-1-1', //最小日期 注意：该值会覆盖标签内定义的日期范围
-            'maxDate': '2099-12-30' //最大日期 注意：该值会覆盖标签内定义的日期范围
-        });
-        </foreach>
-        var calendar = new LCalendar();
-        calendar.init({
-            'trigger': '#new_edu_service_start_0', //标签id
-            'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
-            'minDate': '1900-1-1', //最小日期 注意：该值会覆盖标签内定义的日期范围
-            'maxDate': '2099-12-30' //最大日期 注意：该值会覆盖标签内定义的日期范围
-        });
-        var calendar = new LCalendar();
-        calendar.init({
-            'trigger': '#new_edu_service_end_0', //标签id
-            'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
-            'minDate': '1900-1-1', //最小日期 注意：该值会覆盖标签内定义的日期范围
-            'maxDate': '2099-12-30' //最大日期 注意：该值会覆盖标签内定义的日期范围
-        });
-        
-        <foreach name="education_data" item="v" >
-        var calendar = new LCalendar();
-        calendar.init({
-            'trigger': '#edu_start_date_{$v.army_id}', //标签id
-            'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
-            'minDate': '1900-1-1', //最小日期 注意：该值会覆盖标签内定义的日期范围
-            'maxDate': '2099-12-30' //最大日期 注意：该值会覆盖标签内定义的日期范围
-        });
-        var calendar = new LCalendar();
-        calendar.init({
-            'trigger': '#edu_end_date_{$v.army_id}', //标签id
-            'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
-            'minDate': '1900-1-1', //最小日期 注意：该值会覆盖标签内定义的日期范围
-            'maxDate': '2099-12-30' //最大日期 注意：该值会覆盖标签内定义的日期范围
-        });
-        </foreach>
+        // $('textarea').mousedown(function(event){
+        //     if(event && event.preventDefault ){
+        //         event.preventDefault();
+        //         alert(123)
+        //     }else{ 
+        //         window.event.returnValue=false;
+        //         $(this).focus();
+        //     }
+        // });      
     </script>
     <script language="javascript" src="{$Think.const.JS_URL}/append_element.js"></script>
     

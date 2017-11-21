@@ -82,3 +82,24 @@ table a:hover{
 	background: #ff0;
 	margin-left: 10px;
 }
+.flr{
+	width: 20%;
+    float: left;
+    background: #347ab7;
+    color: #fff;
+    height: 200px;
+    margin: 5%;
+    border-radius: 10px;
+}
+.flr label{
+	margin: 20px 0;
+	font-size: 20px;
+	width: 100%;
+	text-align: center;
+}
+.flr span{
+	margin: 20px 0;
+	font-size: 40px;
+	width: 100%;
+	text-align: center;
+}

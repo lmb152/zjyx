@@ -14,202 +14,213 @@
                     <h3 class="panel-title">{$body_title}的个人简历</h3>
                 </div>
                 <div class="panel-body">
-                    <form method="post" action="{:U('Webadmin/list/save',array('id'=>$list['id']))}" enctype="multipart/form-data" class="bs-example bs-example-form" role="form">
-                        <table class="table table-bordered" style="width: 90%;margin: 10px auto;padding: 5px 0">
-                            <thead>
-                                <tr>
-                                    <th colspan="6">个人简历详情</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>姓名</td>
-                                    <td style="width: 15%">{$list['user_name']}</td>
-                                    <td>性别</td>
-                                    <td style="width: 10%">
-                                        <if condition="$list['male'] eq 1">男
-                                            <else/>女</if>
-                                    </td>
-                                    <td>政治面貌</td>
-                                    <td style="width: 20%">
-                                        <if condition="$list['political'] eq 0">
-                                            党员
-                                        <elseif condition="$list['political'] eq 1"/>
-                                            预备党员
-                                        <elseif condition="$list['political'] eq 2"/>
-                                            团员
-                                        <elseif condition="$list['political'] eq 3"/>
-                                            群众
-                                        </if>
-                                    </td>
-                                </tr>
-                                <!--第一行-->
-                                <tr>
-                                    <td>婚姻状态</td>
-                                    <td>
-                                        <if condition="$list['marriage'] eq 0">未婚
-                                            <else/>已婚</if>
-                                    </td>
-                                    <td>民族</td>
-                                    <td>{$list['ethnic']}</td>
-                                    <td>出生日期</td>
-                                    <td>{$list['birthday']|date='Y-m-d',###}</td>
-                                </tr>
-                                <tr>
-                                    <td>学历</td>
-                                    <td >
-                                        <if condition="$list['education'] eq 0">
-                                            小学
-                                        <elseif condition="$list['education'] eq 1"/>
-                                            初中
-                                        <elseif condition="$list['education'] eq 2"/>
-                                            高中
-                                        <elseif condition="$list['education'] eq 3"/>
-                                            大学专科
-                                        <elseif condition="$list['education'] eq 4"/>
-                                            大学本科
-                                        <elseif condition="$list['education'] eq 5"/>
-                                            硕士
-                                        <elseif condition="$list['education'] eq 6"/>
-                                            博士
-                                        </if></td>
-                                    <td>籍贯</td>
-                                    <td colspan="3">{$list['native_place']}</td>
-                                </tr>
-                                <tr>
-                                    <td>身高(cm)</td>
-                                    <td style="width: 15%">{$list['height']}</td>
-                                    <td>体重(kg)</td>
-                                    <td style="width: 10%">
-                                        {$list['weight']}
-                                    </td>
-                                    <td>手机号</td>
-                                    <td style="width: 20%">{$list['mobile']}</td>
-                                </tr>
-                                <if condition="$list['badge_number'] eq ''">
-                                    <else/>
+                    <form method="post" action="{:U('Webadmin/list/save',array('id'=>$list['id']))}" enctype="multipart/form-data" class="bs-example bs-example-form form-horizontal" role="form">
+                        <div id="user_profile">
+                            <table class="table table-bordered" style="width: 90%;margin: 10px auto;padding: 5px 0">
+                                <thead>
                                     <tr>
-                                        <td>退伍证号</td>
-                                        <td style="width: 20%" colspan="5">{$list['badge_number']}</td>
+                                        <th colspan="6">个人简历详情</th>
                                     </tr>
+                                </thead>
+                                <tbody>
                                     <tr>
-                                        <td>服役时间</td>
-                                        <td style="width: 15%" colspan="2">{$list['service_start']|date='Y-m-d',###}</td>
-                                        <td>退役时间</td>
-                                        <td style="width: 10%" colspan="2">
-                                            {$list['service_end']|date='Y-m-d',###}
+                                        <td>姓名</td>
+                                        <td style="width: 15%">{$list['user_name']}</td>
+                                        <td>性别</td>
+                                        <td style="width: 10%">
+                                            <if condition="$list['male'] eq 1">男
+                                                <else/>女</if>
                                         </td>
-                                        <!-- <td>退伍证号</td>
-                                    <td style="width: 20%">{$list['mobile']}</td> -->
+                                        <td>政治面貌</td>
+                                        <td style="width: 20%">
+                                            <if condition="$list['political'] eq 1">
+                                                党员
+                                            <elseif condition="$list['political'] eq 2"/>
+                                                预备党员
+                                            <elseif condition="$list['political'] eq 3"/>
+                                                团员
+                                            <elseif condition="$list['political'] eq 4"/>
+                                                群众
+                                            </if>
+                                        </td>
                                     </tr>
-                                </if>
+                                    <!--第一行-->
+                                    <tr>
+                                        <td>婚姻状态</td>
+                                        <td>
+                                            <if condition="$list['marriage'] eq 0">未婚
+                                                <else/>已婚</if>
+                                        </td>
+                                        <td>民族</td>
+                                        <td>{$list['ethnic']}</td>
+                                        <td>出生日期</td>
+                                        <td>{$list['birthday']|date='Y-m-d',###}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>学历</td>
+                                        <td >
+                                            <if condition="$list['education'] eq 7">
+                                                小学
+                                            <elseif condition="$list['education'] eq 1"/>
+                                                初中
+                                            <elseif condition="$list['education'] eq 2"/>
+                                                高中
+                                            <elseif condition="$list['education'] eq 3"/>
+                                                大学专科
+                                            <elseif condition="$list['education'] eq 4"/>
+                                                大学本科
+                                            <elseif condition="$list['education'] eq 5"/>
+                                                硕士
+                                            <elseif condition="$list['education'] eq 6"/>
+                                                博士
+                                            </if></td>
+                                        <td>籍贯</td>
+                                        <td colspan="3">{$list['native_place']}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>身高(cm)</td>
+                                        <td style="width: 15%">{$list['height']}</td>
+                                        <td>体重(kg)</td>
+                                        <td style="width: 10%">
+                                            {$list['weight']}
+                                        </td>
+                                        <if condition="$passed eq 1">
+                                            <td>手机号</td>
+                                            <td style="width: 20%">
+                                                <input type="text" value="{$list['mobile']}" name="mobile" <if condition="$passed neq 1">disabled="disabled"</if>/>
+                                                
+                                            </td>
+                                        </if>
+                                    </tr>
+                                    <if condition="$list['badge_number'] eq ''">
+                                        <else/>
+                                        <tr>
+                                            <td>退伍证号</td>
+                                            <td style="width: 20%" colspan="5">{$list['badge_number']}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>服役时间</td>
+                                            <td style="width: 15%" colspan="2">{$list['service_start']|date='Y-m-d',###}</td>
+                                            <td>退役时间</td>
+                                            <td style="width: 10%" colspan="2">
+                                                {$list['service_end']|date='Y-m-d',###}
+                                            </td>
+                                            <!-- <td>退伍证号</td>
+                                        <td style="width: 20%">{$list['mobile']}</td> -->
+                                        </tr>
+                                    </if>
+                                    <!-- <tr>
+                                        <td>微信ID</td>
+                                        <td style="width: 15%" colspan="3">{$list['openid']}</td>
+                                        <td>微信头像</td>
+                                        <td style="width: 10%">
+                                            <img src="{$list['imgurl']}"/>
+                                            
+                                        </td>
+                                        <td>微信昵称</td>
+                                        <td style="width: 20%">{$list['nick_name']}</td> 
+                                    </tr> -->
+                                    <tr>
+                                        <td>目标岗位</td>
+                                        <td style="width: 15%">{$list['target_position']}</td>
+                                        <td>期望薪资(元)</td>
+                                        <td style="width: 10%">{$list['expected_salary']}</td>
+                                        <td>到岗时间</td>
+                                        <td style="width: 20%">{$list['duty_time']}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="table table-bordered" style="width: 90%;margin: 10px auto;padding: 5px 0">
+                                <thead>
+                                    <tr>
+                                        <th colspan="6">教育状况</th>
+                                    </tr>
+                                </thead>
                                 <tr>
-                                    <td>微信ID</td>
-                                    <td style="width: 15%" colspan="3">{$list['openid']}</td>
-                                    <td>微信头像</td>
-                                    <td style="width: 10%">
-                                        <img src="{$list['imgurl']}"/>
-                                        
-                                    </td>
-                                    
-                                   <!--  <td>微信昵称</td>
-                                    <td style="width: 20%">{$list['nick_name']}</td> -->
+                                    <th style="text-align: center;width: 20%;">学校</th>
+                                    <th style="text-align: center;width: 20%;">学位</th>
+                                    <th style="text-align: center;width: 30%;">开始时间</th>
+                                    <th style="text-align: center;width: 30%;">结束时间</th>
                                 </tr>
+                                <volist name="ret" id="vo">
+                                    <tr>
+                                        <td>{$vo['school']}</td>
+                                        <td>{$vo['degree']}</td>
+                                        <td>{$vo['start_time']|date='Y-m-d',###}</td>
+                                        <td>{$vo['end_time']|date='Y-m-d',###}</td>
+                                    </tr>
+                                </volist>
+                            </table>
+                            <table class="table table-bordered" style="width: 90%;margin: 10px auto;padding: 5px 0">
+                                <thead>
+                                    <tr>
+                                        <th colspan="6">工作状况</th>
+                                    </tr>
+                                </thead>
                                 <tr>
-                                    <td>目标岗位</td>
-                                    <td style="width: 15%">{$list['target_position']}</td>
-                                    <td>期望薪资(元)</td>
-                                    <td style="width: 10%">{$list['expected_salary']}</td>
-                                    <td>到岗时间</td>
-                                    <td style="width: 20%">{$list['duty_time']|date='Y-m-d',###}</td>
+                                    <th style="text-align: center;width: 20%;">任职部门</th>
+                                    <th style="text-align: center;width: 20%;">职务</th>
+                                    <th style="text-align: center;width: 30%;">开始时间</th>
+                                    <th style="text-align: center;width: 30%;">结束时间</th>
                                 </tr>
-                            </tbody>
-                        </table>
-                        <table class="table table-bordered" style="width: 90%;margin: 10px auto;padding: 5px 0">
-                            <thead>
-                                <tr>
-                                    <th colspan="6">获得荣誉</th>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <textarea  id="tar" onKeyup="return c(this);" style="width: 100%;border: 0;height: 150px; resize:none">{$list['honor']}</textarea>
-                                    </td>
-                                </tr>
-                            </thead>
-                        </table>
-                        <table class="table table-bordered" style="width: 90%;margin: 10px auto;padding: 5px 0">
-                            <thead>
-                                <tr>
-                                    <th colspan="6">自我评价</th>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <textarea  id="tar" onKeyup="return c(this);" style="width: 100%;border: 0;height: 150px;resize:none">{$list['self_evaluation']}</textarea>
-                                    </td>
-                                </tr>
-                            </thead>
-                        </table>
-                        <table class="table table-bordered" style="width: 90%;margin: 10px auto;padding: 5px 0">
-                            <thead>
-                                <tr>
-                                    <th colspan="6">教育状况</th>
-                                </tr>
-                            </thead>
-                            <tr>
-                                <th style="text-align: center;width: 20%;">学校</th>
-                                <th style="text-align: center;width: 20%;">学位</th>
-                                <th style="text-align: center;width: 30%;">开始时间</th>
-                                <th style="text-align: center;width: 30%;">结束时间</th>
-                            </tr>
-                            <volist name="ret" id="vo">
-                                <tr>
-                                    <td>{$vo['school']}</td>
-                                    <td>{$vo['degree']}</td>
-                                    <td>{$vo['start_time']|date='Y-m-d',###}</td>
-                                    <td>{$vo['end_time']|date='Y-m-d',###}</td>
-                                </tr>
-                            </volist>
-                        </table>
-                        <table class="table table-bordered" style="width: 90%;margin: 10px auto;padding: 5px 0">
-                            <thead>
-                                <tr>
-                                    <th colspan="6">工作状况</th>
-                                </tr>
-                            </thead>
-                            <tr>
-                                <th style="text-align: center;width: 20%;">任职部门</th>
-                                <th style="text-align: center;width: 20%;">职务</th>
-                                <th style="text-align: center;width: 30%;">开始时间</th>
-                                <th style="text-align: center;width: 30%;">结束时间</th>
-                            </tr>
-                            <volist name="rt" id="v">
-                                <tr>
-                                    <td>{$v['department']}</td>
-                                    <td>{$v['position']}</td>
-                                    <td>{$v['start_time']|date='Y-m-d',###}</td>
-                                    <td>{$v['end_time']|date='Y-m-d',###}</td>
-                                </tr>
-                            </volist>
-                            <!--第一行-->
-                        </table>
-                        <table class="table table-bordered" style="width: 90%;margin: 10px auto;padding: 5px 0">
-                            <thead>
-                                <tr>
-                                    <th colspan="6">推荐理由<span style="color: red;">(不得大于200字)</span></th>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <textarea  id="tar" onKeyup="return c(this);" style="width: 100%;border: 0;height: 150px; resize:none" name="reason">{$list['reason']}</textarea>
-                                    </td>
-                                </tr>
-                        </table>
+                                <volist name="rt" id="v">
+                                    <tr>
+                                        <td>{$v['department']}</td>
+                                        <td>{$v['position']}</td>
+                                        <td>{$v['start_time']|date='Y-m-d',###}</td>
+                                        <td>{$v['end_time']|date='Y-m-d',###}</td>
+                                    </tr>
+                                </volist>
+                                <!--第一行-->
+                            </table>
+                            <table class="table table-bordered" style="width: 90%;margin: 10px auto;padding: 5px 0">
+                                <thead>
+                                    <tr>
+                                        <th colspan="6">获得荣誉</th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <textarea  id="tar" onKeyup="return c(this);" style="width: 100%;border: 0;height: 150px; resize:none" disabled="disabled">{$list['honor']}</textarea>
+                                        </td>
+                                    </tr>
+                                </thead>
+                            </table>
+                            <table class="table table-bordered" style="width: 90%;margin: 10px auto;padding: 5px 0">
+                                <thead>
+                                    <tr>
+                                        <th colspan="6">自我评价</th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <textarea  id="tar" onKeyup="return c(this);" style="width: 100%;border: 0;height: 150px;resize:none" disabled="disabled">{$list['self_evaluation']}</textarea>
+                                        </td>
+                                    </tr>
+                                </thead>
+                            </table>
+                            <table class="table table-bordered" style="width: 90%;margin: 10px auto;padding: 5px 0">
+                                <thead>
+                                    <tr>
+                                        <th colspan="6">推荐理由<span style="color: red;">(不得大于200字)</span></th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <textarea  id="tar" onKeyup="return c(this);" style="width: 100%;border: 0;height: 150px; resize:none" name="reason" <if condition="$passed neq 1">disabled="disabled"</if>>{$list['reason']}</textarea>
+                                        </td>
+                                    </tr>
+                            </table>
+                        </div>
                         <div style="clear:both;">
-                            <a href="{:U('Webadmin/list/passed_profile',array('id'=>$eid))}">
-                                <button type="button" class="btn btn-primary">审核通过</button>
-                            </a>
-                            <input type="submit" value="保存" class="btn btn-large btn-success">
+                            <if condition="$passed eq 1">
+                                <a href="{:U('Webadmin/list/passed_profile',array('id'=>$eid))}">
+                                    <button type="button" class="btn btn-primary">审核通过</button>
+                                </a>
+                                <input type="submit" value="保存" class="btn btn-large btn-success ajax-post"  target-form="form-horizontal">
+                            </if>
                             <a href="{:U('Webadmin/list/lists',array('name'=>1))}">
                                 <button type="button" class="btn btn-primary">返回简历列表</button>
+                            </a>
+                            <a href="javascript:void(0)" id="print_profile">
+                                <button type="button" class="btn btn-primary">打印简历</button>
                             </a>
                         </div>
                     </form>
@@ -217,12 +228,4 @@
             </div>
         </div>
     </div>
-    <script>
-    function c(s) {
-        if (s.value.length > 200) {
-            return s.value = s.value.substr(0, 200), alert('最大字符数为200');
-        }
-        return !0;
-    }
-    </script>
 </block>

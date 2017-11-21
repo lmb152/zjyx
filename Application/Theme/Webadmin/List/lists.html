@@ -15,33 +15,36 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>编号</th>
+                                <th>手机号</th>
                                 <th>用户名</th>
                                 <th>性别</th>
                                 <th>籍贯</th>
                                 <th>民族</th>
                                 <th>学历</th>
                                 <th>目标岗位</th>
-                                <th>状态</th>
+                                <th>期望薪资</th>
+                                <if condition="$passed eq 1">
+                                    <th>状态</th>
+                                </if>
                                 <th>操作</th>
                             </tr>
                         </thead>
                         <tbody>
                             <foreach name="list" item="vo">
                                 <tr>
-                                    <td>{$vo['id']}</td>
+                                    <td>{$vo['mobile']}</td>
                                     <td>{$vo['user_name']}</td>
                                     <td>
                                         <if condition="$vo['male'] eq 1">
                                             男
-                                        <else/>
+                                        <elseif condition="$vo['male'] eq 2" />
                                             女
                                         </if>
                                     </td>
                                     <td>{$vo['native_place']}</td>
                                     <td>{$vo['ethnic']}</td>
                                     <td>
-                                        <if condition="$vo['education'] eq 0">
+                                        <if condition="$vo['education'] eq 7">
                                             小学
                                         <elseif condition="$vo['education'] eq 1"/>
                                             初中
@@ -58,16 +61,21 @@
                                         </if>
                                     </td>
                                     <td>{$vo['target_position']}</td>
-                                    <td>
-                                        <if condition="$vo['status'] eq 0"><span style="color: red;">未审核</span>
-                                            <else/><span style="color: #009aff;">审核已通过</span></if>
-                                    </td>
+                                    <td>{$vo['expected_salary']}</td>
+                                    <if condition="$passed eq 1">
+                                        <td>
+                                            <if condition="$vo['status'] eq 0"><span style="color: red;">未审核</span>
+                                                <else/><span style="color: #009aff;">审核已通过</span></if>
+                                        </td>
+                                    </if>
                                     <td>
                                         <!-- <if condition="($_SESSION['role'] eq 'admin') and ($vo['type'] neq 1)">
                                             <a class="passed" href="{:U('Webadmin/list/passed',array('id'=>$vo['id'],'name'=>1))}">审核通过</a>
                                         </if> -->
                                         <a href="{:U('Webadmin/list/edit',array('id'=>$vo['id']))}">详情</a>
-                                        <a class="delete" href="{:U('Webadmin/list/delete',array('id'=>$vo['id'],'name'=>1))}">删除</a>
+                                        <if condition="$passed eq 1">
+                                            <a class="delete" href="{:U('Webadmin/list/delete',array('id'=>$vo['id'],'name'=>1))}">删除</a>
+                                        </if>
                                     </td>
                                 </tr>
                             </foreach>

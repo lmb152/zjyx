@@ -1,10 +1,30 @@
 <extend name="./base" />
 <block name="main">
 	<div class="content">
-		
-
 		<p>
 			欢迎使用{$Think.const.SITE_NAME}后台管理系统
 		</p>
+		<if condition="$is_admin eq 1">
+			<div class="flr">
+				<label>总用户数</label>
+				<span>{$user_num}</span>
+			</div>
+			<div class="flr">
+				<label>总职位数</label>
+				<span>{$position_num}</span>
+			</div>
+			<div class="flr">
+				<label>总企业数</label>
+				<span>{$company_num}</span>
+			</div>
+			<div class="flr">
+				<label>今日新增用户</label>
+				<span>{$new_user}</span>
+			</div>
+			<div class="flr">
+				<label>今日新增职位</label>
+				<span>{$new_position}</span>
+			</div>
+		</if>
 	</div>
 </block>

@@ -7,7 +7,7 @@
         </form>
     </div>
     <div id="sort">
-        <table width="100%" border="0" cellspacing="0">
+        <table id="search_downlist" width="100%" border="0" cellspacing="0">
             <tr>
                 <td class="sort_left">
                     <div class="sort_cate">
@@ -101,21 +101,25 @@
             <div class="ct">
                 <div class="wrap">
                     <ul class="choose_cate">
-                        <li style="font-weight:700;" c_data="300" style="background:#f7f7f7;">
+                        <li style="font-weight:700;" c_data="全部地区" style="background:#f7f7f7;">
+                            <i style="margin-right:0;background:none;width:0;" class="s"></i>
+                            <span>全部地区</span><i class="e"></i>
+                        </li>
+                        <li style="font-weight:700;" c_data="北京" style="background:#f7f7f7;">
                             <i style="margin-right:0;background:none;width:0;" class="s"></i>
                             <span>北京</span><i class="e"></i>
                         </li>
                     <foreach name="provice" item="v">
-                        <li style="font-weight:700;" c_data="{$v['id']}" style="background:#f7f7f7;">
+                        <li style="font-weight:700;" c_data="{$v['name']}" style="background:#f7f7f7;">
                             <i style="margin-right:0;background:none;width:0;" class="s"></i>
                             <span>{$v['name']}</span><i class="e"></i>
                         </li>
-                        <foreach name="v.cities" item='vv'>
-                            <li c_data="{$vv['id']}">
+                        <!-- <foreach name="v.cities" item='vv'>
+                            <li c_data="{$vv['name']}">
                                 <i style="background:none;width:10px;margin-right:0;" class="s"></i><span>{$vv['name']}</span>
                                 <i class="e"></i>
                             </li>
-                        </foreach>
+                        </foreach> -->
                     </foreach>
                     </ul>
                     <div class="clear"></div>
@@ -164,17 +168,21 @@
             <div class="ct">
                 <div class="wrap">
                     <ul>
-                        <li t_data=""><i></i><span>3K以下</span><i class="e"></i></li>
+                        <li t_data="0"><i></i><span>不限</span><i class="e"></i></li>
+                        <li t_data="0"><i></i><span>3K以下</span><i class="e"></i></li>
                         <li t_data="1"><i></i><span>3K-5K</span><i class="e"></i></li>
                         <li t_data="2"><i></i><span>5K-8K</span><i class="e"></i></li>
-                        <li t_data="2"><i></i><span>8K-10K</span><i class="e"></i></li>
-                        <li t_data="2"><i></i><span>10K以上</span><i class="e"></i></li>
+                        <li t_data="3"><i></i><span>8K-10K</span><i class="e"></i></li>
+                        <li t_data="4"><i></i><span>10K以上</span><i class="e"></i></li>
                     </ul>
                     <div class="clear"></div>
                 </div>
             </div>
         </div>
         <input type="hidden" id="page_num" value="2"/>
+        <input type="hidden" id="area" value="{$area}"/>
+        <input type="hidden" id="industry" value="{$industry_temp}"/>
+        <input type="hidden" id="expected" value="{$expected}"/>
     </div>
    
 </block>
@@ -202,6 +210,9 @@
                     }
                 });
             });
+            $('#search_downlist .sort_b_inner').bind('change',function(){
+                alert(0);
+            })
         });
     </script>
 </block>

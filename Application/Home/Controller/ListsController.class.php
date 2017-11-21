@@ -41,10 +41,44 @@ class ListsController extends Controller {
 		$this->assign('industry', $industry_parent);
 
 		$qstr = $_GET['qstr'] && trim($_GET['qstr']) ? trim($_GET['qstr']) : '';
-		if ($qstr != "") {
-			$whereStr = "p_name like '%" . $qstr . "%'";
+		$whereStr ='1 ';
+		$area=$industry=$expected='';
+		if($_GET['area']){
+			$area=$_GET['area'];
+			$whereStr .= " and location like '%".$_GET["area"]."%'";
 		}
-		$where['type'] = 1;
+		if($_GET['industry']){
+			$industry=$_GET['industry'];
+			$whereStr .= " and industry = '".$_GET['industry']."'";
+		}
+		if($_GET['expected']){
+			$expected=$_GET['expected'];
+			switch ($_GET['expected']) {
+				case '3K以下':
+					$whereStr .= ' and salary < 3000';
+					break;
+				case '3K-5K':
+					$whereStr .= ' and salary >=3000 and salary<5000';
+					break;
+				case '5K-8K':
+					$whereStr .= ' and salary >=5000 and salary<8000';
+					break;
+				case '8K-10K':
+					$whereStr .= ' and salary >=8000 and salary<10000';
+					break;
+				case '10K以上':
+					$whereStr .= ' and salary >=10000';
+					break;
+				default:
+					break;
+			}
+		}
+		$this->assign('area',$area);
+		$this->assign('industry_temp',$industry);
+		$this->assign('expected',$expected);
+		if ($qstr != "") {
+			$whereStr .= "p_name like '%" . $qstr . "%'";
+		}
 
 		if ($whereStr != "") {
 			$where['_string'] = $whereStr;
@@ -54,10 +88,10 @@ class ListsController extends Controller {
 		$count=count($all_num);
 
 		$page = $_POST['page'] ? $_POST['page'] : 1; //获取请求的页数
-		$num = 2; //请求条数
+		$num = 10; //请求条数
 		// dump($where);exit;
 		// $list = M('position')
-		$list = M("position")->page($page, $num)->where($where)->select();
+		$list = M("position")->page($page, $num)->where($where)->order('istop desc')->select();
 		foreach ($list as $key => &$value) {
 			$value['pub_time']=date('m-d',$value['pub_time']);
 		}
