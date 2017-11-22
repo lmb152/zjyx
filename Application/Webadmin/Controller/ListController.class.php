@@ -15,7 +15,7 @@ class ListController extends CommonController {
 			$where='1 ';
 			$qstr = $_POST['qstr'] && trim($_POST['qstr']) ? trim($_POST['qstr']) : '';
 			if ($qstr != "") {
-				$where = "and user_name like '%" . $qstr . "%' or target_position like '%" . $qstr . "%'";
+				$where .= "and mobile like '%".$qstr."%' or user_name like '%" . $qstr . "%' or target_position like '%" . $qstr . "%'";
 			}
 			if($_SESSION['role']=='company'){
 				$where .= ' and status=1';
@@ -23,8 +23,8 @@ class ListController extends CommonController {
 				$passed=1;
 			}
 			$User = M('user_profile'); // 实例化User对象
-			$count = $User->count(); // 查询满足要求的总记录数
-			$Page = new \Think\Page($count, 30); // 实例化分页类 传入总记录数和每页显示的记录数(25)
+			$count = $User->where($where)->count(); // 查询满足要求的总记录数
+			$Page = new \Think\Page($count, 20); // 实例化分页类 传入总记录数和每页显示的记录数(25)
 			$show = $Page->show(); // 分页显示输出
 			// 进行分页数据查询 注意limit方法的参数要使用Page类的属性
 			$list = $User->order('id')->where($where)->order("status desc,created desc")->limit($Page->firstRow . ',' . $Page->listRows)->select();
@@ -40,7 +40,7 @@ class ListController extends CommonController {
 			$qstr = $_POST['qstr'] && trim($_POST['qstr']) ? trim($_POST['qstr']) : '';
 			$where='1 ';
 			if ($qstr != "") {
-				$where = " and p_name like '%" . $qstr . "%' or company like '%" . $qstr . "%'";
+				$where .= " and p_name like '%" . $qstr . "%' or company like '%" . $qstr . "%'";
 			}
 			if($_SESSION['role']=='company'){
 				$where .= ' and uid='.$_SESSION['uid'];
@@ -48,8 +48,8 @@ class ListController extends CommonController {
 				$passed=1;
 			}
 			$User = M('position'); // 实例化User对象
-			$count = $User->count(); // 查询满足要求的总记录数
-			$Page = new \Think\Page($count, 30); // 实例化分页类 传入总记录数和每页显示的记录数(25)
+			$count = $User->where($where)->count(); // 查询满足要求的总记录数
+			$Page = new \Think\Page($count, 20); // 实例化分页类 传入总记录数和每页显示的记录数(25)
 			$show = $Page->show(); // 分页显示输出
 			// 进行分页数据查询 注意limit方法的参数要使用Page类的属性
 			$list = $User->order('p_id')->where($where)->order('istop desc,type desc')->limit($Page->firstRow . ',' . $Page->listRows)->select();

@@ -6,8 +6,8 @@
                 <div class="panel-heading">
                     <span class="panel-title" style="margin: 0 auto">{$listname}列表</span>
                     <span style="float: right;" class="input-group">
-                    <form action="{:U('Webadmin/list/lists',array('name'=>1))}" method="POST">
-                         <input type="text" name="qstr" value="{$qstr}"  placeholder="用户名或岗位关键字"  class="form-control" style="width: 76%;height: 28px;">
+                    <form style="width:300px;" action="{:U('Webadmin/list/lists',array('name'=>1))}" method="POST">
+                         <input type="text" name="qstr" value="{$qstr}"  placeholder="用户名、手机号或岗位关键字"  class="form-control" style="width: 76%;height: 28px;">
                         <button class="input-group-addon" type="submit" style="width: 24%; ">搜索</button>
                     </form></span>
                 </div>

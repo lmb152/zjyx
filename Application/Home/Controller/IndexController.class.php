@@ -80,6 +80,9 @@ class IndexController extends Controller {
 		}
 	}
 	public function bind_phone_save() {
+		if(!$_POST['certifycode']){
+			$this->error('请填写验证码',U('/index/index'),3);
+		}
 		if ($_POST['certifycode'] == $_SESSION['srand']) {
 			$user_profile = D('user_profile');
 			$where = array(
@@ -90,7 +93,7 @@ class IndexController extends Controller {
 			);
 			$user_profile->where($where)->save($user_data_mobile);
 			$this->success('手机号码验证成功',U('/index/basic_info'),3);
-		} else {
+		}else {
 			$this->error('验证码错误',U('/index/index'),3);
 			// $this->error('验证码错误,请重新获取');
 		}
